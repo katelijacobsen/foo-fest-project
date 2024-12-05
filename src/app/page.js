@@ -1,7 +1,5 @@
 import Image from "next/image";
-// import HeroSection from "@/components/HeroSection";
-import Button from "@/components/global/buttonFolder/Button";
-import MyButton from "@/components/global/buttonFolder/MyButton";
+import HeroSection from "@/components/festivalsystem/HeroSection";
 
 export default function Home() {
   return (

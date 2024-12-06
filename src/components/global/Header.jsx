@@ -19,59 +19,65 @@ const Header = () => {
   return (
     <header>
       <nav className="flex justify-between sticky top-0 p-4">
-        {/* Stor skærme: vis links som en horisontal menu */}
         <li className="list-none">
           <Link href="/">Logo</Link>
         </li>
-        <ul className="hidden md:flex space-x-4 justify-between">
-          <li>
+        <ul className="hidden md:flex md:gap-6 space-x-4 justify-between">
+          <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
             <Link href="/pages/program">Program</Link>
           </li>
-          <li>
-            <Link href="/lineup">Line-Up</Link>
+          <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
+            <Link href="/pages/lineup">Line-Up</Link>
           </li>
-          <li>
-            <Link href="/camping">Camping</Link>
+          <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
+            <Link href="/pages/camping">Camping</Link>
           </li>
-          <li>
-            <Link href="/volunteer">Bliv Frivillig</Link>
+          <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
+            <Link href="/pages/volunteer">Bliv Frivillig</Link>
           </li>
-          <button>Køb billetter</button>
+          <button>
+            <Link href="/pages/payment">Køb billetter</Link>
+          </button>
         </ul>
 
         {/* Burger-menu for små skærme */}
-        <button onClick={handleClick} className={`md:hidden absolute top-4 right-4 p-2 ${ceasarDressing.className}`}>
+        <button onClick={handleClick} className={`md:hidden absolute text-2xl top-4 right-4 p-2 ${ceasarDressing.className} bg-gradient-to-bl from-customPink to-customOrange bg-clip-text text-transparent`}>
           Menu
         </button>
 
-        {/* Vis tekst: luk menu, når den er åben */}
+        {/* Vis tekst: "Luk menu", når burgermenu er åben */}
         {isOpen && (
-          <div className="md:hidden fixed top-0 right-0 bottom-0 left-0 z-50 bg-customBlack">
+          <div className="md:hidden fixed top-0 right-0 bottom-0 left-0 z-10 bg-customBlack">
             {/* Luk menuen */}
-            <button onClick={handleClick} className={` ${ceasarDressing.className} absolute top-4 right-4 text-customOrange text-2xl`}>
+            <button onClick={handleClick} className={`${ceasarDressing.className} absolute top-4 right-4 bg-gradient-to-bl from-customPink to-customOrange bg-clip-text text-transparent text-2xl`}>
               Luk menu
             </button>
-            <ul className="grid place-content-center text-center h-[60vh] gap-6">
+            <ul className="grid place-content-center text-center h-[60vh] gap-6 mt-[8rem]">
               <li>
-                <Link className={`${ceasarDressing.className} text-4xl hover:text-customOrange`} href="/program">
+                <Link className={`${ceasarDressing.className} text-4xl hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent`} href="/pages/program">
                   PROGRAM
                 </Link>
               </li>
               <li>
-                <Link className={`${ceasarDressing.className} text-4xl hover:text-customOrange`} href="/lineup">
+                <Link className={`${ceasarDressing.className} text-4xl hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent`} href="/pages/lineup">
                   LINE-UP
                 </Link>
               </li>
               <li>
-                <Link className={`${ceasarDressing.className} text-4xl hover:text-customOrange`} href="/camping">
+                <Link className={`${ceasarDressing.className} text-4xl hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent`} href="/pages/camping">
                   CAMPING
                 </Link>
               </li>
               <li>
-                <Link className={`${ceasarDressing.className} text-4xl hover:text-customOrange`} href="/volunteer">
+                <Link className={`${ceasarDressing.className} text-4xl hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent`} href="/pages/volunteer">
                   BLIV FRIVILLIG
                 </Link>
               </li>
+              <button>
+                <Link href="/pages/payment" className={`${ceasarDressing.className} text-4xl hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent`}>
+                  Køb billetter
+                </Link>
+              </button>
             </ul>
           </div>
         )}

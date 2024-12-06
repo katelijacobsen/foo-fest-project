@@ -1,6 +1,6 @@
 import { Caesar_Dressing } from "next/font/google";
 import { Inter } from "next/font/google";
-import Marquee from "react-fast-marquee";
+import Marquee from "@/components/MyMarquee";
 
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],

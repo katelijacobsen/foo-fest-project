@@ -1,5 +1,6 @@
 import { Caesar_Dressing } from "next/font/google";
 import { Inter } from "next/font/google";
+import Marquee from "@/components/MyMarquee";
 
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],
@@ -16,6 +17,7 @@ const HeroSection = () => {
     <div>
       <h1 className={`${ceasarDressing.className} text-[16rem]`}>FOO FEST</h1>
       <h2 className={`${inter.className}`}>Camp som en ægte viking – og skrål til musikken som en kriger.</h2>
+      <Marquee />
     </div>
   );
 };

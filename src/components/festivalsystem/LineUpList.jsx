@@ -10,7 +10,7 @@ const LineUpList = ({ initialLineup }) => {
       <ul className="flex flex-wrap justify-center">
         {bands.map((band, index) => {
           // Beregn fontstørrelsen dynamisk baseret på index
-          const fontSize = Math.max(48 - index, 20); // Fontstørrelsen starter ved 16px og går ned til 6px
+          const fontSize = Math.max(48 - index, 20); // Fontstørrelsen starter ved 48px og går ned til 20px
           return (
             <li
               className="w-[fit] p-1 hover:text-customOrange transition ease-in-out hover:-translate-y-1"

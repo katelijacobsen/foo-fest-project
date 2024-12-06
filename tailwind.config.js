@@ -17,6 +17,8 @@ module.exports = {
         customBlack_2: "#3B3B3E",
         customBlack_3: "#444546",
         customBlack_4: "#5A5B60",
+        customBlack_5: "#262628",
+        customBlack_6: "#383838",
       },
     },
   },

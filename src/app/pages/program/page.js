@@ -27,32 +27,32 @@ export default async function Page() {
   const events = await fetchEvents();
 
   // Kombiner bands, schedule og events
-  const organizedByScene = Object.entries(schedule).reduce((acc, [scene, days]) => {
-    acc[scene] = Object.entries(days).map(([day, slots]) => {
-      return {
-        day,
-        bands: slots
-          .filter((slot) => slot.act !== "break") // Filtrer pauser
-          .map((slot) => {
-            const band = bands.find((b) => b.name === slot.act);
-            const event = events.find((e) => e.act.act === slot.act);
+  // const organizedByScene = Object.entries(schedule).reduce((acc, [scene, days]) => {
+  //   acc[scene] = Object.entries(days).map(([day, slots]) => {
+  //     return {
+  //       day,
+  //       bands: slots
+  //         .filter((slot) => slot.act !== "break")
+  //         .map((slot) => {
+  //           const band = bands.find((b) => b.name === slot.act);
+  //           const event = events.find((e) => e.act.act === slot.act);
 
-            if (band) {
-              return {
-                ...band,
-                time: `${slot.start} - ${slot.end}`, // Tid fra schedule
-                scene,
-                day,
-                cancelled: event ? event.act.cancelled : false, // Aflyst status fra events
-              };
-            }
-            return null; // Hvis band ikke findes
-          })
-          .filter(Boolean), // Fjern null-værdier
-      };
-    });
-    return acc;
-  }, {});
+  //           if (band) {
+  //             return {
+  //               ...band,
+  //               time: `${slot.start} - ${slot.end}`,
+  //               scene,
+  //               day,
+  //               cancelled: event ? event.act.cancelled : false,
+  //             };
+  //           }
+  //           return null;
+  //         })
+  //         .filter(Boolean),
+  //     };
+  //   });
+  //   return acc;
+  // }, {});
 
   return (
     <div>

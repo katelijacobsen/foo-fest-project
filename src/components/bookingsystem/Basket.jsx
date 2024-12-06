@@ -1,4 +1,5 @@
 export default function Basket() {
+  //Indhold til kurven 
   return (
     <section>
         <h3>Indkøbskurv</h3>

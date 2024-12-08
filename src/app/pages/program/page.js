@@ -24,21 +24,21 @@ export default async function Page() {
     let data = await response.json();
     return data;
   };
-  // variabel for det data, som de tre datasæt retunerer - gør det muligt at bruge data lokalt i funktionen og sende dem videre som props til din App-komponent
+  // variabel for det data, som de tre datasæt retunerer - gør det muligt at bruge data lokalt i funktionen og sende dem videre som props til programlist-komponent
   const bands = await fetchBands();
   const schedule = await fetchSchedule();
   const events = await fetchEvents();
 
   // Kombiner bands, schedule og events
-  const organizedByScene = Object.entries(schedule).reduce((acc, [scene, days]) => {
-    acc[scene] = Object.entries(days).map(([day, slots]) => {
+  const organizedByScene = Object.entries(schedule).reduce((accumulator, [scene, days]) => {
+    accumulator[scene] = Object.entries(days).map(([day, slots]) => {
       return {
         day,
         bands: slots
           .filter((slot) => slot.act !== "break")
           .map((slot) => {
-            const band = bands.find((b) => b.name === slot.act);
-            const event = events.find((e) => e.act.act === slot.act);
+            const band = bands.find((band) => band.name === slot.act);
+            const event = events.find((event) => event.act.act === slot.act);
 
             if (band) {
               return {
@@ -54,7 +54,7 @@ export default async function Page() {
           .filter(Boolean),
       };
     });
-    return acc;
+    return accumulator;
   }, {});
 
   return (

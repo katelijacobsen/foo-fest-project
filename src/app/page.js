@@ -5,8 +5,8 @@ export default function Home() {
   return (
     <div>
       {/* <HeroSection /> */}
-      <Button buttonContent="lol"></Button>
-      <MyButton></MyButton>
+      {/* <Button buttonContent="lol"></Button>
+      <MyButton></MyButton> */}
     </div>
   );
 }

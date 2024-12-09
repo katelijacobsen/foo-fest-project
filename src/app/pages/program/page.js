@@ -62,30 +62,8 @@ export default async function Page() {
           .filter(Boolean), //fjerner null værdier, hvis der ikke blev fundet noget band
       };
     });
-    return accumulator;
+    return acc;
   }, {});
-
-  //datastrukturen vi får ud efter ovenstående er:
-  // {
-  //   "Midgard": [
-  //     {
-  //       day: "mon",
-  //       bands: [
-  //         {
-  //           name: "Nirvana",
-  //           genre: "Grunge",
-  //           time: "00:00 - 02:00",
-  //           scene: "Midgard",
-  //           day: "mon",
-  //           cancelled: false,
-  //         },
-  //         ...
-  //       ],
-  //     },
-  //     ...
-  //   ],
-  //   "Vanaheim": [ ... ]
-  // }
 
   return (
     <div>

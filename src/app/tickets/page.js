@@ -6,6 +6,7 @@ import PaymentFlow from "@/components/bookingsystem/PaymentFlow";
 import PaymentComfirmed from "@/components/bookingsystem/PaymentConfirmed";
 import Basket from "@/components/bookingsystem/Basket";
 import { useActionState } from "react";
+import { Caesar_Dressing } from "next/font/google";
 
 // const defaultState = {
 //   step: 0,
@@ -42,6 +43,12 @@ import { useActionState } from "react";
 //     }))
 //   }
 // }
+const ceasarDressing = Caesar_Dressing({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
 const defaultState = {
   step: 0,
   tickets: {
@@ -64,8 +71,6 @@ const defaultState = {
 };
 
 const handleStep = (prev, formData) => {
-  console.log("handleStep");
-
   if (prev.step === 0) {
     return {
       ...prev,
@@ -76,6 +81,17 @@ const handleStep = (prev, formData) => {
       },
     };
   }
+  if (prev.step === 1) {
+    return {
+      ...prev,
+      step: prev.step + 1,
+      tents: {
+        twoPeople: formData.get("twoPeople"),
+        threPeople: formData.get("threePeople"),
+        greenCamping: formData.get("greenCamping"),
+      },
+    };
+  }
 };
 
 export default function Page() {
@@ -83,7 +99,7 @@ export default function Page() {
 
   return (
     <main>
-      <h1 className="text-foreground text-6xl">BILLETTER</h1>
+      <h1 className={`${ceasarDressing.className} text-8xl text-white`}>BILLETTER</h1>
       {state.step === 0 && <ChooseTicket formAction={formAction} />}
       {state.step === 1 && <Campsite />}
       {state.step === 2 && <Form />}

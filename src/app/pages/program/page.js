@@ -36,19 +36,24 @@ export default async function Page() {
     // acc[scene]: opretter et objekt for hver scene fx accumulator["Midgard"] = [...];
     //Object.entries(days).map(([day, slots]): laver en liste over ugedage for scenen og deres tidsrum (slots) fx ["mon", [...]]..
     //.map(): For hver dag (fx "mon"), laves et nyt objekt, der indeholder day: navnet på dagen og bands: listen af bands der spiller den dag
-
     accumulator[scene] = Object.entries(days).map(([day, slots]) => {
       return {
         day,
         bands: slots
-
+          //fjerner alle tidsrum, der er "break" (pauser). Kun bands bliver tilbage. Gør vi for at beholde relevante data (ingen pauser eller tomme felter)
           .filter((slot) => slot.act !== "break")
+          //laver et nyt objekt for hvert band, hvor vi finder detaljer i andre datasæt (/bands og /events)
           .map((slot) => {
+            //Vi leder i bands-listen efter et band, der matcher navnet (slot.act) (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find) fx hvis slot.act er "Nirvana", finder vi Nirvana i bands
+            //vi bruger find for at kombinere data fra flere forskellige datasæt
             const band = bands.find((band) => band.name === slot.act);
+            //tjekker om der er ekstra info i events-datasættet, som fx om bandet er aflyst.
             const event = events.find((event) => event.act.act === slot.act);
 
+            //Kun hvis der findes et band, laves et nyt objekt med alle nødvendige oplysninger (time, scene, day, cancelled)
             if (band) {
               return {
+                //kopierer al af bandets data (fx navn, genre osv.)
                 ...band,
                 time: `${slot.start} - ${slot.end}`, //tidspunktet bandet spiller (start og slut).
                 scene, //navnet på scenen
@@ -62,7 +67,7 @@ export default async function Page() {
           .filter(Boolean), //fjerner null værdier, hvis der ikke blev fundet noget band
       };
     });
-    return acc;
+    return accumulator;
   }, {});
 
   return (
@@ -71,23 +76,3 @@ export default async function Page() {
     </div>
   );
 }
-
-// initialBands={bands} initialSchedule={schedule} initialEvents={events}
-// console.log(bands);
-// console.log(events);
-
-//kombiner data (bands og events)
-// const combinedData = bands.map((band) => {
-//   const eventInfo = events.find((event) => event.act.act === band.name);
-
-//   if (eventInfo) {
-//     return {
-//       ...band,
-//       time: `${eventInfo.act.start} - ${eventInfo.act.end}`,
-//       scene: eventInfo.scene,
-//       day: eventInfo.day, // Dag
-//       cancelled: eventInfo.act.cancelled, // Aflyst eller ej
-//     };
-//   }
-//   return band;
-// });

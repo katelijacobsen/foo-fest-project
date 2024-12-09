@@ -10,9 +10,9 @@ const ceasarDressing = Caesar_Dressing({
 
 const Headline = ({ src, text }) => {
   return (
-    <div className="flex gap-2">
-      <Image src={src} alt="rune" width={50} height={50} />
-      <h1 className={`${ceasarDressing.className} text-6xl`}>{text}</h1>
+    <div className="flex gap-2 items-center py-6">
+      <Image src={src} alt="rune" width={40} height={40} />
+      <h1 className={`${ceasarDressing.className} text-[2.5rem]`}>{text}</h1>
     </div>
   );
 };

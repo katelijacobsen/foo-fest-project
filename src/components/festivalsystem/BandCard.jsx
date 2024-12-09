@@ -1,36 +1,28 @@
-import Link from "next/link";
+"use client";
+import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-const BandCard = ({ band }) => {
-  const { name, genre, logo, slug, scene, time, day, cancelled } = band;
+function BandCard({ name, genre, start, end, slug, day, logo, scene }) {
+  const imageUrl = logo && (logo.startsWith("https://") || logo.startsWith("http://")) ? logo : `http://localhost:8080/logos/${logo}`;
 
-  // Bestem billed-URL'en
-  const imageUrl = logo.startsWith("https://") || logo.startsWith("http://") ? logo : `http://localhost:8080/logos/${logo}`;
-
+  console.log(imageUrl);
   return (
-    <div key={slug}>
-      <div className="min-w-[250px]">
-        <Link href={`/pages/program/${slug}`}>
-          <Image src={imageUrl} alt={name} width={250} height={250} />
-          {time && scene && day && name && genre ? (
-            <div>
-              <div className="flex justify-between">
-                <p className="font-bold text-xl">{name}</p>
-                <p>{scene}</p>
-              </div>
-              <p className="uppercase">{genre}</p>
-              <p>
-                {time} {day}
-              </p>
-              {cancelled && <p style={{ color: "red" }}>AFLYST</p>}
-            </div>
-          ) : (
-            <p>Ingen optræden planlagt</p>
-          )}
-        </Link>
+    <Link href={`/band/${slug}`} key={slug}>
+      {imageUrl ? <Image src={imageUrl} width={300} height={300} alt={`${name} logo`} /> : <span className="text-white">No image</span>}
+      <div className="">
+        <p className=" ">{genre}</p>
+        <p>{scene}</p>
+        <h2>{name}</h2>
+        <div className="">
+          <h3 className="text-xl lg:text-2xl">
+            {start} - {end}
+          </h3>
+          <p>{day}</p>
+        </div>
       </div>
-    </div>
+    </Link>
   );
-};
+}
 
 export default BandCard;

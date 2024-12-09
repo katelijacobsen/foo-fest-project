@@ -1,6 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
 import BandCard from "./BandCard";
+import Headline from "../global/Headline";
+import MusicRune from "@/img/svg/music_rune.svg";
+import PrimaryButton from "@/components/global/buttonFolder/PrimaryButton";
 
 const ProgramForCurrentDay = ({ bandsByScene }) => {
   const [currentDay, setCurrentDay] = useState(null);
@@ -21,10 +24,12 @@ const ProgramForCurrentDay = ({ bandsByScene }) => {
   }, {});
 
   return (
-    <section>
+    <section className=" py-6 px-4">
       <div>
-        <h1 className="text-2xl font-bold mb-4">Bands der spiller i dag: {currentDay}</h1>
-
+        <Headline src={MusicRune} text="DAGENS PROGRAM" />
+      </div>
+      <div>
+        {/* <h1 className="text-2xl font-bold mb-4">Bands der spiller i dag: {currentDay}</h1> */}
         {Object.entries(filteredData).map(([scene, bands]) => (
           <div key={scene}>
             <h2 className="text-xl font-semibold">{scene}</h2>
@@ -35,6 +40,9 @@ const ProgramForCurrentDay = ({ bandsByScene }) => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="grid place-content-center pt-8">
+        <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Se det fulde lineup" />
       </div>
     </section>
   );

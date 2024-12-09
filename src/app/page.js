@@ -1,3 +1,5 @@
+import Header from "@/components/global/Header";
+import HeroSection from "@/components/festivalsystem/HeroSection";
 import LineupListReadMore from "@/components/festivalsystem/LineupListReadMore";
 import ProgramForCurrentDay from "@/components/festivalsystem/ProgramForCurrentDay";
 
@@ -59,8 +61,10 @@ export default async function Home() {
 
   return (
     <div>
-      <ProgramForCurrentDay bandsByScene={bandsByScene} />
+      <Header />
+      <HeroSection />
       <LineupListReadMore initialLineup={bands} />
+      <ProgramForCurrentDay bandsByScene={bandsByScene} />
     </div>
   );
 }

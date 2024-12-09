@@ -15,12 +15,13 @@ const BandCard = ({ band }) => {
           {time && scene && day && name && genre ? (
             <div>
               <div className="flex justify-between">
-                <p className="font-bold text-xl">{`${name}`}</p>
-                <p>{`${scene}`}</p>
+                <p className="font-bold text-xl">{name}</p>
+                <p>{scene}</p>
               </div>
-              <p className="uppercase">{`${genre}`}</p>
-              <p>{`${time} ${day}`}</p>
-              {/* .charAt(0).toUpperCase() + day.slice(1) */}
+              <p className="uppercase">{genre}</p>
+              <p>
+                {time} {day}
+              </p>
               {cancelled && <p style={{ color: "red" }}>AFLYST</p>}
             </div>
           ) : (

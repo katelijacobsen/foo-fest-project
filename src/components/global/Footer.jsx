@@ -3,6 +3,7 @@ import Logo from "@/img/fooFestLogo.png";
 import Facebook from "@/img/svg/facebook_icon.svg";
 import Instagram from "@/img/svg/instagram_Icon.svg";
 import Button from "@/components/global/buttonFolder/PrimaryButton";
+import Newsletter from "./Newsletter";
 const Footer = () => {
   return (
     <div className="w-screen bg-customBlack_5 p-2 ">
@@ -12,17 +13,7 @@ const Footer = () => {
           <h2 className="text-4xl">Nyhedsbrev</h2>
           <p>Tilmeld dig vores nyhedsbrev</p>
         </div>
-        <form className="flex flex-col gap-5 items-center " action="">
-          <div className="flex flex-col  text-customWhite ">
-            <label htmlFor="name">Navn</label>
-            <input className="bg-customBlack_4 p-2 min-w-64 sm:min-w-96 " placeholder="Navn" type="text" id="name" name="name" />
-          </div>
-          <div className="flex flex-col  text-customWhite">
-            <label htmlFor="email">E-mail</label>
-            <input className="bg-customBlack_4 p-2 min-w-64 sm:min-w-96" placeholder="E-mail" type="text" id="email" name="email" />
-          </div>
-          <Button color="bg-customBlack_3" buttonContent="Tilmeld"></Button>
-        </form>
+        <Newsletter></Newsletter>
       </div>
       <div className="flex gap-5 flex-row-reverse mt-5 ">
         <a href="#">

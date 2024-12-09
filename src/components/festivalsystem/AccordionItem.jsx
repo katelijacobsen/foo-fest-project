@@ -1,16 +1,7 @@
 import { GoPlus } from "react-icons/go";
 import { FiMinus } from "react-icons/fi";
 
-const Accordionitem = ({
-  isOpen,
-  setIsOpen,
-  question,
-
-  item,
-  textOne,
-  textTwo,
-  textThree,
-}) => {
+const Accordionitem = ({ isOpen, setIsOpen, question, item, text }) => {
   return (
     <li className="w-full  py-2 ">
       <button
@@ -24,9 +15,7 @@ const Accordionitem = ({
       </button>
       {isOpen == item && (
         <div className="">
-          <p className=""> {textOne}</p>
-          {/* <p className="font-sans"> {textTwo}</p>
-          <p className="font-sans "> {textThree}</p> */}
+          <p className=""> {text}</p>
         </div>
       )}
     </li>

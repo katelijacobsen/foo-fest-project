@@ -1,3 +1,5 @@
+import PrimaryBtn from '@/components/global/buttonFolder/SecondButton';
+
 export default function Form() {
   return (
     <form>
@@ -54,6 +56,7 @@ export default function Form() {
           />
         </div>
       </fieldset>
+      <PrimaryBtn />
     </form>
   );
 }

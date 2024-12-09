@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
-import Cards from 'react-credit-cards-2';
+import React, { useState } from "react";
+import Cards from "react-credit-cards-2";
 
 const PaymentForm = () => {
   const [state, setState] = useState({
-    number: {number},
-    expiry: {expiry},
-    cvc: {cvc},
-    name: {navn},
-    focus: {focus},
+    number: "",
+    expiry: "",
+    cvc: "",
+    name: "",
+    focus: "",
   });
 
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
-    
+
     setState((prev) => ({ ...prev, [name]: value }));
-  }
+  };
 
   const handleInputFocus = (evt) => {
     setState((prev) => ({ ...prev, focus: evt.target.name }));
-  }
+  };
 
   return (
     <div>
@@ -31,33 +31,41 @@ const PaymentForm = () => {
       />
       <form>
         <input
-          type="number"
+          type="text"
           name="number"
           placeholder="Card Number"
           value={state.number}
           onChange={handleInputChange}
           onFocus={handleInputFocus}
+          aria-label="Indtast dit kortnummer"
         />
         <input
-          type="full-name"
-          name="text"
+          type="text"
+          name="full-name"
           placeholder="Navn"
           value={state.name}
           onChange={handleInputChange}
           onFocus={handleInputFocus}
         />
         <input
-          type="number"
+          type="text"
           name="expiry"
           placeholder="MM/YY"
           value={state.name}
           onChange={handleInputChange}
           onFocus={handleInputFocus}
         />
-        
+        <input
+          type="text"
+          name="cvc"
+          placeholder="CVC"
+          value={state.name}
+          onChange={handleInputChange}
+          onFocus={handleInputFocus}
+        />
       </form>
     </div>
   );
-}
+};
 
 export default PaymentForm;

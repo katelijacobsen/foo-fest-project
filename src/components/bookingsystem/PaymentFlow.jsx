@@ -1,15 +1,8 @@
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import { useState } from "react";
 import Cards from "react-credit-cards-2";
-import { Bebas_Neue } from "next/font/google";
 
-const bebasNeue = Bebas_Neue({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
-
-function Payment({}) {
+function Payment({formAction}) {
   const [cardInfo, setCardInfo] = useState({
     number: "",
     expiry: "",
@@ -150,6 +143,7 @@ function Payment({}) {
       <div>
         <button
           className="bg-blue-500 p-5"
+          formAction={formAction}
           aria-disabled={
             cardInfo.number === "" ||
             cardInfo.name === "" ||

@@ -85,6 +85,12 @@ const handleStep = (prev, formData) => {
       step: prev.step + 1,
     };
   }
+  if (prev.step === 4) {
+    return {
+      ...prev,
+      step: prev.step + 1,
+    };
+  }
 };
 
 export default function Page() {
@@ -104,7 +110,7 @@ export default function Page() {
       {state.step === 2 && (
         <ContactInfo tickets={state.tickets} formAction={formAction} />
       )}
-      {state.step === 3 && <PaymentFlow />}
+      {state.step === 3 && <PaymentFlow formAction={formAction}/>}
       {state.step === 4 && <PaymentComfirmed />}
     </main>
   );

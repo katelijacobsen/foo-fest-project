@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Caesar_Dressing } from "next/font/google";
 import Image from "next/image";
 import Logo from "@/img/fooFestLogo.png";
+import PrimaryButton from "@/components/global/buttonFolder/PrimaryButton";
 
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],
@@ -39,9 +40,9 @@ const Header = () => {
           <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
             <Link href="/pages/volunteer">Bliv Frivillig</Link>
           </li>
-          <button>
-            <Link href="/pages/payment">Køb billetter</Link>
-          </button>
+          <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Køb billetter">
+            <Link href="/pages/payment" />
+          </PrimaryButton>
         </ul>
 
         {/* Burger-menu for små skærme */}

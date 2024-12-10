@@ -10,27 +10,27 @@ const LineupListReadMore = ({ initialLineup, artists }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <section className="max-w-screen-lg mx-auto py-6 px-4 grid">
+    <section className="h-screen place-content-center max-w-screen-lg mx-auto py-6 px-4 grid">
       <div className="">
         <Headline src={LineupRune} text="LINEUP" />
       </div>
-      <ul className="flex flex-wrap justify-center items-center gap-2 pt-6">
-        {bands.slice(0, 30).map((band, index) => (
+      <ul className="flex flex-wrap justify-center items-center gap-4 pt-6">
+        {bands.slice(0, 15).map((band, index) => (
           <Link href={`/pages/program/${band.slug}`} key={band.slug}>
-            <li key={band.slug} className={index < 20 ? "text-3xl lg:text-5xl" : index < 30 ? "text-2xl lg:text-3xl" : "text-lg lg:text-xl"}>
+            <li key={band.slug} className={index < 20 ? "text-3xl lg:text-5xl transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105" : index < 30 ? "text-2xl lg:text-3xl transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105" : "text-lg lg:text-xl transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105"}>
               {band.name}
             </li>
           </Link>
         ))}
       </ul>
-      <button className=" font-bold text-xl bg-gradient-to-bl from-customPink to-customOrange bg-clip-text text-transparent" onClick={() => setIsExpanded(!isExpanded)}>
+      <button className=" font-bold text-xl bg-gradient-to-bl from-customPink to-customOrange bg-clip-text text-transparent pt-4" onClick={() => setIsExpanded(!isExpanded)}>
         {isExpanded ? "" : "Vis flere..."}
       </button>
       {isExpanded && (
-        <ul className="flex flex-wrap justify-center items-center gap-2">
-          {bands.slice(30, 60).map((band, index) => (
+        <ul className="flex flex-wrap justify-center items-center gap-4">
+          {bands.slice(15, 25).map((band, index) => (
             <Link href={`/pages/program/${band.slug}`} key={band.slug}>
-              <li key={band.slug} className={index < 50 ? "text-xl lg:text-2xl" : index < 60 ? "text-lg lg:text-xl" : index < 70 ? "text-base lg:text-md" : index < 80 ? "text-sm lg:text-md" : "text-xs lg:text-sm"}>
+              <li key={band.slug} className={index < 50 ? "text-xl lg:text-2xl transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105" : index < 60 ? "text-lg lg:text-xl transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105" : index < 70 ? "text-base lg:text-md transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105" : "text-sm lg:text-md transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105"}>
                 {band.name}
               </li>
             </Link>

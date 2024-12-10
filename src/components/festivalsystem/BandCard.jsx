@@ -8,16 +8,29 @@ function BandCard({ name, genre, start, end, slug, day, logo, scene }) {
 
   console.log(imageUrl);
   return (
-    <Link href={`/band/${slug}`} key={slug}>
-      {imageUrl ? <Image src={imageUrl} width={300} height={300} alt={`${name} logo`} /> : <span className="text-white">No image</span>}
-      <div className="">
-        <p className=" ">{genre}</p>
-        <p>{scene}</p>
-        <h2>{name}</h2>
-        <div className="">
-          <h3 className="text-xl lg:text-2xl">
+    <Link href={`/pages/program/${slug}`} key={slug} className="hover:scale-105 transition-all duration-500 cursor-pointer">
+      <div className="relative w-full h-64">
+        {imageUrl ? (
+          <>
+            <Image className="hover:brightness-50 transition ease-in-out duration-75 w-full h-full object-cover" src={imageUrl} width={400} height={400} alt={`${name} logo`} />
+            <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex items-center justify-center transition-all duration-300">
+              <p className="text-white text-center text-3xl font-bold">{name}</p>
+            </div>
+          </>
+        ) : (
+          <span className="text-white">No image</span>
+        )}
+      </div>
+      <div className="pt-2">
+        <h2 className="font-bold text-xl bg-gradient-to-bl from-customPink to-customOrange bg-clip-text text-transparent">{name}</h2>
+        {/* <div className="grid justify-items-end">
+          <p className="text-sm">{scene}</p>
+        </div> */}
+        <p className="text-customWhite_4">{genre.toUpperCase()}</p>
+        <div className="flex gap-1 items-end">
+          <p className="text-md">
             {start} - {end}
-          </h3>
+          </p>
           <p>{day}</p>
         </div>
       </div>

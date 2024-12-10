@@ -2,6 +2,8 @@ import Header from "@/components/global/Header";
 import HeroSection from "@/components/festivalsystem/HeroSection";
 import LineupListReadMore from "@/components/festivalsystem/LineupListReadMore";
 import ProgramForCurrentDay from "@/components/festivalsystem/ProgramForCurrentDay";
+import Camping from "@/components/festivalsystem/Camping";
+import Volunteer from "@/components/festivalsystem/Volunteer";
 
 export default async function Home() {
   const fetchBands = async () => {
@@ -31,40 +33,32 @@ export default async function Home() {
   const schedule = await fetchSchedule();
   const events = await fetchEvents();
 
-  // Organiser bands efter scene og dag
-  const bandsByScene = Object.entries(schedule).reduce((acc, [scene, days]) => {
-    acc[scene] = Object.entries(days).map(([day, slots]) => {
-      return {
-        day,
-        bands: slots
-          .filter((slot) => slot.act !== "break") // Fjern pauser
-          .map((slot) => {
-            const band = bands.find((b) => b.name === slot.act);
-            const event = events.find((event) => event.act.act === slot.act);
-            if (band) {
-              return {
-                //kopierer al af bandets data (fx navn, genre osv.)
-                ...band,
-                time: `${slot.start} - ${slot.end}`, //tidspunktet bandet spiller (start og slut).
-                scene, //navnet på scenen
-                day, //dagen hvor bandet spiller
-                cancelled: event ? event.act.cancelled : false, //hvis der er en event, tjekker vi, om bandet er aflyst. Hvis ikke, er det false.
-              };
-            }
-            return null;
-          })
-          .filter(Boolean), // Fjern null-værdier
-      };
+  const scenes = ["Midgard", "Vanaheim", "Jotunheim"];
+  const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+
+  const mergedData = bands.map((band) => {
+    const mergedBand = { ...band };
+    scenes.forEach((scene) => {
+      days.forEach((day) => {
+        if (schedule[scene][day].find((item) => item.act === band.name)) {
+          const eventInfo = schedule[scene][day].find((item) => item.act === band.name);
+          mergedBand.eventInfo = eventInfo;
+          mergedBand.scene = scene;
+          mergedBand.day = day;
+        }
+      });
     });
-    return acc;
-  }, {});
+    return mergedBand;
+  });
 
   return (
     <div>
       <Header />
       <HeroSection />
       <LineupListReadMore initialLineup={bands} />
-      <ProgramForCurrentDay bandsByScene={bandsByScene} />
+      <ProgramForCurrentDay mergedArray={mergedData} days={days} />
+      <Camping text="Campingdelen bliver meget mere end bare en praktisk løsning – det bliver en del af den samlede oplevelse. Her kan du bygge din egen lejr, inspireret af vikingernes livsstil. Måske pynte dit telt med vimpler, skjolde eller runer? Fællesbålene bliver samlingspunktet for historier og fællessang, hvor du kan møde andre festivalgæster og dele legender om fortidens helte." />
+      <Volunteer />
     </div>
   );
 }

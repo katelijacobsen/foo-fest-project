@@ -39,14 +39,15 @@ const campingArea = [
   },
 ];
 
-export default function Campsite({ inputName }) {
+export default function Campsite({ inputName, formAction }) {
   const [spots, setSpots] = useState([]);
 
   const [count, setCount] = useState(0);
+  const [count2, setCount2] = useState(0);
 
-  const handleBuy = (e) => {
+  const handleBuy = (formData) => {
     console.log("Buy!");
-    formAction(e);
+    formAction(formData);
   };
 
   useEffect(() => {
@@ -54,7 +55,7 @@ export default function Campsite({ inputName }) {
   }, []);
 
   return (
-    <form>
+    <form className="inline-flex flex-col flex-1 bg-gradient-to-tl border border-gray-900 from-customBlack to-customBlack_2 p-10 rounded-md">
       <h2 className={`${ceasarDressing.className} text-3xl text-white`}>
         HVOR VIL DU CAMPE?
       </h2>
@@ -69,20 +70,34 @@ export default function Campsite({ inputName }) {
           </li>
         ))}
       </ul>
-      <div className="flex justify-evenly">
+      <div className="flex flex-col justify-evenly gap-4">
         <section>
           <h4 className={`${ceasarDressing.className} text-3xl text-white`}>
             LEJE AF TELTE
           </h4>
-          <ul>
-            <li className="text-white">
+          <ul className="my-4 flex flex-col gap-6">
+            <li className="text-white flex gap-12">
+              <div>
               <h3>2 Personers Telt</h3>
               <p>+299kr</p>
+              </div>
               <CounterInput
                 name={inputName}
                 max={10}
                 count={count}
                 setCount={setCount}
+              />
+            </li>
+            <li className="text-white  flex gap-12">
+              <div>
+              <h3>3 Personers Telt</h3>
+              <p>+399kr</p>
+              </div>
+              <CounterInput
+                name={inputName}
+                max={10}
+                count={count2}
+                setCount={setCount2}
               />
             </li>
           </ul>
@@ -119,7 +134,7 @@ export default function Campsite({ inputName }) {
           </div>
         </section>
       </div>
-      <button className="bg-red-700" formAction={handleBuy}>
+      <button className="bg-red-700" formAction={handleBuy} type="submit">
         Næste
       </button>
     </form>

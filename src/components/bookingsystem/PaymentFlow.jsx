@@ -84,7 +84,7 @@ function Payment({formAction, resetForm}) {
 
   return (
     <>
-     <p className="text-white">
+     <p className="text-white font-bold">
         {/* Vi regner og deler timeleft antal sekunder. Med String formerer antallet af sekunder med to cifrer for udseenest skyld.*/}
         {/* Teknisk set skriver jeg her hvordan minutter skal så sammen med sekunder. */}
         Tid tilbage: {Math.floor(timeLeft / 60)}:

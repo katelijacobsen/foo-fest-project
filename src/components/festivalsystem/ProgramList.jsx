@@ -44,8 +44,8 @@ function ProgramList({ mergedArray, days }) {
         <div>
           <div className="flex justify-center flex-wrap my-8 mb-20 gap-5">
             {days.map((day) => (
-              <button key={day} className={`text-xl px-4 p-1 w-20 rounded-full bg-fooPink-900 md:text-2xl md:p-2 lg:w-40 lg:text-2xl uppercase transition ease-in-out hover:-translate-y-1 hover:scale-110  hover:bg-fooPink-800 duration-300 cursor-pointer focus:bg-fooPink-800 focus:text-black `} onClick={() => filterActsByDay(day)}>
-                {day}
+              <button key={day} className={`${selectedDay === day ? "bg-customOrange text-white" : "bg-customBlack border-solid border-[1px] border-customOrange text-white"} px-4 py-1`} onClick={() => filterActsByDay(day)}>
+                {day.charAt(0).toUpperCase() + day.slice(1)}
               </button>
             ))}
           </div>

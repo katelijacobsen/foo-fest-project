@@ -1,11 +1,16 @@
 import React from "react";
 import ProgramList from "@/components/festivalsystem/ProgramList";
+import Header from "@/components/global/Header";
+
+import { Caesar_Dressing } from "next/font/google";
+
+const ceasarDressing = Caesar_Dressing({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
 
 async function Page() {
-  // const bands = await fetch("http://localhost:8080/bands").then((response) => response.json());
-  // const schedule = await fetch("http://localhost:8080/schedule").then((response) => response.json());
-  // const events = await fetch("http://localhost:8080/events").then((response) => response.json());
-
   // fetch datasæt med endpoint /bands
   const fetchBands = async () => {
     let response = await fetch("http://localhost:8080/bands");
@@ -54,9 +59,11 @@ async function Page() {
 
   return (
     <main>
-      <h1 className={`text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-center text-fooYellow-200 mt-32`}>Program</h1>
-
-      <ProgramList mergedArray={mergedData} days={days} />
+      <Header />
+      <section>
+        <h1 className={`${ceasarDressing.className} text-6xl `}>PROGRAM</h1>
+        <ProgramList mergedArray={mergedData} days={days} />
+      </section>
     </main>
   );
 }

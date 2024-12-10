@@ -53,8 +53,7 @@ function ProgramList({ mergedArray, days }) {
           </div>
           <section>
             <Headline src={MusicRune} text="MIDGARD" />
-
-            <div className="flex gap-8 overflow-x-scroll  mb-20 snap-mandatory snap-x">
+            <div className="flex gap-4 overflow-x-scroll  mb-20 snap-mandatory snap-x">
               {/* Vi mapper med sortedByTime istedet for newArray (filtreringen sker i sortedByTime istedt for her) */}
               {sortedByTime("Midgard").map((band) => (
                 <BandCard slug={band.slug} logo={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} />
@@ -62,14 +61,14 @@ function ProgramList({ mergedArray, days }) {
             </div>
 
             <Headline src={MusicRune} text="VANAHAIM" />
-            <div className="flex gap-8 overflow-x-scroll mb-20 snap-mandatory snap-x">
+            <div className="flex gap-4 overflow-x-scroll mb-20 snap-mandatory snap-x">
               {sortedByTime("Vanaheim").map((band) => (
                 <BandCard slug={band.slug} logo={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} />
               ))}
             </div>
 
             <Headline src={MusicRune} text="JOTUNHEIM" />
-            <div className="flex gap-8 overflow-x-scroll mb-20 snap-mandatory snap-x">
+            <div className="flex gap-4 overflow-x-scroll mb-20 snap-mandatory snap-x">
               {sortedByTime("Jotunheim").map((band) => (
                 <BandCard slug={band.slug} logo={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logoCredits={band.logoCredits} />
               ))}

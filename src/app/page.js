@@ -4,6 +4,8 @@ import LineupListReadMore from "@/components/festivalsystem/LineupListReadMore";
 import ProgramForCurrentDay from "@/components/festivalsystem/ProgramForCurrentDay";
 import Camping from "@/components/festivalsystem/Camping";
 import Volunteer from "@/components/festivalsystem/Volunteer";
+import MotionWhileInView from "@/components/festivalsystem/MotionWhileInView";
+import Footer from "@/components/global/Footer";
 
 export default async function Home() {
   const fetchBands = async () => {
@@ -57,8 +59,10 @@ export default async function Home() {
       <HeroSection />
       <LineupListReadMore initialLineup={bands} />
       <ProgramForCurrentDay mergedArray={mergedData} days={days} />
+      <MotionWhileInView />
       <Camping text="Campingdelen bliver meget mere end bare en praktisk løsning – det bliver en del af den samlede oplevelse. Her kan du bygge din egen lejr, inspireret af vikingernes livsstil. Måske pynte dit telt med vimpler, skjolde eller runer? Fællesbålene bliver samlingspunktet for historier og fællessang, hvor du kan møde andre festivalgæster og dele legender om fortidens helte." />
       <Volunteer />
+      <Footer />
     </div>
   );
 }

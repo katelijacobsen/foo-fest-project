@@ -3,13 +3,12 @@ import React, { useState, useEffect } from "react";
 import BandCard from "@/components/festivalsystem/BandCard";
 import Headline from "@/components/global/Headline";
 import MusicRune from "@/img/svg/music_rune.svg";
-import SecondButton from "@/components/global/buttonFolder/SecondButton";
 
 function ProgramList({ mergedArray, days }) {
   const [selectedDay, setSelectedDay] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect bruges her, så hver gang siden indlæses, så vises de artister der spiller idag, så der ikke bare er en blank side
+  // useEffect bruges her, så hver gang siden indlæses, så vises de artister der spiller idag
   useEffect(() => {
     const today = new Date().toLocaleDateString("en", { weekday: "short" }).toLowerCase();
     setSelectedDay(today);
@@ -26,7 +25,7 @@ function ProgramList({ mergedArray, days }) {
   };
 
   // Funktionen starter med at filtrerer ud fra scene og dag
-  // Sorterer herefter "acts" ud fra sammenlignign af starttidspunkterne
+  // Sorterer herefter "bands" ud fra sammenlignign af starttidspunkterne
   const sortedByTime = (scene) => {
     return mergedArray
       .filter((band) => band.scene === scene && band.day === selectedDay)

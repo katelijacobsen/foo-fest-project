@@ -34,7 +34,7 @@ async function Page() {
     let data = await response.json();
     return data;
   };
-  // variabel for det data, som de tre datasæt retunerer - gør det muligt at bruge data lokalt i funktionen og sende dem videre som props til programlist-komponent
+  // variabel for data, som de tre datasæt retunerer - gør det muligt at bruge data lokalt i funktionen og sende dem videre som props til programlist-komponent
   const bands = await fetchBands();
   const schedule = await fetchSchedule();
   const events = await fetchEvents();

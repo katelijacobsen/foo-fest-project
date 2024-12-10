@@ -180,7 +180,7 @@ function Payment({formAction, resetForm}) {
             cardInfo.cvc === ""
           }
         >
-          Betal
+          Gennemse & Betal
         </button>
       </div>
     </fieldset>

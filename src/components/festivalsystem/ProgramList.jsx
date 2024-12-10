@@ -1,6 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import BandCard from "@/components/festivalsystem/BandCard";
+import Headline from "@/components/global/Headline";
+import MusicRune from "@/img/svg/music_rune.svg";
 
 function ProgramList({ mergedArray, days }) {
   const [selectedDay, setSelectedDay] = useState("");
@@ -11,7 +13,6 @@ function ProgramList({ mergedArray, days }) {
     const today = new Date().toLocaleDateString("en", { weekday: "short" }).toLowerCase();
     setSelectedDay(today);
 
-    // Loading Animation
     if (mergedArray) {
       setIsLoading(false);
     }
@@ -43,31 +44,26 @@ function ProgramList({ mergedArray, days }) {
         <div>
           <div className="flex justify-center flex-wrap my-8 mb-20 gap-5">
             {days.map((day) => (
-              <button key={day} className={`text-xl px-4 p-1 w-20 rounded-full bg-fooPink-900 md:text-2xl md:p-2 lg:w-40 lg:text-2xl uppercase transition ease-in-out hover:-translate-y-1 hover:scale-110  hover:bg-fooPink-800 duration-300 cursor-pointer focus:bg-fooPink-800 focus:text-black`} onClick={() => filterActsByDay(day)}>
+              <button key={day} className={`text-xl px-4 p-1 w-20 rounded-full bg-fooPink-900 md:text-2xl md:p-2 lg:w-40 lg:text-2xl uppercase transition ease-in-out hover:-translate-y-1 hover:scale-110  hover:bg-fooPink-800 duration-300 cursor-pointer focus:bg-fooPink-800 focus:text-black `} onClick={() => filterActsByDay(day)}>
                 {day}
               </button>
             ))}
           </div>
           <section>
-            <h1>Midgard</h1>
-
+            <Headline src={MusicRune} text="MIDGARD" />
             <div className="flex gap-8 overflow-x-scroll  mb-20 snap-mandatory snap-x">
               {/* Vi mapper med sortedByTime istedet for newArray (filtreringen sker i sortedByTime istedt for her) */}
               {sortedByTime("Midgard").map((act) => (
                 <BandCard slug={act.slug} src={act.logo} key={act.name} name={act.name} genre={act.genre} start={act.eventInfo.start} end={act.eventInfo.end} day={act.day} logo={act.logo} logoCredits={act.logoCredits} scene={act.scene} />
               ))}
             </div>
-
-            <h1>Vanaheim</h1>
-
+            <Headline src={MusicRune} text="VANAHEIM" />
             <div className="flex gap-8 overflow-x-scroll mb-20 snap-mandatory snap-x">
               {sortedByTime("Vanaheim").map((act) => (
                 <BandCard slug={act.slug} src={act.logo} key={act.name} name={act.name} genre={act.genre} start={act.eventInfo.start} end={act.eventInfo.end} day={act.day} logo={act.logo} logoCredits={act.logoCredits} scene={act.scene} />
               ))}
             </div>
-
-            <h1> Jotunheim</h1>
-
+            <Headline src={MusicRune} text="JOTUNHEIM" />
             <div className="flex gap-8 overflow-x-scroll mb-20 snap-mandatory snap-x">
               {sortedByTime("Jotunheim").map((act) => (
                 <BandCard slug={act.slug} src={act.logo} key={act.name} name={act.name} genre={act.genre} start={act.eventInfo.start} end={act.eventInfo.end} day={act.day} logo={act.logo} logoCredits={act.logoCredits} scene={act.scene} />

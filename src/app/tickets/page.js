@@ -14,6 +14,10 @@ const ceasarDressing = Caesar_Dressing({
   display: "swap",
 });
 
+const resetForm = () => {
+  formAction(new FormData()); // Tvinger state tilbage til defaultState ved at kalde formAction uden data
+};
+
 const defaultState = {
   step: 0,
   tickets: {
@@ -61,12 +65,15 @@ const handleStep = (prev, formData) => {
     };
   }
   if (prev.step === 2) {
-    const singleGuests = Array.from({ length: prev.tickets.single }, (_, i) => ({
-      firstName: formData.get(`single_firstName_${i}`),
-      lastName: formData.get(`single_lastName_${i}`),
-      email: formData.get(`single_email_${i}`),
-      phonenumber: formData.get(`single_phonenumber_${i}`),
-    }));
+    const singleGuests = Array.from(
+      { length: prev.tickets.single },
+      (_, i) => ({
+        firstName: formData.get(`single_firstName_${i}`),
+        lastName: formData.get(`single_lastName_${i}`),
+        email: formData.get(`single_email_${i}`),
+        phonenumber: formData.get(`single_phonenumber_${i}`),
+      })
+    );
     const vipGuests = Array.from({ length: prev.tickets.vip }, (_, i) => ({
       firstName: formData.get(`vip_firstName_${i}`),
       lastName: formData.get(`vip_lastName_${i}`),
@@ -97,7 +104,7 @@ export default function Page() {
   const [state, formAction] = useActionState(handleStep, defaultState);
 
   console.log(state);
-  
+
   return (
     <main>
       <h1 className={`${ceasarDressing.className} text-8xl text-white`}>
@@ -110,7 +117,9 @@ export default function Page() {
       {state.step === 2 && (
         <ContactInfo tickets={state.tickets} formAction={formAction} />
       )}
-      {state.step === 3 && <PaymentFlow formAction={formAction}/>}
+      {state.step === 3 && (
+        <PaymentFlow formAction={formAction} resetForm={resetForm} />
+      )}
       {state.step === 4 && <PaymentComfirmed />}
     </main>
   );

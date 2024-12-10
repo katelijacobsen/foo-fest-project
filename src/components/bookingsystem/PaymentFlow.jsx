@@ -1,8 +1,11 @@
-import "react-credit-cards-2/dist/es/styles-compiled.css";
-import { useState } from "react";
-import Cards from "react-credit-cards-2";
 
-function Payment({formAction}) {
+import "react-credit-cards-2/dist/es/styles-compiled.css";
+import { useState, useEffect } from "react";
+import Cards from "react-credit-cards-2";
+import { useRouter } from "next/navigation";
+
+
+function Payment({formAction, resetForm}) {
   const [cardInfo, setCardInfo] = useState({
     number: "",
     expiry: "",
@@ -10,6 +13,25 @@ function Payment({formAction}) {
     name: "",
     errors: {},
   });
+  const router = useRouter();
+  const [timeLeft, setTimeLeft] = useState(30);
+
+  useEffect(() => {
+    if (timeLeft <= 0) {
+      alert("Tiden er udløbet");
+      resetForm(); // Nulstil state til at starte fra step 1
+      formAction(null); //refresh form
+      return;
+    }
+    // Bruger setInterval, så vi kan planlægge at bruge vores callback hver forsinkelse i millisekunder.
+    const timer = setInterval(() => {
+      // Går ned i tiden.
+      setTimeLeft((prevTime) => prevTime - 1);
+    }, 1000); //sætter 1000 som en værdi er bliver erstattet med tiden i useState.
+    //Clean up. clearInterval stopper tiden. Så når den er på 0 skulle den gerne skifte router.
+    return () => clearInterval(timer);
+  }, [timeLeft, resetForm, router]);
+
 
   const handleChange = (e) => {
     setCardInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -61,6 +83,13 @@ function Payment({formAction}) {
   };
 
   return (
+    <>
+     <p className="text-white">
+        {/* Vi regner og deler timeleft antal sekunder. Med String formerer antallet af sekunder med to cifrer for udseenest skyld.*/}
+        {/* Teknisk set skriver jeg her hvordan minutter skal så sammen med sekunder. */}
+        Tid tilbage: {Math.floor(timeLeft / 60)}:
+        {String(timeLeft % 60).padStart(2, "0")}
+      </p>
     <fieldset className="text-white">
       <h2>SIKRE DIT KØB</h2>
       <div>
@@ -155,6 +184,7 @@ function Payment({formAction}) {
         </button>
       </div>
     </fieldset>
+    </>
   );
 }
 

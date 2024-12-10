@@ -8,41 +8,6 @@ import Basket from "@/components/bookingsystem/Cart";
 import { useActionState } from "react";
 import { Caesar_Dressing } from "next/font/google";
 
-// const defaultState = {
-//   step: 0,
-//   ticketCount: undefined,
-//   tentCount: undefined,
-//   cart: [],
-// }
-
-// //funktion der håndtere at gå tilbalge til formens default.
-// const handleStep = (prev, formData) => {
-//   if (!formData) {
-//     return defaultState;
-//   }
-//   // Hvis man er på bestil billetter, så hvis komponenten
-//   if (prev.step === 0) {
-//     // vi bruger vores spread operator & object destructuring
-//     return {
-//       ...prev,
-//       step: prev.step + 1,
-//       ticketCount: formData.get("ticketCount"),
-//     };
-//   }
-//   if (prev.step === 1) {
-//   }
-//   if (prev.step === 2) {
-//   }
-//   if (prev.step === 3) {
-//     const foo = Array.from({length: prev.ticketCount}, (_, i) => ({
-//       firstName: formData.get(`firstName-${i}`),
-//       lastName: formData.get(`lastName-${i}`),
-//       email: formData.get(`email-${i}`),
-//       phone: formData.get(`phone-${i}`),
-
-//     }))
-//   }
-// }
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],
   weight: "400",

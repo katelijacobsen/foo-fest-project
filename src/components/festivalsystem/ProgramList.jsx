@@ -51,11 +51,13 @@ function ProgramList({ mergedArray, days }) {
           </div>
           <section>
             <Headline src={MusicRune} text="MIDGARD" />
-            <div className="flex gap-8 overflow-x-scroll  mb-20 snap-mandatory snap-x">
-              {/* Vi mapper med sortedByTime istedet for newArray (filtreringen sker i sortedByTime istedt for her) */}
-              {sortedByTime("Midgard").map((act) => (
-                <BandCard slug={act.slug} src={act.logo} key={act.name} name={act.name} genre={act.genre} start={act.eventInfo.start} end={act.eventInfo.end} day={act.day} logo={act.logo} logoCredits={act.logoCredits} scene={act.scene} />
-              ))}
+            <div className="overflow-x-auto ">
+              <div className="flex gap-2">
+                {/* Vi mapper med sortedByTime istedet for newArray (filtreringen sker i sortedByTime istedt for her) */}
+                {sortedByTime("Midgard").map((act) => (
+                  <BandCard slug={act.slug} src={act.logo} key={act.name} name={act.name} genre={act.genre} start={act.eventInfo.start} end={act.eventInfo.end} day={act.day} logo={act.logo} logoCredits={act.logoCredits} scene={act.scene} />
+                ))}
+              </div>
             </div>
             <Headline src={MusicRune} text="VANAHEIM" />
             <div className="flex gap-8 overflow-x-scroll mb-20 snap-mandatory snap-x">

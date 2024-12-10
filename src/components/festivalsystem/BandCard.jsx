@@ -8,7 +8,7 @@ function BandCard({ name, genre, start, end, slug, day, logo, scene }) {
 
   console.log(imageUrl);
   return (
-    <Link href={`/pages/program/${slug}`} key={slug} className="hover:scale-105 transition-all duration-500 cursor-pointer">
+    <Link href={`/pages/program/${slug}`} key={slug} className="hover:scale-[1.02] transition-all duration-500 cursor-pointer min-w-72">
       <div className="relative w-full h-64">
         {imageUrl ? (
           <>
@@ -21,7 +21,7 @@ function BandCard({ name, genre, start, end, slug, day, logo, scene }) {
           <span className="text-white">No image</span>
         )}
       </div>
-      <div className="pt-2">
+      <div className="pt-2 px-1">
         <h2 className="font-bold text-xl bg-gradient-to-bl from-customPink to-customOrange bg-clip-text text-transparent">{name}</h2>
         {/* <div className="grid justify-items-end">
           <p className="text-sm">{scene}</p>

@@ -37,32 +37,38 @@ const ProgramForCurrentDay = ({ mergedArray }) => {
       <div>
         <Headline src={MusicRune} text={`DAGENS PROGRAM`} />
       </div>
-      <section>
-        <div>
+      <div>
+        <div className="py-6">
           <Headline src={MusicRune} text="MIDGARD" />
-          <div className="flex gap-4 overflow-x-scroll  mb-20 snap-mandatory snap-x">
-            {sortedByTime("Midgard").map((band) => (
-              <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} />
-            ))}
+          <div className="overflow-x-auto">
+            <div className="flex gap-2">
+              {sortedByTime("Midgard").map((band) => (
+                <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} />
+              ))}
+            </div>
           </div>
         </div>
-        <div className="pt-6">
+        <div className="py-6">
           <Headline src={MusicRune} text="VANAHEIM" />
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-4">
-            {sortedByTime("Vanaheim").map((band) => (
-              <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} />
-            ))}
+          <div className="overflow-x-auto">
+            <div className="flex gap-2">
+              {sortedByTime("Vanaheim").map((band) => (
+                <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} />
+              ))}
+            </div>
           </div>
         </div>
-        <div className="pt-6">
+        <div className="py-6">
           <Headline src={MusicRune} text="JOTUNHEIM" />
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-4">
-            {sortedByTime("Jotunheim").map((band) => (
-              <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} />
-            ))}
+          <div className="overflow-x-auto">
+            <div className="flex gap-2">
+              {sortedByTime("Jotunheim").map((band) => (
+                <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} />
+              ))}
+            </div>
           </div>
         </div>
-      </section>
+      </div>
       <div className="grid place-content-center pt-8">
         <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Se hele ugens program" />
       </div>

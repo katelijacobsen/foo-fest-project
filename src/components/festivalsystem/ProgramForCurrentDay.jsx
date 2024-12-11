@@ -1,40 +1,76 @@
 "use client";
 import { useState, useEffect } from "react";
 import BandCard from "./BandCard";
+import Headline from "../global/Headline";
+import MusicRune from "@/img/svg/music_rune.svg";
+import PrimaryButton from "@/components/global/buttonFolder/PrimaryButton";
 
-const ProgramForCurrentDay = ({ bandsByScene }) => {
-  const [currentDay, setCurrentDay] = useState(null);
+const ProgramForCurrentDay = ({ mergedArray }) => {
+  const [currentDay, setCurrentDay] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
+  // useEffect bruges her, så hver gang siden indlæses, så vises de artister der spiller idag, så der ikke bare er en blank side
   useEffect(() => {
-    const daysOfWeek = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
-    const today = new Date();
-    setCurrentDay(daysOfWeek[today.getDay()]);
-  }, []);
+    const today = new Date().toLocaleDateString("en", { weekday: "short" }).toLowerCase();
+    setCurrentDay(today);
 
-  const filteredData = Object.entries(bandsByScene).reduce((accumulator, [scene, days]) => {
-    const bandsForToday = days.find((dayData) => dayData.day === currentDay);
-
-    if (bandsForToday) {
-      accumulator[scene] = bandsForToday.bands;
+    if (mergedArray) {
+      setIsLoading(false);
     }
-    return accumulator;
-  }, {});
+  }, [mergedArray]);
+
+  // Funktionen starter med at filtrerer ud fra scene og dag
+  // Sorterer herefter "acts" ud fra sammenlignign af starttidspunkterne
+  const sortedByTime = (scene) => {
+    return mergedArray
+      .filter((band) => band.scene === scene && band.day === currentDay)
+      .sort((a, b) => {
+        const aTime = new Date(`1970-01-01T${a.eventInfo.start}`);
+        const bTime = new Date(`1970-01-01T${b.eventInfo.start}`);
+
+        return aTime.getTime() - bTime.getTime();
+      });
+  };
 
   return (
-    <section>
+    <section className="py-6 px-4 max-w-screen-xl mx-auto">
       <div>
-        <h1 className="text-2xl font-bold mb-4">Bands der spiller i dag: {currentDay}</h1>
-
-        {Object.entries(filteredData).map(([scene, bands]) => (
-          <div key={scene}>
-            <h2 className="text-xl font-semibold">{scene}</h2>
-            <div className="grid grid-cols-3 gap-4">
-              {bands.map((band) => (
-                <BandCard key={band.slug} band={band} />
+        <Headline src={MusicRune} text={`DAGENS PROGRAM`} />
+      </div>
+      <div>
+        <div className="py-6">
+          <Headline src={MusicRune} text="MIDGARD" />
+          <div className="overflow-x-auto">
+            <div className="flex gap-2">
+              {sortedByTime("Midgard").map((band) => (
+                <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} />
               ))}
             </div>
           </div>
-        ))}
+        </div>
+        <div className="py-6">
+          <Headline src={MusicRune} text="VANAHEIM" />
+          <div className="overflow-x-auto">
+            <div className="flex gap-2">
+              {sortedByTime("Vanaheim").map((band) => (
+                <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} />
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="py-6">
+          <Headline src={MusicRune} text="JOTUNHEIM" />
+          <div className="overflow-x-auto">
+            <div className="flex gap-2">
+              {sortedByTime("Jotunheim").map((band) => (
+                <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="grid place-content-center pt-8">
+        <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Se hele ugens program" />
       </div>
     </section>
   );

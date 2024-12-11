@@ -2,7 +2,7 @@
 import { motion, AnimatePresence } from "motion/react";
 const Button = ({ buttonContent, color }) => {
   return (
-    <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className={`rounded-sm px-8 py-3 text-customWhite  ${color}`}>
+    <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className={`rounded-sm px-8 py-3 text-customWhite  ${color} w-fit`}>
       {buttonContent}
     </motion.button>
   );

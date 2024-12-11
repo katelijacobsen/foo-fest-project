@@ -1,5 +1,5 @@
 import Marquee from "react-fast-marquee";
-import MyMarqueeComponent from "./MyMarqueeComponent";
+import MyMarqueeComponent from "@/components/festivalsystem/MyMarqueeComponent";
 import Image from "next/image";
 import MarqueeBorder from "@/img/svg/small_marquee.svg";
 

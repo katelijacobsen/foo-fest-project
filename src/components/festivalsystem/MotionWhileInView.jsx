@@ -33,7 +33,7 @@ const AnimatedTextSection = () => {
   const opacity = useTransform(scrollYProgress, [0.1, 0.5], [0, 1]);
 
   return (
-    <section ref={containerRef} className={`h-[90vh] flex items-center justify-center ${ceasarDressing.className}`}>
+    <section ref={containerRef} className={`h-[90vh] flex items-center justify-center ${ceasarDressing.className} overflow-hidden`}>
       <div className="relative">
         <motion.div style={{ x: festivalX, opacity }} className="text-[3rem] sm:text-[3rem] md:text-[5rem] font-bold absolute top-[-100px] md:top-[-140px] left-0 bg-gradient-to-bl from-customPink via-customRed to-customOrange bg-clip-text text-transparent">
           FESTIVALEN

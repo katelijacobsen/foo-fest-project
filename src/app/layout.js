@@ -28,7 +28,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`m-8 bg-background  ${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+      <body className={` bg-background  ${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
     </html>
   );
 }

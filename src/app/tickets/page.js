@@ -48,7 +48,7 @@ const handleStep = (prev, formData) => {
     formAction( new FormData());
   };
 
-  
+
   if (prev.step === 0) {
     return {
       ...prev,
@@ -116,7 +116,7 @@ export default function Page() {
 
   return (
     <main>
-      <h1 className={`${ceasarDressing.className} text-8xl text-white`}>
+      <h1 className={`${ceasarDressing.className} text-6xl sm:text-6xl lg:text-6xl md:text-6xl text-white`}>
         BILLETTER
       </h1>
       {state.step === 0 && <ChooseTicket formAction={formAction} />}

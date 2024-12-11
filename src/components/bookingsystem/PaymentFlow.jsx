@@ -9,8 +9,8 @@ const ceasarDressing = Caesar_Dressing({
   display: "swap",
 });
 
-const PaymentForm = ({ formAction, resetForm, router }) => {
-  const [ timeLeft, setTimeLeft] = useState(60 * 5 * 1000)
+const PaymentForm = ({ formAction, router }) => {
+  const [timeLeft, setTimeLeft] = useState(60 * 5 * 1000);
   const [state, setState] = useState({
     number: "",
     expiry: "",
@@ -18,22 +18,21 @@ const PaymentForm = ({ formAction, resetForm, router }) => {
     name: "",
     focus: "",
   });
-    useEffect(() => {
-      if(timeLeft <= 0 ){
-          alert("Tiden er udløbet. du bliver stillet tilbage til billetsiden.");
-          resetForm();
-          formAction(null);
-          return;
-      }
-      const timer = setInterval(() => {
-          setTimeLeft((prevTime) => prevTime -1000);
-      }, 1000);
+  useEffect(() => {
+    if (timeLeft <= 0) {
+      alert("Tiden er udløbet. du bliver stillet tilbage til billetsiden.");
+      formAction(null);
+      return;
+    }
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => prevTime - 1000);
+    }, 1000);
 
-      return () => clearInterval(timer);
-    }, [timeLeft, resetForm, router]);
+    return () => clearInterval(timer);
+  }, [timeLeft, router]);
 
-const mins = Math.floor(timeLeft / 1000 / 60);
-const secs = Math.floor(timeLeft / 1000 % 60);
+  const mins = Math.floor(timeLeft / 1000 / 60);
+  const secs = Math.floor((timeLeft / 1000) % 60);
 
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
@@ -131,7 +130,10 @@ const secs = Math.floor(timeLeft / 1000 % 60);
                 />
               </div>
             </div>
-            <button className="bg-red-500 p-4 rounded-md text-white font-bold w-full sm:w-auto">
+            <button
+              formAction={formAction}
+              className="bg-red-500 p-4 rounded-md text-white font-bold w-full sm:w-auto"
+            >
               Afslut & Betal
             </button>
           </form>

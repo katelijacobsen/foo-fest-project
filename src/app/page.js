@@ -1,4 +1,3 @@
-import BetalingsOplysninger from "@/components/bookingsystem/BetalingsOplysninger";
 import LineupListReadMore from "@/components/festivalsystem/LineupListReadMore";
 import ProgramForCurrentDay from "@/components/festivalsystem/ProgramForCurrentDay";
 
@@ -62,7 +61,6 @@ export default async function Home() {
     <div>
       <ProgramForCurrentDay bandsByScene={bandsByScene} />
       <LineupListReadMore initialLineup={bands} />
-      <BetalingsOplysninger></BetalingsOplysninger>
     </div>
   );
 }

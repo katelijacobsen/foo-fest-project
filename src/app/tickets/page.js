@@ -42,7 +42,13 @@ const defaultState = {
   },
 };
 
+
 const handleStep = (prev, formData) => {
+  const resetForm = () => {
+    formAction( new FormData());
+  };
+
+  
   if (prev.step === 0) {
     return {
       ...prev,
@@ -87,10 +93,13 @@ const handleStep = (prev, formData) => {
     };
   }
   if (prev.step === 3) {
+    formAction={formAction}
+    resetForm={resetForm}
     return {
       ...prev,
       step: prev.step + 1,
     };
+
   }
   if (prev.step === 4) {
     return {

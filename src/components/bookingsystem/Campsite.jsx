@@ -55,15 +55,10 @@ export default function Campsite({ inputName }) {
 
   return (
     <form>
-      <h2 className={`${ceasarDressing.className} text-3xl text-white`}>
-        HVOR VIL DU CAMPE?
-      </h2>
+      <h2 className={`${ceasarDressing.className} text-3xl text-white`}>HVOR VIL DU CAMPE?</h2>
       <ul className="flex flex-wrap gap-4 flex-1 text-white">
         {spots.map((spot, i) => (
-          <li
-            key={i}
-            className="bg-gradient-to-tl border border-gray-900 from-customBlack_2 to-customBlack p-2 rounded-md"
-          >
+          <li key={i} className="bg-gradient-to-tl border border-gray-900 from-customBlack_2 to-customBlack p-2 rounded-md">
             <h2 className="text-2xl font-bold">{spot.area}</h2>
             <p>{spot.available} ledige pladser</p>
           </li>
@@ -71,26 +66,17 @@ export default function Campsite({ inputName }) {
       </ul>
       <div className="flex justify-evenly">
         <section>
-          <h4 className={`${ceasarDressing.className} text-3xl text-white`}>
-            LEJE AF TELTE
-          </h4>
+          <h4 className={`${ceasarDressing.className} text-3xl text-white`}>LEJE AF TELTE</h4>
           <ul>
             <li className="text-white">
               <h3>2 Personers Telt</h3>
               <p>+299kr</p>
-              <CounterInput
-                name={inputName}
-                max={10}
-                count={count}
-                setCount={setCount}
-              />
+              <CounterInput name={inputName} max={10} count={count} setCount={setCount} />
             </li>
           </ul>
         </section>
         <section>
-          <h3 className={`${ceasarDressing.className} text-3xl text-white`}>
-            SUPPLEMENT
-          </h3>
+          <h3 className={`${ceasarDressing.className} text-3xl text-white`}>SUPPLEMENT</h3>
 
           <div className="flex">
             <div className="flex items-center h-5">
@@ -103,16 +89,10 @@ export default function Campsite({ inputName }) {
               />
             </div>
             <div className="ms-2 text-sm">
-              <label
-                htmlFor="helper-checkbox"
-                className="font-bold text-xl text-white"
-              >
+              <label htmlFor="helper-checkbox" className="font-bold text-xl text-white">
                 Grøn Camping
               </label>
-              <p
-                id="helper-checkbox-text"
-                className="text-xs font-normal text-gray-300"
-              >
+              <p id="helper-checkbox-text" className="text-xs font-normal text-gray-300">
                 + 249kr
               </p>
             </div>

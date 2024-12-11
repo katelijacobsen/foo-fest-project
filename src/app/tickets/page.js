@@ -7,6 +7,7 @@ import PaymentComfirmed from "@/components/bookingsystem/PaymentConfirmed";
 import Basket from "@/components/bookingsystem/Cart";
 import { useActionState } from "react";
 import { Caesar_Dressing } from "next/font/google";
+import { useFormStatus } from "react-dom";
 
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],
@@ -46,7 +47,9 @@ const handleStep = (prev, formData) => {
   // const resetForm = () => {
   //   formAction(new FormData());
   // };
-
+  if (formData === null) {
+    return defaultState;
+  }
   if (prev.step === 0) {
     return {
       ...prev,
@@ -112,6 +115,7 @@ const handleStep = (prev, formData) => {
 
 export default function Page() {
   const [state, formAction] = useActionState(handleStep, defaultState);
+  const formStatus = useFormStatus();
 
   console.log(state);
 
@@ -129,10 +133,8 @@ export default function Page() {
       {state.step === 2 && (
         <ContactInfo tickets={state.tickets} formAction={formAction} />
       )}
-      {state.step === 3 && (
-        <PaymentFlow formAction={formAction} />
-      )}
-      {state.step === 4 && <PaymentComfirmed />}
+      {state.step === 3 && <PaymentFlow formAction={formAction} />}
+      {state.step === 4 && <PaymentComfirmed state={state} formStatus={formStatus}/>}
     </main>
   );
 }

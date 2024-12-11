@@ -10,7 +10,7 @@ const ceasarDressing = Caesar_Dressing({
 });
 
 const PaymentForm = ({ formAction, router }) => {
-  const [timeLeft, setTimeLeft] = useState(60 * 5 * 1000);
+  const [timeLeft, setTimeLeft] = useState(60 * 5 * 1000); // math is mathing
   const [state, setState] = useState({
     number: "",
     expiry: "",

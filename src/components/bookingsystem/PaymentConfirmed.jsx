@@ -1,7 +1,7 @@
 import Form from "next/form";
 import { motion } from "framer-motion";
 
-export default function PaymentConfirmed({ data, formStatus }) {
+export default function PaymentConfirmed({ state, formStatus }) {
   return (
     <Form>
       <h2>Ordre Bekræftelse</h2>
@@ -51,7 +51,14 @@ export default function PaymentConfirmed({ data, formStatus }) {
           </tr>
         </thead>
         <tbody>
-          {data.guests.map((guest, i) => (
+          {state.guests.single.map((guest, i) => (
+            <tr key={i}>
+              <td>{guest.firstName}</td>
+              <td>{guest.lastName}</td>
+              <td>{guest.email}</td>
+            </tr>
+          ))}
+          {state.guests.vip.map((guest, i) => (
             <tr key={i}>
               <td>{guest.firstName}</td>
               <td>{guest.lastName}</td>

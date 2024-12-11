@@ -83,108 +83,15 @@ function Payment({formAction, resetForm}) {
   };
 
   return (
-    <>
-     <p className="text-white font-bold">
-        {/* Vi regner og deler timeleft antal sekunder. Med String formerer antallet af sekunder med to cifrer for udseenest skyld.*/}
-        {/* Teknisk set skriver jeg her hvordan minutter skal så sammen med sekunder. */}
-        Tid tilbage: {Math.floor(timeLeft / 60)}:
-        {String(timeLeft % 60).padStart(2, "0")}
-      </p>
-    <fieldset className="text-white">
-      <h2>SIKRE DIT KØB</h2>
-      <div>
-        <div>
-          <Cards
-            number={cardInfo.number}
-            expiry={cardInfo.expiry}
-            cvc={cardInfo.cvc}
-            name={cardInfo.name}
-            focused={cardInfo.focus}
-          />
-        </div>
-        <div>
-          <label htmlFor="number">
-            Kortnummer
-            <input
-              unique="cardNumber"
-              placeholder="Kort nummer"
-              minLength={16}
-              maxLength={16}
-              name="number"
-              id="number"
-              value={cardInfo.number}
-              onKeyDown={handleNumbersOnly}
-              onChange={handleChange}
-              onFocus={handleInputFocus}
-              required
-            />
-          </label>
-
-          <label htmlFor="name">
-            Kortholder navn
-            <input
-              type="text"
-              placeholder="Kortholder navn"
-              name="name"
-              id="name"
-              autoComplete="true"
-              minLength={2}
-              value={cardInfo.name}
-              onChange={handleChange}
-              onFocus={handleInputFocus}
-              required
-            />
-          </label>
-          <div>
-            <label htmlFor="expiry">
-              Udløbsdato
-              <input
-                unique="cardExpiry"
-                placeholder="MM/ÅÅ"
-                maxLength="5"
-                name="expiry"
-                id="expiry"
-                value={cardInfo.expiry}
-                onKeyDown={handleNumbersOnly}
-                onKeyUp={handleCardExpiry}
-                onChange={handleChange}
-                onFocus={handleInputFocus}
-                required
-              />
-            </label>
-            <label htmlFor="cvc">
-              Kontrolcifre/CVC
-              <input
-                unique="cardCvc"
-                placeholder="CVC"
-                maxLength="4"
-                name="cvc"
-                id="cvc"
-                value={cardInfo.cvc}
-                onChange={handleChange}
-                onFocus={handleInputFocus}
-                required
-              />
-            </label>
-          </div>
-        </div>
-      </div>
-      <div>
-        <button
-          className="bg-blue-500 p-5"
-          formAction={formAction}
-          aria-disabled={
-            cardInfo.number === "" ||
-            cardInfo.name === "" ||
-            cardInfo.expiry === "" ||
-            cardInfo.cvc === ""
-          }
-        >
-          Gennemse & Betal
-        </button>
-      </div>
-    </fieldset>
-    </>
+    <div>
+      <Cards number={state.number} expiry={state.expiry} cvc={state.cvc} name={state.name} focused={state.focus} />
+      <form>
+        <input type="text" name="number" placeholder="Card Number" value={state.number} onChange={handleInputChange} onFocus={handleInputFocus} aria-label="Indtast dit kortnummer" />
+        <input type="text" name="full-name" placeholder="Navn" value={state.name} onChange={handleInputChange} onFocus={handleInputFocus} />
+        <input type="text" name="expiry" placeholder="MM/YY" value={state.name} onChange={handleInputChange} onFocus={handleInputFocus} />
+        <input type="text" name="cvc" placeholder="CVC" value={state.name} onChange={handleInputChange} onFocus={handleInputFocus} />
+      </form>
+    </div>
   );
 }
 

@@ -1,78 +1,85 @@
+import React from "react";
 import ProgramList from "@/components/festivalsystem/ProgramList";
+import Header from "@/components/global/Header";
 
-export default async function Page() {
+import { Caesar_Dressing } from "next/font/google";
+
+const ceasarDressing = Caesar_Dressing({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
+async function Page() {
   // fetch datasæt med endpoint /bands
   const fetchBands = async () => {
-    let response = await fetch("http://localhost:8080/bands");
-    // let response = await fetch("https://spring-awesome-stream.glitch.me/bands");
+    // let response = await fetch("http://localhost:8080/bands");
+    let response = await fetch("https://spring-awesome-stream.glitch.me/bands");
     let data = await response.json();
     return data;
   };
 
   // fetch datasæt med endpoint /schedule
   const fetchSchedule = async () => {
-    let response = await fetch("http://localhost:8080/schedule");
-    // let response = await fetch("https://spring-awesome-stream.glitch.me/schedule");
+    // let response = await fetch("http://localhost:8080/schedule");
+    let response = await fetch("https://spring-awesome-stream.glitch.me/schedule");
     let data = await response.json();
     return data;
   };
 
   // fetch datasæt med endpoint /events
   const fetchEvents = async () => {
-    let response = await fetch("http://localhost:8080/events");
-    // let response = await fetch("https://spring-awesome-stream.glitch.me/events");
+    // let response = await fetch("http://localhost:8080/events");
+    let response = await fetch("https://spring-awesome-stream.glitch.me/events");
     let data = await response.json();
     return data;
   };
-  // variabel for det data, som de tre datasæt retunerer - gør det muligt at bruge data lokalt i funktionen og sende dem videre som props til programlist-komponent
+  // Ved hjælp af await bliver alle tre API'er kaldt, og resultaterne gemmes i variablerne bands, schedule og events.
+  // Dette gør data tilgængelig til videre behandling i koden.
   const bands = await fetchBands();
   const schedule = await fetchSchedule();
   const events = await fetchEvents();
 
-  // Kombinerer /bands, /schedule og /events datasæt
-  //bruger Object.entries til at konvertere et objekt (objekter i /schedule) til array med [key, value] par, så /schedule går fra at være et objekt, med objekter i til at være et array med arrays fx ["Midgard", { "mon": [...], "tue": [...] }]. (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries)
-  //.reduce(): for hver scene (fx "Midgard" og "Vanaheim") opbygger vi en ny struktur i accumulator (akkumulatoren), hvor vi grupperer bands efter scene og dag.
-  const organizedByScene = Object.entries(schedule).reduce((accumulator, [scene, days]) => {
-    // acc[scene]: opretter et objekt for hver scene fx accumulator["Midgard"] = [...];
-    //Object.entries(days).map(([day, slots]): laver en liste over ugedage for scenen og deres tidsrum (slots) fx ["mon", [...]]..
-    //.map(): For hver dag (fx "mon"), laves et nyt objekt, der indeholder day: navnet på dagen og bands: listen af bands der spiller den dag
-    accumulator[scene] = Object.entries(days).map(([day, slots]) => {
-      return {
-        day,
-        bands: slots
-          //fjerner alle tidsrum, der er "break" (pauser). Kun bands bliver tilbage. Gør vi for at beholde relevante data (ingen pauser eller tomme felter)
-          .filter((slot) => slot.act !== "break")
-          //laver et nyt objekt for hvert band, hvor vi finder detaljer i andre datasæt (/bands og /events)
-          .map((slot) => {
-            //Vi leder i bands-listen efter et band, der matcher navnet (slot.act) (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find) fx hvis slot.act er "Nirvana", finder vi Nirvana i bands
-            //vi bruger find for at kombinere data fra flere forskellige datasæt
-            const band = bands.find((band) => band.name === slot.act);
-            //tjekker om der er ekstra info i events-datasættet, som fx om bandet er aflyst.
-            const event = events.find((event) => event.act.act === slot.act);
+  // scenes og days er arrays, der bruges som hjælp til at strukturere dataene.
+  // scenes repræsenterer de forskellige koncertscener.
+  // days repræsenterer ugens dage.
+  const scenes = ["Midgard", "Vanaheim", "Jotunheim"];
+  const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
-            //Kun hvis der findes et band, laves et nyt objekt med alle nødvendige oplysninger (time, scene, day, cancelled)
-            if (band) {
-              return {
-                //kopierer al af bandets data (fx navn, genre osv.)
-                ...band,
-                time: `${slot.start} - ${slot.end}`, //tidspunktet bandet spiller (start og slut).
-                scene, //navnet på scenen
-                day, //dagen hvor bandet spiller
-                cancelled: event ? event.act.cancelled : false, //hvis der er en event, tjekker vi, om bandet er aflyst. Hvis ikke, er det false.
-              };
-            }
-            return null; // Hvis band ikke findes retuner null
-          })
-
-          .filter(Boolean), //fjerner null værdier, hvis der ikke blev fundet noget band
-      };
+  // bands.map gennemgår alle bands én efter én og skaber en ny array (mergedData), hvor hvert band kombineres med relevant information fra schedule.
+  const mergedData = bands.map((band) => {
+    // const mergedBand = { ...band }; laver en ny kopi af bandets data for at tilføje ekstra information senere uden at ændre den originale.
+    const mergedBand = { ...band };
+    // scenes.forEach og days.forEach itererer over hver kombination af scener og dage for at finde ud af, om bandet optræder på den scene på den dag.
+    scenes.forEach((scene) => {
+      days.forEach((day) => {
+        // Tjekker, om bandets navn (band.name) findes i tidsplanen for en given scene og dag.
+        // Hvis der findes et match, gemmes event-oplysningerne i eventInfo.
+        if (schedule[scene][day].find((item) => item.act === band.name)) {
+          const eventInfo = schedule[scene][day].find((item) => item.act === band.name);
+          // Hvis der findes et match, tilføjes tre egenskaber til mergedBand:
+          // eventInfo: Detaljer om bandets optræden.
+          // scene: Scenen, hvor bandet spiller.
+          // day: Dagen, hvor bandet spiller.
+          mergedBand.eventInfo = eventInfo;
+          mergedBand.scene = scene;
+          mergedBand.day = day;
+        }
+      });
     });
-    return accumulator;
-  }, {});
+    // Efter alle scener og dage er gennemgået, returneres det opdaterede band-objekt, som indeholder både de originale data og de nye oplysninger.
+    return mergedBand;
+  });
 
   return (
-    <div>
-      <ProgramList bandsByScene={organizedByScene} />
-    </div>
+    <main>
+      <Header />
+      <section>
+        <h1 className={`${ceasarDressing.className} text-6xl `}>PROGRAM</h1>
+        <ProgramList mergedArray={mergedData} days={days} />
+      </section>
+    </main>
   );
 }
+
+export default Page;

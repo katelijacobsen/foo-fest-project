@@ -93,7 +93,6 @@ const handleStep = (prev, formData) => {
     };
   }
   if (prev.step === 3) {
-    formAction={formAction}
     resetForm={resetForm}
     return {
       ...prev,

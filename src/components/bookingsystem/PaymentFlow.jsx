@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
+import { Caesar_Dressing } from "next/font/google";
+
+const ceasarDressing = Caesar_Dressing({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
 
 const PaymentForm = ({ formAction, resetForm, router }) => {
-  // const [ timeLeft, setTimeLeft] = useState(60)
+  const [ timeLeft, setTimeLeft] = useState(60 * 5 * 1000)
   const [state, setState] = useState({
     number: "",
     expiry: "",
@@ -11,17 +18,22 @@ const PaymentForm = ({ formAction, resetForm, router }) => {
     name: "",
     focus: "",
   });
-  //   useEffect(() => {
-  //     if(timeLeft <= 0 ){
-  //         alert("Tiden er udløbet. du bliver stillet tilbage til billetsiden.");
-  //         resetForm();
-  //         formAction(null);
-  //         return;
-  //     }
-  //     const timer = setInterval(() => {
-  //         setTimeLeft((prevTime) => prevTime -1);
-  //     }, 1000);
-  //   }, [timeLeft, resetForm, router]);
+    useEffect(() => {
+      if(timeLeft <= 0 ){
+          alert("Tiden er udløbet. du bliver stillet tilbage til billetsiden.");
+          resetForm();
+          formAction(null);
+          return;
+      }
+      const timer = setInterval(() => {
+          setTimeLeft((prevTime) => prevTime -1000);
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }, [timeLeft, resetForm, router]);
+
+const mins = Math.floor(timeLeft / 1000 / 60);
+const secs = Math.floor(timeLeft / 1000 % 60);
 
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
@@ -33,15 +45,16 @@ const PaymentForm = ({ formAction, resetForm, router }) => {
     setState((prev) => ({ ...prev, focus: evt.target.name }));
   };
 
-  //{Math.floor(timeLeft / 60)} : {String(timeLeft % 60).padStart(2, "0")}
   return (
     <>
       <p className="bg-customRed text-black w-full text-center text-xl sm:text-2xl font-bold">
-        Tid tilbage: 00:00
+        {mins} : {String(secs).padStart(2, "0")}
       </p>
       <div className=" border border-gray-600 p-4 sm:p-8 rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack m-4">
-        <h2 className="text-2xl sm:text-3xl my-4 text-left">
-          Betalingsoplysninger
+        <h2
+          className={`${ceasarDressing.className} text-2xl sm:text-3xl my-4 text-left`}
+        >
+          BETALINGSKORT
         </h2>
 
         <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center p-4 sm:p-8 gap-4">

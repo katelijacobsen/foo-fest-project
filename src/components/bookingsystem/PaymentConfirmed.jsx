@@ -107,7 +107,7 @@ export default function PaymentConfirmed({ state, formStatus }) {
         <table className="w-full max-w-xl text-sm md:text-base">
         </table>
       </div>
-      <Link className="btn-primary mt-6 px-6 py-2 bg-red-500 text-white rounded disabled:opacity-50" href="/" >Tilbage til Forsiden</Link>
+      <Link className="btn-primary mt-6 px-6 py-2 bg-red-500 text-white rounded disabled:opacity-50" href="/" >Betal</Link>
       {/* <button
         type="submit"
         disabled={formStatus.pending}

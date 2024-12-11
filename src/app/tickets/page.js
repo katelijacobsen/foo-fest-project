@@ -4,7 +4,7 @@ import Campsite from "@/components/bookingsystem/Campsite";
 import ContactInfo from "@/components/bookingsystem/ContactInfo";
 import PaymentFlow from "@/components/bookingsystem/PaymentFlow";
 import PaymentComfirmed from "@/components/bookingsystem/PaymentConfirmed";
-import Basket from "@/components/bookingsystem/Cart";
+import Cart from "@/components/bookingsystem/Cart";
 import { useActionState } from "react";
 import { Caesar_Dressing } from "next/font/google";
 import { useFormStatus } from "react-dom";
@@ -126,6 +126,8 @@ export default function Page() {
       >
         BILLETTER
       </h1>
+      <div className="flex justify-center">
+      <section>
       {state.step === 0 && <ChooseTicket formAction={formAction} />}
       {state.step === 1 && (
         <Campsite formAction={formAction} tickets={state.tickets} />
@@ -135,6 +137,11 @@ export default function Page() {
       )}
       {state.step === 3 && <PaymentFlow formAction={formAction} />}
       {state.step === 4 && <PaymentComfirmed state={state} formStatus={formStatus}/>}
+      </section>
+      <section>
+        <Cart />
+      </section>
+      </div>
     </main>
   );
 }

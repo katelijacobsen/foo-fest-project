@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Caesar_Dressing } from "next/font/google";
 import Image from "next/image";
-import Logo from "@/img/fooFestLogo.png";
+// import Logo from "@/img/fooFestLogo.png";
 import PrimaryButton from "@/components/global/buttonFolder/PrimaryButton";
 
 const ceasarDressing = Caesar_Dressing({
@@ -23,9 +23,9 @@ const Header = () => {
     <header>
       <nav className="flex justify-between sticky top-0 p-4">
         <li className="list-none">
-          <Link href="/">
+          {/* <Link href="/">
             <Image src={Logo} width={100} height={100} alt="foofest logo" />
-          </Link>
+          </Link> */}
         </li>
         <ul className="hidden md:flex md:gap-6 space-x-4 justify-between items-center">
           <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">

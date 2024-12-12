@@ -13,7 +13,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "spectacled-purple-gravity.glitch.me",
+        hostname: "spring-awesome-stream.glitch.me",
       },
     ],
   },

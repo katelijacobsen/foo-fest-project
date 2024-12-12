@@ -1,9 +1,8 @@
 "use client";
-
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import CounterInput from "./CounterInput";
-
 import { Caesar_Dressing } from "next/font/google";
+import { CartContext } from "@/app/tickets/page";
 
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],
@@ -39,11 +38,47 @@ const campingArea = [
   },
 ];
 
-export default function Campsite({ inputName, formAction }) {
+export default function Campsite({ tentType, formAction }) {
   const [spots, setSpots] = useState([]);
+  const setCart = useContext(CartContext);
+  const [twoPersonCount, setTwoPersonCount] = useState(0);
+  const [threePersonCount, setThreePersonCount] = useState(0);
+  const [selectedCampsite, setSelectedCampsite] = useState(undefined);
 
-  const [count, setCount] = useState(0);
-  const [count2, setCount2] = useState(0);
+  const updateTwoPersonTentCount = (count) => {
+    setCart((prev) => {
+      return {
+        ...prev,
+        tents: {
+          ...prev.tents,
+          twoPeople: count,
+        },
+      };
+    });
+    setTwoPersonCount(count);
+  };
+  const updateThreePersonTentCount = (count) => {
+    setCart((prev) => {
+      return {
+        ...prev,
+        tents: {
+          ...prev.tents,
+          threePeople: count,
+        },
+      };
+    });
+    setThreePersonCount(count);
+  };
+
+  const updateCampsite = (campsite) => {
+    setCart((prev) => {
+      return {
+        ...prev,
+        campsite,
+      };
+    });
+    setSelectedCampsite(campsite);
+  };
 
   const handleBuy = (formData) => {
     console.log("Buy!");
@@ -62,8 +97,11 @@ export default function Campsite({ inputName, formAction }) {
       <ul className="flex flex-wrap gap-4 flex-1 text-white">
         {spots.map((spot, i) => (
           <li
+            onClick={() => updateCampsite(spot.area)}
             key={i}
-            className="bg-gradient-to-tl border border-gray-900 from-customBlack_2 to-customBlack p-2 rounded-md"
+            className={`${
+              spot.area === selectedCampsite && "border border-green-600"
+            } bg-gradient-to-tl border border-gray-900 from-customBlack_2 to-customBlack p-2 rounded-md select-none cursor-pointer`}
           >
             <h2 className="text-2xl font-bold">{spot.area}</h2>
             <p>{spot.available} ledige pladser</p>
@@ -78,26 +116,26 @@ export default function Campsite({ inputName, formAction }) {
           <ul className="my-4 flex flex-col gap-6">
             <li className="text-white flex gap-12">
               <div>
-              <h3>2 Personers Telt</h3>
-              <p>+299kr</p>
+                <h3>2 Personers Telt</h3>
+                <p>+299kr</p>
               </div>
               <CounterInput
-                name={inputName}
+                name="twoPeople"
                 max={10}
-                count={count}
-                setCount={setCount}
+                count={twoPersonCount}
+                setCount={updateTwoPersonTentCount}
               />
             </li>
             <li className="text-white  flex gap-12">
               <div>
-              <h3>3 Personers Telt</h3>
-              <p>+399kr</p>
+                <h3>3 Personers Telt</h3>
+                <p>+399kr</p>
               </div>
               <CounterInput
-                name={inputName}
+                name="threePeople"
                 max={10}
-                count={count2}
-                setCount={setCount2}
+                count={threePersonCount}
+                setCount={updateThreePersonTentCount}
               />
             </li>
           </ul>

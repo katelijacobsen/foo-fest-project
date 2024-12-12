@@ -1,17 +1,18 @@
 import Card from "./Card";
+import { useContext } from "react";
 
 export default function ChooseTicket({ formAction }) {
   return (
     <form>
       <Card
-        inputName={`singleTickets`}
+        ticketType={`single`}
         formAction={formAction}
         title="Enkel Billet"
         price="799"
         valuta="DKK + Fee"
         />
       <Card
-        inputName={`vipTickets`}
+        ticketType={`vip`}
         formAction={formAction}
         title="VIP Billet"
         price="1299"

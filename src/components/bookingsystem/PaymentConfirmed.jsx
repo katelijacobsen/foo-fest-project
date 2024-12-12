@@ -17,7 +17,7 @@ const draw = {
   },
 };
 
-export default function PaymentConfirmed({ state, formStatus }) {
+export default function PaymentConfirmed({ state, formStatus, startDraw }) {
   return (
     <Form className="p-4 flex flex-col items-center justify-center rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack m-8">
       <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-white">
@@ -32,7 +32,7 @@ export default function PaymentConfirmed({ state, formStatus }) {
           stroke="#4ece69"
           initial="hidden"
           variants={draw}
-          animate="visible"
+          animate={startDraw ? "visible" : "hidden"}
         >
           <motion.path
             d="M8.5 12.5L10.5 14.5L15.5 9.5"
@@ -107,7 +107,7 @@ export default function PaymentConfirmed({ state, formStatus }) {
         <table className="w-full max-w-xl text-sm md:text-base">
         </table>
       </div>
-      <Link className="btn-primary mt-6 px-6 py-2 bg-red-500 text-white rounded disabled:opacity-50" href="/" >Betal</Link>
+      <Link className="btn-primary mt-6 px-6 py-2 bg-red-500 text-white rounded disabled:opacity-50" href="/" >Tilbage til Forsiden</Link>
       {/* <button
         type="submit"
         disabled={formStatus.pending}

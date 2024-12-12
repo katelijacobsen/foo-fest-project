@@ -5,9 +5,10 @@ import ContactInfo from "@/components/bookingsystem/ContactInfo";
 import PaymentFlow from "@/components/bookingsystem/PaymentFlow";
 import PaymentComfirmed from "@/components/bookingsystem/PaymentConfirmed";
 import Cart from "@/components/bookingsystem/Cart";
-import { useActionState } from "react";
+import { createContext, useActionState } from "react";
 import { Caesar_Dressing } from "next/font/google";
 import { useFormStatus } from "react-dom";
+import { useState } from "react";
 
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],
@@ -112,36 +113,62 @@ const handleStep = (prev, formData) => {
     };
   }
 };
+// Deler data uden at propdril fra Page. Så kan vi for adgang til vores data.
+export const CartContext = createContext(null);
 
 export default function Page() {
+  // useState til at kunne lave en global indkøbskurv på ticket site.
+  const defaultCart = {
+    tickets: {
+      single: 0,
+      vip: 0,
+    },
+    campsite: undefined,
+    tents: {
+      twoPeople: 0,
+      threePeople: 0,
+      greenCamping: false,
+    },
+  };
+  const [startDraw, setStartDraw] = useState(false);
+  const confirmPayment = () => {
+    setStartDraw(true);
+  };
+  //give det ned som værdi
+  const [cart, setCart] = useState(defaultCart);
+
   const [state, formAction] = useActionState(handleStep, defaultState);
   const formStatus = useFormStatus();
 
   console.log(state);
-
+  //wrapper komponenter ind med useContext så det kan opdatere indkøbskurven
   return (
-    <main>
-      <h1
-        className={`${ceasarDressing.className} text-6xl sm:text-6xl lg:text-6xl md:text-6xl text-white`}
-      >
-        BILLETTER
-      </h1>
-      <div className="flex justify-center">
-      <section>
-      {state.step === 0 && <ChooseTicket formAction={formAction} />}
-      {state.step === 1 && (
-        <Campsite formAction={formAction} tickets={state.tickets} />
-      )}
-      {state.step === 2 && (
-        <ContactInfo tickets={state.tickets} formAction={formAction} />
-      )}
-      {state.step === 3 && <PaymentFlow formAction={formAction} />}
-      {state.step === 4 && <PaymentComfirmed state={state} formStatus={formStatus}/>}
-      </section>
-      <section>
-        <Cart />
-      </section>
-      </div>
-    </main>
+    <CartContext.Provider value={setCart}>
+      <main>
+        <h1
+          className={`${ceasarDressing.className} text-6xl sm:text-6xl lg:text-6xl md:text-6xl text-white`}
+        >
+          BILLETTER
+        </h1>
+        <div className="flex justify-center">
+          <section>
+            {state.step === 0 && <ChooseTicket formAction={formAction} />}
+            {state.step === 1 && (
+              <Campsite formAction={formAction} tickets={state.tickets} />
+            )}
+            {state.step === 2 && (
+              <ContactInfo tickets={state.tickets} formAction={formAction} />
+            )}
+            {state.step === 3 && <PaymentFlow formAction={formAction} />}
+            {state.step === 4 && (
+              <PaymentComfirmed state={state} formStatus={formStatus} startDraw={true} />
+            )}
+          </section>
+          <section>
+            <Cart cart={cart} />
+          </section>
+        </div>
+      </main>
+    </CartContext.Provider>
   );
 }

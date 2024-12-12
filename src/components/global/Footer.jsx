@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Logo from "@/img/fooFestLogo.png";
+// import Logo from "@/img/fooFestLogo.png";
 import Facebook from "@/img/svg/facebook_icon.svg";
 import Instagram from "@/img/svg/instagram_Icon.svg";
 import Button from "@/components/global/buttonFolder/PrimaryButton";
@@ -7,7 +7,7 @@ import Newsletter from "./Newsletter";
 const Footer = () => {
   return (
     <div className="w-screen bg-customBlack_5 p-2 ">
-      <Image src={Logo} alt={"kads"} width={150} height={150} />
+      {/* <Image src={Logo} alt={"kads"} width={150} height={150} /> */}
       <div className="sm:flex sm:flex-row sm:items-center sm:justify-center sm:gap-7">
         <div className="text-customWhite flex flex-col justify-center text-center sm:mb-32">
           <h2 className="text-4xl">Nyhedsbrev</h2>

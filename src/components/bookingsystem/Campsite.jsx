@@ -44,6 +44,7 @@ export default function Campsite({ tentType, formAction }) {
   const [twoPersonCount, setTwoPersonCount] = useState(0);
   const [threePersonCount, setThreePersonCount] = useState(0);
   const [selectedCampsite, setSelectedCampsite] = useState(undefined);
+  const [greenCamping, setGreenCamping] = useState(false);
 
   const updateTwoPersonTentCount = (count) => {
     setCart((prev) => {
@@ -78,6 +79,16 @@ export default function Campsite({ tentType, formAction }) {
       };
     });
     setSelectedCampsite(campsite);
+  };
+
+  const updateGreenCamping = (e) => {
+    setGreenCamping(e.target.checked);
+    setCart((prev) => {
+      return {
+        ...prev,
+        greenCamping: e.target.checked,
+      };
+    });
   };
 
   const handleBuy = (formData) => {
@@ -153,6 +164,7 @@ export default function Campsite({ tentType, formAction }) {
                 type="checkbox"
                 value=""
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                onChange={updateGreenCamping}
               />
             </div>
             <div className="ms-2 text-sm">

@@ -12,7 +12,7 @@ export default function Cart({ cart }) {
   const sumCart =
     cart.tickets.single * 799 +
     cart.tickets.vip * 1299 +
-    cart.tents.twoPeople * 299 + cart.tents.threePeople * 399;
+    cart.tents.twoPeople * 299 + cart.tents.threePeople * 399 + (cart.greenCamping ? 249 : 0);
 
   return (
     <aside className="flex flex-col gap-4 rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack p-8">
@@ -59,7 +59,7 @@ export default function Cart({ cart }) {
                   {cart.tents.threePeople * 399} kr
                 </p>
                 )}
-                <p>Grøn Camping?</p>
+                {cart.greenCamping && <p>+249kr for Grøn Camping</p>}
               </li>
             </ul>
           </section>

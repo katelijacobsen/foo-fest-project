@@ -4,7 +4,6 @@ import Link from "next/link";
 import Headline from "../global/Headline";
 import LineupRune from "@/img/svg/lineup_rune.svg";
 import PrimaryButton from "@/components/global/buttonFolder/PrimaryButton";
-import PosterBackground from "@/img/svg/poster-bg.svg";
 import { Caesar_Dressing } from "next/font/google";
 
 const ceasarDressing = Caesar_Dressing({

@@ -7,6 +7,7 @@ import Volunteer from "@/components/festivalsystem/Volunteer";
 import MotionWhileInView from "@/components/festivalsystem/MotionWhileInView";
 import Footer from "@/components/global/Footer";
 import SecondHero from "@/components/festivalsystem/SecondHero";
+import TicketsSection from "@/components/festivalsystem/TicketsSection";
 
 export default async function Home() {
   const fetchBands = async () => {
@@ -58,6 +59,7 @@ export default async function Home() {
     <div>
       <Header />
       <SecondHero />
+      <TicketsSection />
       {/* <HeroSection /> */}
       <LineupListReadMore initialLineup={bands} />
       <ProgramForCurrentDay mergedArray={mergedData} days={days} />

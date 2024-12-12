@@ -52,7 +52,7 @@ const Header = () => {
 
         {/* Vis tekst: "Luk menu", når burgermenu er åben */}
         {isOpen && (
-          <div className="md:hidden fixed top-0 right-0 bottom-0 left-0 z-10 bg-customBlack">
+          <div className="md:hidden fixed top-0 right-0 bottom-0 left-0 z-30 bg-customBlack">
             {/* Luk menuen */}
             <button onClick={handleClick} className={`${ceasarDressing.className} absolute top-4 right-4 bg-gradient-to-bl from-customPink to-customOrange bg-clip-text text-transparent text-2xl`}>
               Luk menu

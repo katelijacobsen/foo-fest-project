@@ -1,8 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import BandCard from "@/components/festivalsystem/BandCard";
-import Headline from "@/components/global/Headline";
-import MusicRune from "@/img/svg/music_rune.svg";
 import { Caesar_Dressing } from "next/font/google";
 
 const ceasarDressing = Caesar_Dressing({
@@ -52,8 +50,8 @@ function ProgramList({ mergedArray, days }) {
         <div>
           <div className="flex justify-center flex-wrap my-8 mb-20 gap-5">
             {days.map((day) => (
-              <button key={day} className={`${selectedDay === day ? "bg-customOrange text-white" : "bg-customBlack border-solid border-[1px] border-customOrange text-white"} px-4 py-1`} onClick={() => filterActsByDay(day)}>
-                {day}
+              <button key={day} className={`${selectedDay === day ? "bg-gradient-to-r from-customPink via-customRed to-customOrange text-white w-32 h-10" : "  w-32 h-10 bg-gradient-to-r from-customPink via-customRed to-customOrange text-white p-[1.5px]"} `} onClick={() => filterActsByDay(day)}>
+                <span className={`${selectedDay === day ? "bg-transparent" : "bg-customBlack h-full w-full block "} flex justify-center items-center `}>{day.charAt(0).toUpperCase() + day.slice(1)}</span>
               </button>
             ))}
           </div>

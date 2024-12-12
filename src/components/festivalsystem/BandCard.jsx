@@ -5,7 +5,7 @@ import Link from "next/link";
 
 function BandCard({ name, genre, start, end, slug, day, logo, scene }) {
   // const imageUrl = logo && (logo.startsWith("https://") || logo.startsWith("http://")) ? logo : `http://localhost:8080/logos/${logo}`;
-  const imageUrl = logo && (logo.startsWith("https://") || logo.startsWith("http://")) ? logo : `https://spring-awesome-stream.glitch.me/bands/${logo}`;
+  const imageUrl = logo && (logo.startsWith("https://") || logo.startsWith("http://")) ? logo : `https://spring-awesome-stream.glitch.me/logos/${logo}`;
 
   console.log(imageUrl);
   return (

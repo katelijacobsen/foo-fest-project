@@ -8,11 +8,11 @@ const ceasarDressing = Caesar_Dressing({
   display: "swap",
 });
 
-const Headline = ({ src, text }) => {
+const Headline = ({ src, text, size }) => {
   return (
     <div className="flex gap-2 items-center ">
       <Image src={src} alt="rune" width={40} height={40} />
-      <h1 className={`${ceasarDressing.className} text-[2.5rem]`}>{text}</h1>
+      <h1 className={`${ceasarDressing.className}  ${size}`}>{text}</h1>
     </div>
   );
 };

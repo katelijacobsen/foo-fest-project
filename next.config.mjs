@@ -11,10 +11,10 @@ const nextConfig = {
         hostname: "localhost",
         port: "8080",
       },
-      // {
-      //   protocol: "https",
-      //   hostname: "spectacled-purple-gravity.glitch.me",
-      // },
+      {
+        protocol: "https",
+        hostname: "spectacled-purple-gravity.glitch.me",
+      },
     ],
   },
 };

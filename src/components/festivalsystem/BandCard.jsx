@@ -7,8 +7,9 @@ function BandCard({ name, genre, start, end, slug, day, logo, scene }) {
   const imageUrl = logo && (logo.startsWith("https://") || logo.startsWith("http://")) ? logo : `http://localhost:8080/logos/${logo}`;
 
   console.log(imageUrl);
+  console.log("Slug value:", slug);
   return (
-    <Link href={`/pages/program/${slug}`} key={slug} className="hover:scale-[1.02] transition-all duration-500 cursor-pointer min-w-72">
+    <Link href={`/program/${slug}`} key={slug} className="hover:scale-[1.02] transition-all duration-500 cursor-pointer min-w-72">
       <div className="relative w-full h-64">
         {imageUrl ? (
           <>

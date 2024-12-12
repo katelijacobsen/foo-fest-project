@@ -10,14 +10,14 @@ const ceasarDressing = Caesar_Dressing({
 });
 
 const SingleBand = ({ band }) => {
-  const { name, members, genre, bio, logo, link } = band;
+  const { name, members, genre, bio, logo, slug } = band;
 
   //betingelse for billede URL
   const imageUrl = logo.startsWith("https://") || logo.startsWith("http://") ? logo : `http://localhost:8080/logos/${logo}`;
 
   return (
     <section>
-      <Link href={link}>
+      <Link href={`/program/${slug}`}>
         <FaArrowLeft className="text-customOrange h-10 w-10 mb-4 ml-4 border-solid border-[1px] border-customOrange rounded-full p-2" />
       </Link>
       <div className="grid grid-columns-subgrid col-span-full grid-rows-4 row-span-full">

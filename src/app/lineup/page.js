@@ -18,7 +18,7 @@ export default async function Page() {
     <div>
       <Header />
       <div className="max-w-screen-xl mx-auto">
-        <Headline src={LineUpRune} text="2025 LINEUP" size="text-[4rem] md:text-[6rem]" />
+        <Headline src={LineUpRune} text="2025 LINEUP" size="text-[4rem] md:text-[5rem]" width={45} height={45} />
       </div>
       <LineUpList initialLineup={bands} />
       <Footer />

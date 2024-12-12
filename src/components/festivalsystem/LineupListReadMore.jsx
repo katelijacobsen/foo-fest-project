@@ -17,9 +17,9 @@ const LineupListReadMore = ({ initialLineup, artists }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <section className="h-screen place-content-center max-w-screen-lg mx-auto py-6 px-4 grid">
-      <div className="">
-        <Headline src={LineupRune} text="LINEUP" />
+    <section className="h-screen place-content-center max-w-screen-xl mx-auto py-6 px-4 grid">
+      <div className="pb-6">
+        <Headline src={LineupRune} width={45} height={45} size="text-4xl md:text-6xl" text="LINEUP" />
       </div>
 
       <ul className="flex flex-wrap justify-center items-center gap-4 pt-6">

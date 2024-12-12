@@ -1,13 +1,26 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import BandCard from "./BandCard";
 import Headline from "../global/Headline";
 import MusicRune from "@/img/svg/music_rune.svg";
 import PrimaryButton from "@/components/global/buttonFolder/PrimaryButton";
+import { FaArrowLeft } from "react-icons/fa6";
+import { FaArrowRight } from "react-icons/fa6";
+import { Caesar_Dressing } from "next/font/google";
+
+const ceasarDressing = Caesar_Dressing({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
 
 const ProgramForCurrentDay = ({ mergedArray }) => {
   const [currentDay, setCurrentDay] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  //useRef bruges til knapper til scrollcontainer, da vi ønsker at ændre DOM'en elementet (scrollcontaineren) direkte
+  const scrollContainerRef1 = useRef(null);
+  const scrollContainerRef2 = useRef(null);
+  const scrollContainerRef3 = useRef(null);
 
   // useEffect bruges her, så hver gang siden indlæses, så vises de artister der spiller idag, så der ikke bare er en blank side
   useEffect(() => {
@@ -35,37 +48,61 @@ const ProgramForCurrentDay = ({ mergedArray }) => {
   return (
     <section className="py-6 px-4 max-w-screen-xl mx-auto">
       <div>
-        <Headline src={MusicRune} text={`DAGENS PROGRAM`} />
+        <Headline width={45} height={45} src={MusicRune} size="text-4xl md:text-6xl" text="DAGENS PROGRAM" />
       </div>
       <div>
         <div className="py-6">
-          <Headline src={MusicRune} text="MIDGARD" />
-          <div className="overflow-x-auto">
+          <h1 className={`pb-4 text-3xl md:text-5xl`}>Midgard</h1>
+          <div className="overflow-x-auto" ref={scrollContainerRef1}>
             <div className="flex gap-2">
               {sortedByTime("Midgard").map((band) => (
                 <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} />
               ))}
             </div>
           </div>
+          <div className="flex gap-4 justify-end mt-4">
+            <button className="" onClick={() => (scrollContainerRef1.current.scrollLeft -= 200)}>
+              <FaArrowLeft className="text-customOrange w-[1.5rem] h-[1.5rem]" />
+            </button>
+            <button className="" onClick={() => (scrollContainerRef1.current.scrollLeft += 200)}>
+              <FaArrowRight className="text-customOrange w-[1.5rem] h-[1.5rem]" />
+            </button>
+          </div>
         </div>
         <div className="py-6">
-          <Headline src={MusicRune} text="VANAHEIM" />
-          <div className="overflow-x-auto">
+          <h1 className={`pb-4 text-3xl md:text-5xl`}>Vanaheim</h1>
+          <div className="overflow-x-auto" ref={scrollContainerRef2}>
             <div className="flex gap-2">
               {sortedByTime("Vanaheim").map((band) => (
                 <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} />
               ))}
             </div>
           </div>
+          <div className="flex gap-4 justify-end mt-4">
+            <button className="" onClick={() => (scrollContainerRef2.current.scrollLeft -= 200)}>
+              <FaArrowLeft className="text-customOrange w-[1.5rem] h-[1.5rem]" />
+            </button>
+            <button className="" onClick={() => (scrollContainerRef2.current.scrollLeft += 200)}>
+              <FaArrowRight className="text-customOrange w-[1.5rem] h-[1.5rem]" />
+            </button>
+          </div>
         </div>
         <div className="py-6">
-          <Headline src={MusicRune} text="JOTUNHEIM" />
-          <div className="overflow-x-auto">
+          <h1 className={`pb-4 text-3xl md:text-5xl`}>Jotunheim</h1>
+          <div className="overflow-x-auto" ref={scrollContainerRef3}>
             <div className="flex gap-2">
               {sortedByTime("Jotunheim").map((band) => (
                 <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} />
               ))}
             </div>
+          </div>
+          <div className="flex gap-4 justify-end mt-4">
+            <button className="" onClick={() => (scrollContainerRef3.current.scrollLeft -= 200)}>
+              <FaArrowLeft className="text-customOrange w-[1.5rem] h-[1.5rem]" />
+            </button>
+            <button className="" onClick={() => (scrollContainerRef3.current.scrollLeft += 200)}>
+              <FaArrowRight className="text-customOrange w-[1.5rem] h-[1.5rem]" />
+            </button>
           </div>
         </div>
       </div>

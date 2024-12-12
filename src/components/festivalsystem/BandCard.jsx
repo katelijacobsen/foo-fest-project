@@ -9,7 +9,7 @@ function BandCard({ name, genre, start, end, slug, day, logo, scene }) {
   console.log(imageUrl);
   console.log("Slug value:", slug);
   return (
-    <Link href={`/program/${slug}`} key={slug} className="hover:scale-[1.02] transition-all duration-500 cursor-pointer min-w-72">
+    <Link href={`/program/${slug}`} key={slug} className="hover:scale-[1.02] transition-all duration-500 cursor-pointer">
       <div className="relative w-full h-64">
         {imageUrl ? (
           <>

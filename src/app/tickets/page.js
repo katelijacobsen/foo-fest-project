@@ -56,8 +56,8 @@ const handleStep = (prev, formData) => {
       ...prev,
       step: prev.step + 1,
       tickets: {
-        single: formData.get("singleTickets"),
-        vip: formData.get("vipTickets"),
+        single: +formData.get("singleTickets"),
+        vip: +formData.get("vipTickets"),
       },
     };
   }
@@ -66,8 +66,8 @@ const handleStep = (prev, formData) => {
       ...prev,
       step: prev.step + 1,
       tents: {
-        twoPeople: formData.get("twoPeople"),
-        threPeople: formData.get("threePeople"),
+        twoPeople: +formData.get("twoPeople"),
+        threPeople: +formData.get("threePeople"),
         greenCamping: formData.get("greenCamping"),
       },
     };
@@ -154,7 +154,7 @@ export default function Page() {
           <section>
             {state.step === 0 && <ChooseTicket formAction={formAction} />}
             {state.step === 1 && (
-              <Campsite formAction={formAction} tickets={state.tickets} />
+              <Campsite state={state} formAction={formAction} />
             )}
             {state.step === 2 && (
               <ContactInfo tickets={state.tickets} formAction={formAction} />
@@ -164,9 +164,9 @@ export default function Page() {
               <PaymentComfirmed state={state} formStatus={formStatus} startDraw={true} />
             )}
           </section>
-          <section>
+          {state.step !== 4 && ( 
             <Cart cart={cart} />
-          </section>
+          )}
         </div>
       </main>
     </CartContext.Provider>

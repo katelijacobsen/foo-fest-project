@@ -38,7 +38,7 @@ const campingArea = [
   },
 ];
 
-export default function Campsite({ tentType, formAction }) {
+export default function Campsite({ state, formAction }) {
   const [spots, setSpots] = useState([]);
   const setCart = useContext(CartContext);
   const [twoPersonCount, setTwoPersonCount] = useState(0);
@@ -46,28 +46,32 @@ export default function Campsite({ tentType, formAction }) {
   const [selectedCampsite, setSelectedCampsite] = useState(undefined);
   const [greenCamping, setGreenCamping] = useState(false);
 
+  const allowUpdate = (delta) => {
+    const numPeople = state.tickets.single + state.tickets.vip;
+    const numTents = twoPersonCount + threePersonCount;
+    return numTents + delta <= numPeople;
+  };
+
   const updateTwoPersonTentCount = (count) => {
-    setCart((prev) => {
-      return {
-        ...prev,
-        tents: {
-          ...prev.tents,
-          twoPeople: count,
-        },
-      };
-    });
+    const ok = allowUpdate(count > twoPersonCount ? +1 : -1);
+    if (!ok) {
+      return;
+    }
+    setCart((prev) => ({
+      ...prev,
+      tents: { ...prev.tents, twoPeople: count },
+    }));
     setTwoPersonCount(count);
   };
   const updateThreePersonTentCount = (count) => {
-    setCart((prev) => {
-      return {
-        ...prev,
-        tents: {
-          ...prev.tents,
-          threePeople: count,
-        },
-      };
-    });
+    const ok = allowUpdate(count > threePersonCount ? +1 : -1);
+    if (!ok) {
+      return;
+    }
+    setCart((prev) => ({
+      ...prev,
+      tents: { ...prev.tents, threePeople: count },
+    }));
     setThreePersonCount(count);
   };
 
@@ -132,7 +136,6 @@ export default function Campsite({ tentType, formAction }) {
               </div>
               <CounterInput
                 name="twoPeople"
-                max={10}
                 count={twoPersonCount}
                 setCount={updateTwoPersonTentCount}
               />

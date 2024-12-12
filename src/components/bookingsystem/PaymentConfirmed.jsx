@@ -83,31 +83,34 @@ export default function PaymentConfirmed({ state, formStatus, startDraw }) {
           <thead>
             <tr>
               <th className="px-4 py-2 text-left">Campsite</th>
-              <th className="px-4 py-2 text-left">Telt</th>
+              <th className="px-4 py-2 text-left">To Personers Telte</th>
+              <th className="px-4 py-2 text-left">Tre Personers Telte</th>
               <th className="px-4 py-2 text-left">Grøn Camping</th>
             </tr>
           </thead>
           <tbody>
-            {state.guests.single.map((guest, i) => (
-              <tr key={i}>
-                <td className="px-4 py-2">{guest.firstName}</td>
-                <td className="px-4 py-2">{guest.lastName}</td>
-                <td className="px-4 py-2">{guest.email}</td>
-              </tr>
-            ))}
-            {state.guests.vip.map((guest, i) => (
-              <tr key={i}>
-                <td className="px-4 py-2">{guest.firstName}</td>
-                <td className="px-4 py-2">{guest.lastName}</td>
-                <td className="px-4 py-2">{guest.email}</td>
-              </tr>
-            ))}
+            <tr>
+              <td className="px-4 py-2">{state.campsite}</td>
+              <td className="px-4 py-2">{state.tents.twoPeople}</td>
+              <td className="px-4 py-2">{state.tents.threePeople}</td>
+              <td className="px-4 py-2">{state.tents.greenCamping ? "Ja" : "Nej"}</td>
+            </tr>
+
+            <tr>
+              <td className="px-4 py-2"></td>
+              <td className="px-4 py-2"></td>
+              <td className="px-4 py-2"></td>
+            </tr>
           </tbody>
         </table>
-        <table className="w-full max-w-xl text-sm md:text-base">
-        </table>
+        <table className="w-full max-w-xl text-sm md:text-base"></table>
       </div>
-      <Link className="btn-primary mt-6 px-6 py-2 bg-red-500 text-white rounded disabled:opacity-50" href="/" >Tilbage til Forsiden</Link>
+      <Link
+        className="btn-primary mt-6 px-6 py-2 bg-red-500 text-white rounded disabled:opacity-50"
+        href="/"
+      >
+        Tilbage til Forsiden
+      </Link>
       {/* <button
         type="submit"
         disabled={formStatus.pending}

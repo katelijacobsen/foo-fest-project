@@ -63,7 +63,7 @@ const handleStep = (prev, formData) => {
   }
   if (prev.step === 1) {
     console.log(formData.get("campsite"));
-    
+
     return {
       ...prev,
       step: prev.step + 1,
@@ -72,19 +72,16 @@ const handleStep = (prev, formData) => {
         threePeople: +formData.get("threePeople"),
         greenCamping: formData.get("greenCamping"),
       },
-      campsite: formData.get("campsite")
+      campsite: formData.get("campsite"),
     };
   }
   if (prev.step === 2) {
-    const singleGuests = Array.from(
-      { length: prev.tickets.single },
-      (_, i) => ({
-        firstName: formData.get(`single_firstName_${i}`),
-        lastName: formData.get(`single_lastName_${i}`),
-        email: formData.get(`single_email_${i}`),
-        phonenumber: formData.get(`single_phonenumber_${i}`),
-      })
-    );
+    const singleGuests = Array.from({ length: prev.tickets.single }, (_, i) => ({
+      firstName: formData.get(`single_firstName_${i}`),
+      lastName: formData.get(`single_lastName_${i}`),
+      email: formData.get(`single_email_${i}`),
+      phonenumber: formData.get(`single_phonenumber_${i}`),
+    }));
     const vipGuests = Array.from({ length: prev.tickets.vip }, (_, i) => ({
       firstName: formData.get(`vip_firstName_${i}`),
       lastName: formData.get(`vip_lastName_${i}`),
@@ -148,28 +145,16 @@ export default function Page() {
   return (
     <CartContext.Provider value={setCart}>
       <main>
-        <h1
-          className={`${ceasarDressing.className} text-6xl sm:text-6xl lg:text-6xl md:text-6xl text-white`}
-        >
-          BILLETTER
-        </h1>
+        <h1 className={`${ceasarDressing.className} text-6xl sm:text-6xl lg:text-6xl md:text-6xl text-white`}>BILLETTER</h1>
         <div className="flex justify-center">
           <section>
             {state.step === 0 && <ChooseTicket formAction={formAction} />}
-            {state.step === 1 && (
-              <Campsite state={state} formAction={formAction} />
-            )}
-            {state.step === 2 && (
-              <ContactInfo tickets={state.tickets} formAction={formAction} />
-            )}
+            {state.step === 1 && <Campsite state={state} formAction={formAction} />}
+            {state.step === 2 && <ContactInfo tickets={state.tickets} formAction={formAction} />}
             {state.step === 3 && <PaymentFlow formAction={formAction} />}
-            {state.step === 4 && (
-              <PaymentComfirmed state={state} formStatus={formStatus} startDraw={true} />
-            )}
+            {state.step === 4 && <PaymentComfirmed state={state} formStatus={formStatus} startDraw={true} />}
           </section>
-          {state.step !== 4 && ( 
-            <Cart cart={cart} />
-          )}
+          {state.step !== 4 && <Cart cart={cart} />}
         </div>
       </main>
     </CartContext.Provider>

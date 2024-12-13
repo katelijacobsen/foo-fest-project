@@ -187,7 +187,14 @@ export default function Campsite({ state, formAction }) {
           </div>
         </section>
       </div>
-      <button className="bg-red-700" formAction={handleBuy} type="submit">
+      <button   className={`${
+    selectedCampsite
+      ? "bg-red-600 text-white cursor-pointer"
+      : "bg-gray-500 text-gray-300 cursor-not-allowed"
+  }`}
+  formAction={handleBuy}
+  type="submit"
+  disabled={!selectedCampsite}>
         Næste
       </button>
     </form>

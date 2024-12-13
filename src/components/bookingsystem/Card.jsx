@@ -40,9 +40,14 @@ export default function Card({
         setCount={updateCount}
       />
       <button
-        className="bg-yellow-400 m-4 p-5"
+         className={`m-4 p-5 ${
+          count === 0
+            ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+            : "bg-yellow-400 text-black hover:bg-yellow-500"
+        }`}
         type="submit"
         formAction={handleBuy}
+        disabled={count === 0}
       >
         Køb
       </button>

@@ -55,7 +55,7 @@ function ProgramList({ mergedArray, days }) {
               </button>
             ))}
           </div>
-          <section className="p-2 md:px-6">
+          <section className="p-2 md:px-6 z-0">
             <div className="grid md:grid-cols-[.5fr_1fr] mb-20">
               <div className="sticky top-0 self-start z-10 bg-gradient-to-bl from-customBlack to-transparent w-fit px-2 py-2">
                 <h1 className={`${ceasarDressing.className} text-4xl md:text-6xl`}>MIDGARD</h1>

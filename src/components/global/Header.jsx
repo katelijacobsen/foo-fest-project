@@ -21,11 +21,12 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="flex justify-between sticky top-0 p-4">
+      <nav className="flex justify-between items-center bg-gradient-to-b from-customBlack to-transparent fixed z-30 top-0 p-4 w-full">
         <li className="list-none">
           {/* <Link href="/">
             <Image src={Logo} width={100} height={100} alt="foofest logo" />
           </Link> */}
+          <p>Logo</p>
         </li>
         <ul className="hidden md:flex md:gap-6 space-x-4 justify-between items-center">
           <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
@@ -53,11 +54,15 @@ const Header = () => {
         {/* Vis tekst: "Luk menu", når burgermenu er åben */}
         {isOpen && (
           <div className="md:hidden fixed top-0 right-0 bottom-0 left-0 z-30 bg-customBlack">
-            {/* Luk menuen */}
             <button onClick={handleClick} className={`${ceasarDressing.className} absolute top-4 right-4 bg-gradient-to-bl from-customPink to-customOrange bg-clip-text text-transparent text-2xl`}>
               Luk menu
             </button>
             <ul className="grid place-content-center text-center h-[60vh] gap-6 mt-[8rem]">
+              <li>
+                <Link className={`${ceasarDressing.className} text-4xl hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent`} href="/">
+                  FORSIDE
+                </Link>
+              </li>
               <li>
                 <Link className={`${ceasarDressing.className} text-4xl hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent`} href="/program">
                   PROGRAM

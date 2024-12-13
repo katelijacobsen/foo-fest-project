@@ -3,21 +3,21 @@
 import { useState } from "react";
 import { FiPlus, FiMinus } from "react-icons/fi";
 
-const CounterInput = ({ count, setCount, max, name, getCount }) => {
+const CounterInput = ({ count, setCount, max, name }) => {
   const addQuantity = () => {
     if (count === max) {
       return;
     }
     setCount(count + 1);
-    getCount = count;
-    console.log("get Count", getCount);
+
+    console.log("get Count", count);
   };
+
   const subtractQuantity = () => {
     if (count - 1 < 0) {
       return;
     }
     setCount(count - 1);
-    getCount = count;
   };
 
   return (

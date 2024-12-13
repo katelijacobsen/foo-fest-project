@@ -10,21 +10,24 @@ const ceasarDressing = Caesar_Dressing({
 });
 
 const SingleBand = ({ band }) => {
-  const { name, members, genre, bio, logo, link } = band;
+  const { name, members, genre, bio, logo, slug } = band;
 
   //betingelse for billede URL
-  const imageUrl = logo.startsWith("https://") || logo.startsWith("http://") ? logo : `http://localhost:8080/logos/${logo}`;
+  // const imageUrl = logo.startsWith("https://") || logo.startsWith("http://") ? logo : `http://localhost:8080/logos/${logo}`;
+  const imageUrl = logo && (logo.startsWith("https://") || logo.startsWith("http://")) ? logo : `https://spring-awesome-stream.glitch.me/logos/${logo}`;
 
   return (
-    <section>
-      <Link href={link}>
-        <FaArrowLeft className="text-customOrange h-10 w-10 mb-4 ml-4 border-solid border-[1px] border-customOrange rounded-full p-2" />
+    <section className="my-16 max-w-screen-xl mx-auto">
+      <Link href={`/program/${slug}`}>
+        <FaArrowLeft className="text-customOrange h-10 w-10 mb-4 ml-4 md:ml-0 md:mb-8 border-solid border-[1px] border-customOrange rounded-full p-2" />
       </Link>
-      <div className="grid grid-columns-subgrid col-span-full grid-rows-4 row-span-full">
-        <Image className="row-start-1 row-end-4 col-span-full justify-self-center" src={imageUrl} alt={name} width={450} height={450} />
-        <div className=" grid gap-4 bg-opacity-45 bg-gradient-to-tl from-transparent via-transparent to-customBlack row-start-2 p-4 mt-20 row-end-5 col-start-1">
-          <h2 className={`${ceasarDressing.className} font-bold bg-gradient-to-bl from-customPink to-customOrange bg-clip-text text-transparent text-4xl`}>{name.toUpperCase()}</h2>
-          <div className="grid gap-2">
+      <div className="grid md:grid-cols-[1fr_1fr] max-w-screen-xl mx-auto md:gap-10">
+        <div>
+          <Image className="row-start-1 row-end-4 col-span-full justify-self-center" src={imageUrl} alt={name} width={700} height={700} />
+        </div>
+        <div className="grid gap-4 md:gap-0 py-4 px-2 md:py-0">
+          <h2 className={`${ceasarDressing.className} font-bold bg-gradient-to-bl from-customPink to-customOrange bg-clip-text text-transparent text-4xl md:text-6xl`}>{name.toUpperCase()}</h2>
+          <div className="">
             <h2 className="font-bold text-xl">Medlemmer: </h2>
             <ul>
               {band.members.map((member) => (

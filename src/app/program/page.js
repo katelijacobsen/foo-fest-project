@@ -1,7 +1,9 @@
 import React from "react";
 import ProgramList from "@/components/festivalsystem/ProgramList";
 import Header from "@/components/global/Header";
-
+import Headline from "@/components/global/Headline";
+import MusicRune from "@/img/svg/music_rune.svg";
+import Footer from "@/components/global/Footer";
 import { Caesar_Dressing } from "next/font/google";
 
 const ceasarDressing = Caesar_Dressing({
@@ -74,10 +76,13 @@ async function Page() {
   return (
     <main>
       <Header />
-      <section>
-        <h1 className={`${ceasarDressing.className} text-6xl `}>PROGRAM</h1>
+      <section className="max-w-screen-xl mx-auto mb-16">
+        <div className="mt-20 mb-24">
+          <Headline src={MusicRune} text="PROGRAM" size="text-5xl md:text-8xl" width={40} height={40} />
+        </div>
         <ProgramList mergedArray={mergedData} days={days} />
       </section>
+      <Footer />
     </main>
   );
 }

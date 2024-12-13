@@ -1,6 +1,8 @@
 import LineUpList from "@/components/festivalsystem/LineUpList";
 import Headline from "@/components/global/Headline";
 import LineUpRune from "@/img/svg/lineup_rune.svg";
+import Header from "@/components/global/Header";
+import Footer from "@/components/global/Footer";
 
 export default async function Page() {
   const fetchBands = async () => {
@@ -14,8 +16,12 @@ export default async function Page() {
 
   return (
     <div>
-      <Headline src={LineUpRune} text="LINE-UP" />
+      <Header />
+      <div className="max-w-screen-xl mx-auto">
+        <Headline src={LineUpRune} text="2025 LINEUP" size="text-[4rem] md:text-[5rem]" width={45} height={45} />
+      </div>
       <LineUpList initialLineup={bands} />
+      <Footer />
     </div>
   );
 }

@@ -7,27 +7,28 @@ import Volunteer from "@/components/festivalsystem/Volunteer";
 import MotionWhileInView from "@/components/festivalsystem/MotionWhileInView";
 import Footer from "@/components/global/Footer";
 import SecondHero from "@/components/festivalsystem/SecondHero";
+import TicketsSection from "@/components/festivalsystem/TicketsSection";
 
 export default async function Home() {
   const fetchBands = async () => {
-    let response = await fetch("https://spring-awesome-stream.glitch.me/bands");
-    // let response = await fetch("http://localhost:8080/bands");
+    // let response = await fetch("https://spring-awesome-stream.glitch.me/bands");
+    let response = await fetch("http://localhost:8080/bands");
     let data = await response.json();
     return data;
   };
 
   // fetch datasæt med endpoint /schedule
   const fetchSchedule = async () => {
-    // let response = await fetch("http://localhost:8080/schedule");
-    let response = await fetch("https://spring-awesome-stream.glitch.me/schedule");
+    let response = await fetch("http://localhost:8080/schedule");
+    // let response = await fetch("https://spring-awesome-stream.glitch.me/schedule");
     let data = await response.json();
     return data;
   };
 
   // fetch datasæt med endpoint /events
   const fetchEvents = async () => {
-    // let response = await fetch("http://localhost:8080/events");
-    let response = await fetch("https://spring-awesome-stream.glitch.me/events");
+    let response = await fetch("http://localhost:8080/events");
+    // let response = await fetch("https://spring-awesome-stream.glitch.me/events");
     let data = await response.json();
     return data;
   };
@@ -58,6 +59,7 @@ export default async function Home() {
     <div>
       <Header />
       <SecondHero />
+      <TicketsSection />
       {/* <HeroSection /> */}
       <LineupListReadMore initialLineup={bands} />
       <ProgramForCurrentDay mergedArray={mergedData} days={days} />

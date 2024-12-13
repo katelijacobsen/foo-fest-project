@@ -15,16 +15,21 @@ export default function Cart({ cart }) {
     cart.tickets.vip * 1299 +
     cart.tents.twoPeople * 299 +
     cart.tents.threePeople * 399 +
-    (cart.greenCamping ? 249 : 0);
+    (cart.greenCamping ? 249 : 0) +
+    (cart.campsite ? cart.bookingFee : 0);
 
   return (
     <section className="p-4 sm:p-8">
       <aside className="flex flex-col gap-4 rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack p-6 sm:p-8">
-        <h3 className={`${ceasarDressing.className} text-xl sm:text-2xl`}>Indkøbskurv</h3>
+        <h3 className={`${ceasarDressing.className} text-xl sm:text-2xl`}>
+          Indkøbskurv
+        </h3>
         {emptyCart ? (
           <div className="flex flex-col items-center justify-center gap-2 text-gray-200">
-            <FaBasketShopping size={72}/>
-            <p className="text-center text-sm sm:text-base">Høvding! Tilføj bytte i din kurv.</p>
+            <FaBasketShopping size={72} />
+            <p className="text-center text-sm sm:text-base">
+              Høvding! Tilføj bytte i din kurv.
+            </p>
           </div>
         ) : (
           <>
@@ -33,7 +38,8 @@ export default function Cart({ cart }) {
               <ul className="mt-2 space-y-2">
                 {cart.tickets.single !== 0 && (
                   <li>
-                    {cart.tickets.single}x Enkelbillet {cart.tickets.single * 799} kr
+                    {cart.tickets.single}x Enkelbillet{" "}
+                    {cart.tickets.single * 799} kr
                   </li>
                 )}
                 {cart.tickets.vip !== 0 && (
@@ -50,12 +56,15 @@ export default function Cart({ cart }) {
                 <li>{cart.campsite}</li>
                 {cart.tents.twoPeople !== 0 && (
                   <li>
-                    {cart.tents.twoPeople}x 2 Personers Telt {cart.tents.twoPeople * 299} kr
+                    {cart.tents.twoPeople}x 2 Personers Telt{" "}
+                    {cart.tents.twoPeople * 299} kr
                   </li>
                 )}
+                {cart.campsite && <li>+99kr Booking Fee</li>}
                 {cart.tents.threePeople !== 0 && (
                   <li>
-                    {cart.tents.threePeople}x 3 Personers Telt {cart.tents.threePeople * 399} kr
+                    {cart.tents.threePeople}x 3 Personers Telt{" "}
+                    {cart.tents.threePeople * 399} kr
                   </li>
                 )}
                 {cart.greenCamping && <li>+249kr for Grøn Camping</li>}

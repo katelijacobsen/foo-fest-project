@@ -95,8 +95,8 @@ export default function Campsite({ state, formAction }) {
     });
   };
 
-  const handleBuy = (formData) => {
-    console.log("Buy!");
+  const handleNext = (formData) => {
+    formData.set("campsite", selectedCampsite);
     formAction(formData);
   };
 
@@ -187,14 +187,16 @@ export default function Campsite({ state, formAction }) {
           </div>
         </section>
       </div>
-      <button   className={`${
-    selectedCampsite
-      ? "bg-red-600 text-white cursor-pointer"
-      : "bg-gray-500 text-gray-300 cursor-not-allowed"
-  }`}
-  formAction={handleBuy}
-  type="submit"
-  disabled={!selectedCampsite}>
+      <button
+        className={`${
+          selectedCampsite
+            ? "bg-red-600 text-white cursor-pointer"
+            : "bg-gray-500 text-gray-300 cursor-not-allowed"
+        }`}
+        formAction={handleNext}
+        type="submit"
+        disabled={!selectedCampsite}
+      >
         Næste
       </button>
     </form>

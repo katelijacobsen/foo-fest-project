@@ -18,6 +18,16 @@ const draw = {
 };
 
 export default function PaymentConfirmed({ state, formStatus, startDraw }) {
+  const sumCart =
+  state.tickets.single * 799 +
+  state.tickets.vip * 1299 +
+  state.tents.twoPeople * 299 +
+  state.tents.threePeople * 399 +
+  (state.tents.greenCamping ? 249 : 0) +
+  (state.campsite ? 99 : 0);
+
+    console.log(sumCart)
+
   return (
     <Form className="p-4 flex flex-col items-center justify-center rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack m-8">
       <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-white">
@@ -62,6 +72,7 @@ export default function PaymentConfirmed({ state, formStatus, startDraw }) {
               <th className="px-4 py-2 text-left">Fornavn</th>
               <th className="px-4 py-2 text-left">Efternavn</th>
               <th className="px-4 py-2 text-left">Email</th>
+              <th className="px-4 py-2 text-left">Pris</th>
             </tr>
           </thead>
           <tbody>
@@ -70,6 +81,7 @@ export default function PaymentConfirmed({ state, formStatus, startDraw }) {
                 <td className="px-4 py-2">{guest.firstName}</td>
                 <td className="px-4 py-2">{guest.lastName}</td>
                 <td className="px-4 py-2">{guest.email}</td>
+                <td className="px-4 py-2">799 dkk</td>
               </tr>
             ))}
             {state.guests.vip.map((guest, i) => (
@@ -97,7 +109,7 @@ export default function PaymentConfirmed({ state, formStatus, startDraw }) {
             </tr>
 
             <tr>
-              <td className="px-4 py-2"></td>
+              <td className="px-4 py-2">{sumCart}</td>
               <td className="px-4 py-2"></td>
               <td className="px-4 py-2"></td>
             </tr>

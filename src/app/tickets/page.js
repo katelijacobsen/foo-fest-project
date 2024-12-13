@@ -62,14 +62,17 @@ const handleStep = (prev, formData) => {
     };
   }
   if (prev.step === 1) {
+    console.log(formData.get("campsite"));
+    
     return {
       ...prev,
       step: prev.step + 1,
       tents: {
         twoPeople: +formData.get("twoPeople"),
-        threPeople: +formData.get("threePeople"),
+        threePeople: +formData.get("threePeople"),
         greenCamping: formData.get("greenCamping"),
       },
+      campsite: formData.get("campsite")
     };
   }
   if (prev.step === 2) {

@@ -1,53 +1,24 @@
 "use client";
 import ChooseTicket from "@/components/bookingsystem/ChooseTicket";
 import Campsite from "@/components/bookingsystem/Campsite";
-import Form from "@/components/bookingsystem/Form";
+import ContactInfo from "@/components/bookingsystem/ContactInfo";
 import PaymentFlow from "@/components/bookingsystem/PaymentFlow";
 import PaymentComfirmed from "@/components/bookingsystem/PaymentConfirmed";
-import Basket from "@/components/bookingsystem/Basket";
-import { useActionState } from "react";
+import Cart from "@/components/bookingsystem/Cart";
+import { createContext, useActionState } from "react";
 import { Caesar_Dressing } from "next/font/google";
+import { useFormStatus } from "react-dom";
+import { useState } from "react";
 
-// const defaultState = {
-//   step: 0,
-//   ticketCount: undefined,
-//   tentCount: undefined,
-//   cart: [],
-// }
-
-// //funktion der håndtere at gå tilbalge til formens default.
-// const handleStep = (prev, formData) => {
-//   if (!formData) {
-//     return defaultState;
-//   }
-//   // Hvis man er på bestil billetter, så hvis komponenten
-//   if (prev.step === 0) {
-//     // vi bruger vores spread operator & object destructuring
-//     return {
-//       ...prev,
-//       step: prev.step + 1,
-//       ticketCount: formData.get("ticketCount"),
-//     };
-//   }
-//   if (prev.step === 1) {
-//   }
-//   if (prev.step === 2) {
-//   }
-//   if (prev.step === 3) {
-//     const foo = Array.from({length: prev.ticketCount}, (_, i) => ({
-//       firstName: formData.get(`firstName-${i}`),
-//       lastName: formData.get(`lastName-${i}`),
-//       email: formData.get(`email-${i}`),
-//       phone: formData.get(`phone-${i}`),
-
-//     }))
-//   }
-// }
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],
   weight: "400",
   display: "swap",
 });
+
+// const resetForm = () => {
+//   formAction(new FormData()); // Tvinger state tilbage til defaultState ved at kalde formAction uden data
+// };
 
 const defaultState = {
   step: 0,
@@ -61,50 +32,146 @@ const defaultState = {
     threePeople: 0,
     greenCamping: false,
   },
-  guests: [],
+  guests: {
+    single: [],
+    vip: [],
+  },
   payment: {
-    cardNumber: "",
-    cardHolder: "",
+    number: "",
+    name: "",
     expiry: "",
     cvc: "",
   },
 };
 
 const handleStep = (prev, formData) => {
+  // const resetForm = () => {
+  //   formAction(new FormData());
+  // };
+  if (formData === null) {
+    return defaultState;
+  }
   if (prev.step === 0) {
     return {
       ...prev,
       step: prev.step + 1,
       tickets: {
-        single: formData.get("singleTickets"),
-        vip: formData.get("vipTickets"),
+        single: +formData.get("singleTickets"),
+        vip: +formData.get("vipTickets"),
       },
     };
   }
   if (prev.step === 1) {
+    console.log(formData.get("campsite"));
+    
     return {
       ...prev,
       step: prev.step + 1,
       tents: {
-        twoPeople: formData.get("twoPeople"),
-        threPeople: formData.get("threePeople"),
+        twoPeople: +formData.get("twoPeople"),
+        threePeople: +formData.get("threePeople"),
         greenCamping: formData.get("greenCamping"),
+      },
+      campsite: formData.get("campsite")
+    };
+  }
+  if (prev.step === 2) {
+    const singleGuests = Array.from(
+      { length: prev.tickets.single },
+      (_, i) => ({
+        firstName: formData.get(`single_firstName_${i}`),
+        lastName: formData.get(`single_lastName_${i}`),
+        email: formData.get(`single_email_${i}`),
+        phonenumber: formData.get(`single_phonenumber_${i}`),
+      })
+    );
+    const vipGuests = Array.from({ length: prev.tickets.vip }, (_, i) => ({
+      firstName: formData.get(`vip_firstName_${i}`),
+      lastName: formData.get(`vip_lastName_${i}`),
+      email: formData.get(`vip_email_${i}`),
+      phonenumber: formData.get(`vip_phonenumber_${i}`),
+    }));
+    return {
+      ...prev,
+      step: prev.step + 1,
+      guests: { single: singleGuests, vip: vipGuests },
+    };
+  }
+  if (prev.step === 3) {
+    return {
+      ...prev,
+      step: prev.step + 1,
+      payment: {
+        number: formData.get("number"),
+        name: formData.get("name"),
+        expiry: formData.get("expiry"),
+        cvc: formData.get("cvc"),
       },
     };
   }
+  if (prev.step === 4) {
+    return {
+      ...prev,
+      step: prev.step + 1,
+    };
+  }
 };
+// Deler data uden at propdril fra Page. Så kan vi for adgang til vores data.
+export const CartContext = createContext(null);
 
 export default function Page() {
-  const [state, formAction] = useActionState(handleStep, defaultState);
+  // useState til at kunne lave en global indkøbskurv på ticket site.
+  const defaultCart = {
+    tickets: {
+      single: 0,
+      vip: 0,
+    },
+    campsite: undefined,
+    tents: {
+      twoPeople: 0,
+      threePeople: 0,
+      greenCamping: false,
+    },
+  };
+  const [startDraw, setStartDraw] = useState(false);
+  const confirmPayment = () => {
+    setStartDraw(true);
+  };
+  //give det ned som værdi
+  const [cart, setCart] = useState(defaultCart);
 
+  const [state, formAction] = useActionState(handleStep, defaultState);
+  const formStatus = useFormStatus();
+
+  console.log(state);
+  //wrapper komponenter ind med useContext så det kan opdatere indkøbskurven
   return (
-    <main>
-      <h1 className={`${ceasarDressing.className} text-8xl text-white`}>BILLETTER</h1>
-      {state.step === 0 && <ChooseTicket formAction={formAction} />}
-      {state.step === 1 && <Campsite />}
-      {state.step === 2 && <Form />}
-      {state.step === 3 && <PaymentFlow />}
-      {state.step === 4 && <PaymentComfirmed />}
-    </main>
+    <CartContext.Provider value={setCart}>
+      <main>
+        <h1
+          className={`${ceasarDressing.className} text-6xl sm:text-6xl lg:text-6xl md:text-6xl text-white`}
+        >
+          BILLETTER
+        </h1>
+        <div className="flex justify-center">
+          <section>
+            {state.step === 0 && <ChooseTicket formAction={formAction} />}
+            {state.step === 1 && (
+              <Campsite state={state} formAction={formAction} />
+            )}
+            {state.step === 2 && (
+              <ContactInfo tickets={state.tickets} formAction={formAction} />
+            )}
+            {state.step === 3 && <PaymentFlow formAction={formAction} />}
+            {state.step === 4 && (
+              <PaymentComfirmed state={state} formStatus={formStatus} startDraw={true} />
+            )}
+          </section>
+          {state.step !== 4 && ( 
+            <Cart cart={cart} />
+          )}
+        </div>
+      </main>
+    </CartContext.Provider>
   );
 }

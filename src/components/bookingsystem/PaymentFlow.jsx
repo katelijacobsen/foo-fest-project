@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
+import { Caesar_Dressing } from "next/font/google";
 
-const PaymentForm = () => {
+const ceasarDressing = Caesar_Dressing({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
+const PaymentForm = ({ formAction, router }) => {
+  const [timeLeft, setTimeLeft] = useState(60 * 5 * 1000); // math is mathing
   const [state, setState] = useState({
     number: "",
     expiry: "",
@@ -10,6 +18,21 @@ const PaymentForm = () => {
     name: "",
     focus: "",
   });
+  useEffect(() => {
+    if (timeLeft <= 0) {
+      alert("Tiden er udløbet. du bliver stillet tilbage til billetsiden.");
+      formAction(null);
+      return;
+    }
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => prevTime - 1000);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeLeft, router]);
+
+  const mins = Math.floor(timeLeft / 1000 / 60);
+  const secs = Math.floor((timeLeft / 1000) % 60);
 
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
@@ -22,22 +45,101 @@ const PaymentForm = () => {
   };
 
   return (
-    <div>
-      <Cards number={state.number} expiry={state.expiry} cvc={state.cvc} name={state.name} focused={state.focus} />
+    <>
+      <p className="bg-customRed text-black w-full text-center text-xl sm:text-2xl font-bold">
+        {mins} : {String(secs).padStart(2, "0")}
+      </p>
+      <div className=" border border-gray-600 p-4 sm:p-8 rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack m-4">
+        <h2
+          className={`${ceasarDressing.className} text-2xl sm:text-3xl my-4 text-left`}
+        >
+          BETALINGSKORT
+        </h2>
 
-      <form action="kortOplysninger">
-        <label htmlFor="kortnummer">Kortnummer</label>
-        <input name="number" value={state.number} onChange={handleInputChange} onFocus={handleInputFocus} required placeholder="1234 1234 1234 1234" type="number" />
-        <label htmlFor="kortHolder"> Kortholder</label>
-        <input name="name" value={state.name} onChange={handleInputChange} onFocus={handleInputFocus} required placeholder="Kortholder Navn" type="text" />
-        <div>
-          <label htmlFor="udløbsdato">Udløbsdato</label>
-          <input name="expiry" value={state.expiry} onChange={handleInputChange} onFocus={handleInputFocus} required placeholder="MM/ÅÅ" type="text" />
-          <label htmlFor="Kontrolcifre"> CVC</label>
-          <input name="cvc" value={state.cvc} onChange={handleInputChange} onFocus={handleInputFocus} required placeholder="CVC" type="number" />
+        <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center p-4 sm:p-8 gap-4">
+          <div className="flex-shrink-0">
+            <Cards
+              number={state.number}
+              expiry={state.expiry}
+              cvc={state.cvc}
+              name={state.name}
+              focused={state.focus}
+            />
+          </div>
+          <form
+            action="kortOplysninger"
+            className="flex flex-col items-center sm:items-start gap-4 w-full sm:w-auto"
+          >
+            <div className="flex flex-col gap-2 w-full">
+              <label htmlFor="kortnummer" className="font-bold text-md">
+                Kortnummer
+              </label>
+              <input
+                className="p-2 rounded-md w-full text-black border-2 focus:ring focus:ring-customRed"
+                name="number"
+                value={state.number}
+                onChange={handleInputChange}
+                onFocus={handleInputFocus}
+                required
+                placeholder="1234 1234 1234 1234"
+                type="number"
+              />
+              <label htmlFor="kortHolder" className="font-bold text-md">
+                Kortholder
+              </label>
+              <input
+                className="p-2 rounded-md w-full text-black border-2 focus:ring focus:ring-customRed"
+                name="name"
+                value={state.name}
+                onChange={handleInputChange}
+                onFocus={handleInputFocus}
+                required
+                placeholder="Kortholder Navn"
+                type="text"
+              />
+            </div>
+            <div className="flex flex-col gap-2 w-full sm:flex-row sm:gap-4">
+              <div className="flex flex-col w-full">
+                <label htmlFor="udløbsdato" className="font-bold text-md">
+                  Udløbsdato
+                </label>
+                <input
+                  className="p-2 rounded-md w-full text-black border-2 focus:ring focus:ring-customRed"
+                  name="expiry"
+                  value={state.expiry}
+                  onChange={handleInputChange}
+                  onFocus={handleInputFocus}
+                  required
+                  placeholder="MM/ÅÅ"
+                  type="text"
+                />
+              </div>
+              <div className="flex flex-col w-full">
+                <label htmlFor="Kontrolcifre" className="font-bold text-md">
+                  CVC
+                </label>
+                <input
+                  className="p-2 rounded-md w-full text-black border-2 focus:ring focus:ring-customRed"
+                  name="cvc"
+                  value={state.cvc}
+                  onChange={handleInputChange}
+                  onFocus={handleInputFocus}
+                  required
+                  placeholder="CVC"
+                  type="number"
+                />
+              </div>
+            </div>
+            <button
+              formAction={formAction}
+              className="bg-red-500 p-4 rounded-md text-white font-bold w-full sm:w-auto"
+            >
+              Afslut & Betal
+            </button>
+          </form>
         </div>
-      </form>
-    </div>
+      </div>
+    </>
   );
 };
 

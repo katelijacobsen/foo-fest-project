@@ -20,6 +20,15 @@ module.exports = {
         customBlack_5: "#262628",
         customBlack_6: "#383838",
       },
+      animation: {
+        spin: "spin 50s linear infinite",
+      },
+      keyframes: {
+        spin: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+      },
     },
   },
   plugins: [],

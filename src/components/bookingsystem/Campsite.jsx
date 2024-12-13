@@ -45,11 +45,17 @@ export default function Campsite({ state, formAction }) {
   const [threePersonCount, setThreePersonCount] = useState(0);
   const [selectedCampsite, setSelectedCampsite] = useState(undefined);
   const [greenCamping, setGreenCamping] = useState(false);
+  const [error, setError] = useState("");
 
   const allowUpdate = (delta) => {
     const numPeople = state.tickets.single + state.tickets.vip;
     const numTents = twoPersonCount + threePersonCount;
-    return numTents + delta <= numPeople;
+    if (numTents + delta > numPeople) {
+      setError("Du kan ikke vælge flere telte end billetter.");
+      return false;
+    }
+    setError("");
+    return true;
   };
 
   const updateTwoPersonTentCount = (count) => {
@@ -154,6 +160,7 @@ export default function Campsite({ state, formAction }) {
             </li>
           </ul>
         </section>
+        {error && <p className="text-red-500">{error}</p>}
         <section>
           <h3 className={`${ceasarDressing.className} text-3xl text-white`}>
             SUPPLEMENT

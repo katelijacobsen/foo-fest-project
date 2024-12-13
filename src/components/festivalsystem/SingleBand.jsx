@@ -13,7 +13,8 @@ const SingleBand = ({ band }) => {
   const { name, members, genre, bio, logo, slug } = band;
 
   //betingelse for billede URL
-  const imageUrl = logo.startsWith("https://") || logo.startsWith("http://") ? logo : `http://localhost:8080/logos/${logo}`;
+  // const imageUrl = logo.startsWith("https://") || logo.startsWith("http://") ? logo : `http://localhost:8080/logos/${logo}`;
+  const imageUrl = logo && (logo.startsWith("https://") || logo.startsWith("http://")) ? logo : `https://spring-awesome-stream.glitch.me/logos/${logo}`;
 
   return (
     <section className="my-16 max-w-screen-xl mx-auto">

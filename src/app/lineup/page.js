@@ -6,8 +6,8 @@ import Footer from "@/components/global/Footer";
 
 export default async function Page() {
   const fetchBands = async () => {
-    let response = await fetch("http://localhost:8080/bands");
-    // let response = await fetch("https://spring-awesome-stream.glitch.me/bands");
+    // let response = await fetch("http://localhost:8080/bands");
+    let response = await fetch("https://spring-awesome-stream.glitch.me/bands");
     let data = await response.json();
     return data;
   };

@@ -3,18 +3,22 @@
 import { useState } from "react";
 import { FiPlus, FiMinus } from "react-icons/fi";
 
-const CounterInput = ({ count, setCount, max, name }) => {
+const CounterInput = ({ count, setCount, max, name, setNormalTicketsCount, setVipTicketsCount }) => {
   const addQuantity = () => {
     if (count === max) {
       return;
     }
     setCount(count + 1);
+    setVipTicketsCount(count + 1);
+    setNormalTicketsCount(count + 1);
   };
   const subtractQuantity = () => {
     if (count - 1 < 0) {
       return;
     }
     setCount(count - 1);
+    setVipTicketsCount(count - 1);
+    setNormalTicketsCount(count - 1);
   };
 
   return (

@@ -5,7 +5,7 @@ import Form from "@/components/bookingsystem/Form";
 import PaymentFlow from "@/components/bookingsystem/PaymentFlow";
 import PaymentComfirmed from "@/components/bookingsystem/PaymentConfirmed";
 import Basket from "@/components/bookingsystem/Basket";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { Caesar_Dressing } from "next/font/google";
 
 // const defaultState = {
@@ -96,15 +96,20 @@ const handleStep = (prev, formData) => {
 
 export default function Page() {
   const [state, formAction] = useActionState(handleStep, defaultState);
-
+  const [normalTicketsCount, setNormalTicketsCount] = useState(0);
+  const [vipTicketsCount, setVipTicketsCount] = useState(0);
+  console.log("normal ticket", normalTicketsCount);
+  console.log("VIP tickets", vipTicketsCount);
   return (
     <main>
       <h1 className={`${ceasarDressing.className} text-8xl text-white`}>BILLETTER</h1>
-      {state.step === 0 && <ChooseTicket formAction={formAction} />}
+      {state.step === 0 && <ChooseTicket setNormalTicketsCount={setNormalTicketsCount} setVipTicketsCount={setVipTicketsCount} formAction={formAction} />}
       {state.step === 1 && <Campsite />}
       {state.step === 2 && <Form />}
       {state.step === 3 && <PaymentFlow />}
       {state.step === 4 && <PaymentComfirmed />}
+      <p>{normalTicketsCount}</p>
+      <p>{vipTicketsCount}</p>
     </main>
   );
 }

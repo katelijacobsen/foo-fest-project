@@ -47,7 +47,9 @@ const LineupListReadMore = ({ initialLineup, artists }) => {
       )}
 
       <div className="grid place-content-center pt-8">
-        <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Se det fulde lineup" />
+        <Link href="/lineup">
+          <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Se det fulde lineup" />
+        </Link>
       </div>
     </section>
   );

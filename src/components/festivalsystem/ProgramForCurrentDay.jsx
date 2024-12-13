@@ -4,6 +4,7 @@ import BandCard from "./BandCard";
 import Headline from "../global/Headline";
 import MusicRune from "@/img/svg/music_rune.svg";
 import PrimaryButton from "@/components/global/buttonFolder/PrimaryButton";
+import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa6";
 import { Caesar_Dressing } from "next/font/google";
@@ -52,11 +53,11 @@ const ProgramForCurrentDay = ({ mergedArray }) => {
       </div>
       <div>
         <div className="py-6">
-          <h1 className={`pb-4 text-3xl md:text-5xl`}>Midgard</h1>
+          <h1 className={`${ceasarDressing.className} pb-4 text-3xl md:text-5xl`}>Midgard</h1>
           <div className="overflow-x-auto" ref={scrollContainerRef1}>
             <div className="flex gap-2">
               {sortedByTime("Midgard").map((band) => (
-                <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} />
+                <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} width="min-w-72" />
               ))}
             </div>
           </div>
@@ -70,11 +71,11 @@ const ProgramForCurrentDay = ({ mergedArray }) => {
           </div>
         </div>
         <div className="py-6">
-          <h1 className={`pb-4 text-3xl md:text-5xl`}>Vanaheim</h1>
+          <h1 className={`${ceasarDressing.className} pb-4 text-3xl md:text-5xl`}>Vanaheim</h1>
           <div className="overflow-x-auto" ref={scrollContainerRef2}>
             <div className="flex gap-2">
               {sortedByTime("Vanaheim").map((band) => (
-                <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} />
+                <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} width="min-w-72" />
               ))}
             </div>
           </div>
@@ -88,11 +89,11 @@ const ProgramForCurrentDay = ({ mergedArray }) => {
           </div>
         </div>
         <div className="py-6">
-          <h1 className={`pb-4 text-3xl md:text-5xl`}>Jotunheim</h1>
+          <h1 className={`${ceasarDressing.className} pb-4 text-3xl md:text-5xl`}>Jotunheim</h1>
           <div className="overflow-x-auto" ref={scrollContainerRef3}>
             <div className="flex gap-2">
               {sortedByTime("Jotunheim").map((band) => (
-                <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} />
+                <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} width="min-w-72" />
               ))}
             </div>
           </div>
@@ -107,7 +108,9 @@ const ProgramForCurrentDay = ({ mergedArray }) => {
         </div>
       </div>
       <div className="grid place-content-center pt-8">
-        <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Se hele ugens program" />
+        <Link href="/program">
+          <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Se hele ugens program" />
+        </Link>
       </div>
     </section>
   );

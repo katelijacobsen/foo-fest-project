@@ -21,10 +21,10 @@ const ceasarDressing = Caesar_Dressing({
 // };
 
 const defaultState = {
-  step: 0,
+  step: 1,
   tickets: {
-    single: 0,
-    vip: 0,
+    single: 1,
+    vip: 1,
   },
   campsite: undefined,
   tents: {
@@ -149,11 +149,11 @@ export default function Page() {
     <CartContext.Provider value={setCart}>
       <main>
         <h1
-          className={`${ceasarDressing.className} text-6xl sm:text-6xl lg:text-6xl md:text-6xl text-white`}
+          className={`${ceasarDressing.className} mx-5 mt-10 text-6xl sm:text-6xl lg:text-6xl md:text-6xl text-white`}
         >
           BILLETTER
         </h1>
-        <div className="flex justify-center">
+        <div className="flex flex-col md:flex-row justify-center">
           <section>
             {state.step === 0 && <ChooseTicket formAction={formAction} />}
             {state.step === 1 && (

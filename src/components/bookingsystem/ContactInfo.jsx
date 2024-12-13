@@ -14,7 +14,18 @@ export default function ContactInfo({ tickets, formAction }) {
           <ContactForm key={i} i={i} ticketType="vip" />
         ))}
       </fieldset>
-      <button formAction={formAction}>Næste</button>
+      <button
+        className={`${
+          ContactForm
+            ? " font-bold py-2 my-8 text-xl bg-gradient-to-bl from-customPink text-white to-customOrange text-transparent hover:transform"
+            : "bg-gray-500 py-2 my-8 text-gray-300 cursor-not-allowed"
+        }`}
+        formAction={formAction}
+        type="submit"
+        disabled={!ContactForm}
+      >
+        Næste
+      </button>
     </form>
   );
 }

@@ -111,8 +111,8 @@ export default function Campsite({ state, formAction }) {
   }, []);
 
   return (
-    <form className="inline-flex flex-col flex-1 bg-gradient-to-tl border border-gray-900 from-customBlack to-customBlack_2 p-10 rounded-md">
-      <h2 className={`${ceasarDressing.className} text-3xl text-white`}>
+    <form className="inline-flex flex-col flex-1 bg-gradient-to-tl border border-gray-900 from-customBlack to-customBlack_2 p-4 m-4 rounded-md">
+      <h2 className={`${ceasarDressing.className} text-3xl text-white mb-4`}>
         HVOR VIL DU CAMPE?
       </h2>
       <ul className="flex flex-wrap gap-4 flex-1 text-white">
@@ -122,7 +122,7 @@ export default function Campsite({ state, formAction }) {
             key={i}
             className={`${
               spot.area === selectedCampsite && "border border-green-600"
-            } bg-gradient-to-tl border border-gray-900 from-customBlack_2 to-customBlack p-2 rounded-md select-none cursor-pointer`}
+            } bg-gradient-to-tl border border-gray-900 from-customBlack_2 to-customBlack p-2 rounded-md select-none cursor-pointer w-56`}
           >
             <h2 className="text-2xl font-bold">{spot.area}</h2>
             <p>{spot.available} ledige pladser</p>
@@ -131,14 +131,14 @@ export default function Campsite({ state, formAction }) {
       </ul>
       <div className="flex flex-col justify-evenly gap-4">
         <section>
-          <h4 className={`${ceasarDressing.className} text-3xl text-white`}>
+          <h4 className={`${ceasarDressing.className} text-3xl text-white mt-8`}>
             LEJE AF TELTE
           </h4>
           <ul className="my-4 flex flex-col gap-6">
-            <li className="text-white flex gap-12">
+            <li className="flex flex-col text-white flex gap-4">
               <div>
-                <h3>2 Personers Telt</h3>
-                <p>+299kr</p>
+                <h3 className="font-bold">2 Personers Telt</h3>
+                <p className="text-xs font-normal text-gray-300">299kr</p>
               </div>
               <CounterInput
                 name="twoPeople"
@@ -146,10 +146,10 @@ export default function Campsite({ state, formAction }) {
                 setCount={updateTwoPersonTentCount}
               />
             </li>
-            <li className="text-white  flex gap-12">
+            <li className="flex flex-col text-white flex gap-4">
               <div>
                 <h3>3 Personers Telt</h3>
-                <p>+399kr</p>
+                <p className="text-xs font-normal text-gray-300">399kr</p>
               </div>
               <CounterInput
                 name="threePeople"
@@ -188,17 +188,18 @@ export default function Campsite({ state, formAction }) {
                 id="helper-checkbox-text"
                 className="text-xs font-normal text-gray-300"
               >
-                + 249kr
+                249kr
               </p>
             </div>
           </div>
         </section>
       </div>
+      
       <button
         className={`${
           selectedCampsite
-            ? "bg-red-600 text-white cursor-pointer"
-            : "bg-gray-500 text-gray-300 cursor-not-allowed"
+            ? " font-bold py-2 my-8 text-xl bg-gradient-to-bl from-customPink text-white to-customOrange text-transparent hover:transform"
+            : "bg-gray-500 py-2 my-8 text-gray-300 cursor-not-allowed"
         }`}
         formAction={handleNext}
         type="submit"

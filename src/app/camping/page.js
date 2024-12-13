@@ -23,7 +23,7 @@ export default async function Page() {
           <div className="grid justify-center">
             <Headline src={FaqRune} width={45} height={45} size="text-4xl md:text-6xl" text="FAQ" />
           </div>
-          <Accordion />
+          <Accordion questionOne="Hvor rene er camping pladserne?" textOne="bla bla 1" questionTwo="Hvor tæt på ligger toilletterne?" textTwo="bla bla 2" questionThree="Hvor mange telte kan der være på én plads?" textThree="bla bla 3" questionFour="Bliver der ryddet op efter mig?" textFour="bla bla 4" />
         </div>
       </section>
       <Footer />

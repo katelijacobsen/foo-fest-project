@@ -16,7 +16,7 @@ export default function Cart({ cart }) {
     cart.tents.twoPeople * 299 +
     cart.tents.threePeople * 399 +
     (cart.greenCamping ? 249 : 0) +
-    (cart.campsite ? cart.bookingFee : 0);
+    (cart.campsite ? 99 : 0);
 
   return (
     <section className="p-4 sm:p-8">

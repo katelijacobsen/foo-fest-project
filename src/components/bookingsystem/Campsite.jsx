@@ -40,18 +40,20 @@ const campingArea = [
 
 export default function Campsite({ state, formAction }) {
   const [spots, setSpots] = useState([]);
-  const setCart = useContext(CartContext);
-  const [twoPersonCount, setTwoPersonCount] = useState(0);
-  const [threePersonCount, setThreePersonCount] = useState(0);
-  const [selectedCampsite, setSelectedCampsite] = useState(undefined);
-  const [greenCamping, setGreenCamping] = useState(false);
+  const [cart, setCart] = useContext(CartContext);
+  const [twoPersonCount, setTwoPersonCount] = useState(cart.tents.twoPeople);
+  const [threePersonCount, setThreePersonCount] = useState(
+    cart.tents.threePeople
+  );
+  const [selectedCampsite, setSelectedCampsite] = useState(cart.campsite);
+  const [greenCamping, setGreenCamping] = useState(cart.tents.greenCamping);
   const [error, setError] = useState("");
 
   const allowUpdate = (delta) => {
     const numPeople = state.tickets.single + state.tickets.vip;
     const numTents = twoPersonCount + threePersonCount;
     if (numTents + delta > numPeople) {
-      setError("Du kan ikke vælge flere telte end billetter.");
+      setError("Kære Høvding.. kun et telt til en billet.");
       return false;
     }
     setError("");
@@ -96,7 +98,10 @@ export default function Campsite({ state, formAction }) {
     setCart((prev) => {
       return {
         ...prev,
-        greenCamping: e.target.checked,
+        tents: {
+          ...prev.tents,
+          greenCamping: e.target.checked,
+        },
       };
     });
   };
@@ -105,7 +110,7 @@ export default function Campsite({ state, formAction }) {
     formData.set("campsite", selectedCampsite);
     formData.set("stepBack", true);
     formAction(formData);
-  }
+  };
 
   const handleNext = (formData) => {
     formData.set("campsite", selectedCampsite);
@@ -179,8 +184,9 @@ export default function Campsite({ state, formAction }) {
               <input
                 id="helper-checkbox"
                 aria-describedby="helper-checkbox-text"
+                name="greenCamping"
                 type="checkbox"
-                value=""
+                checked={greenCamping}
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 onChange={updateGreenCamping}
               />

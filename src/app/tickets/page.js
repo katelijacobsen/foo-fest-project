@@ -73,7 +73,7 @@ const handleStep = (prev, formData) => {
       tents: {
         twoPeople: +formData.get("twoPeople"),
         threePeople: +formData.get("threePeople"),
-        greenCamping: formData.get("greenCamping"),
+        greenCamping: formData.get("greenCamping") === "on" ? true : false,
       },
       campsite: formData.get("campsite"),
     };
@@ -136,11 +136,6 @@ export default function Page() {
       greenCamping: false,
     },
   };
-  const [startDraw, setStartDraw] = useState(false);
-  const confirmPayment = () => {
-    setStartDraw(true);
-  };
-  //give det ned som værdi
   const [cart, setCart] = useState(defaultCart);
 
   const [state, formAction] = useActionState(handleStep, defaultState);
@@ -149,7 +144,7 @@ export default function Page() {
   console.log(state);
   //wrapper komponenter ind med useContext så det kan opdatere indkøbskurven
   return (
-    <CartContext.Provider value={setCart}>
+    <CartContext.Provider value={[cart, setCart]}>
       <main>
         <h1
           className={`${ceasarDressing.className} mx-5 mt-10 text-6xl sm:text-6xl lg:text-6xl md:text-6xl text-white`}

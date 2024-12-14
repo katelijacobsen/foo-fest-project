@@ -10,7 +10,6 @@ const ceasarDressing = Caesar_Dressing({
 });
 
 export default function Card({
-  formAction,
   ticketType,
   title,
   price,
@@ -18,13 +17,9 @@ export default function Card({
   className,
   border,
 }) {
-  const setCart = useContext(CartContext);
-  const [count, setCount] = useState(0);
+  const [cart, setCart] = useContext(CartContext);
+  const [count, setCount] = useState(ticketType === "single" ? cart.tickets.single : cart.tickets.vip);
 
-  const handleBuy = (e) => {
-    console.log("Buy!");
-    formAction(e);
-  };
 
   const updateCount = (count) => {
     setCart((prev) => {
@@ -36,7 +31,7 @@ export default function Card({
   };
 
   return (
-    <div className="relative group rounded-xl inline-block p-[1.5px] overflow-hidden w-72 m-4 transition-transform hover:scale-110">
+    <div className="relative group rounded-xl inline-block p-[1.5px] overflow-hidden w-72 m-4 transition-transform hover:scale-105">
       <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] dark:bg-[conic-gradient(from_90deg_at_50%_50%,#141415_0%,#D82023_50%,#141415_100%)] bg-[conic-gradient(from_90deg_at_50%_50%,#52525B_0%,#D4D4D8_50%,#52525B_100%)]" />
       <div className="relative bg-gradient-to-tl from-customBlack to-customBlack_2 z-0 rounded-xl flex items-center justify-center">
         <div

@@ -46,10 +46,10 @@ const PaymentForm = ({ formAction, router }) => {
 
   return (
     <>
-      <p className="bg-customRed text-black w-full text-center text-xl sm:text-2xl font-bold">
+      <div className=" border border-gray-600 p-4 sm:p-8 rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack m-4">
+      <p className="bg-gradient-to-bl from-customPink text-white to-customOrange w-full text-center text-xl sm:text-2xl font-bold">
         {mins} : {String(secs).padStart(2, "0")}
       </p>
-      <div className=" border border-gray-600 p-4 sm:p-8 rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack m-4">
         <h2
           className={`${ceasarDressing.className} text-2xl sm:text-3xl my-4 text-left`}
         >
@@ -132,7 +132,7 @@ const PaymentForm = ({ formAction, router }) => {
             </div>
             <button
               formAction={formAction}
-              className="bg-red-500 p-4 rounded-md text-white font-bold w-full sm:w-auto"
+              className="font-bold px-8 py-2 my-8 text-xl bg-gradient-to-bl from-customPink text-white to-customOrange w-full sm:w-auto"
             >
               Afslut & Betal
             </button>

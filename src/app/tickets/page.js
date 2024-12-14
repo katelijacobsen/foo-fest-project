@@ -16,10 +16,6 @@ const ceasarDressing = Caesar_Dressing({
   display: "swap",
 });
 
-// const resetForm = () => {
-//   formAction(new FormData()); // Tvinger state tilbage til defaultState ved at kalde formAction uden data
-// };
-
 const defaultState = {
   step: 0,
   tickets: {
@@ -45,9 +41,6 @@ const defaultState = {
 };
 
 const handleStep = (prev, formData) => {
-  // const resetForm = () => {
-  //   formAction(new FormData());
-  // };
   if (formData === null) {
     return defaultState;
   }
@@ -160,7 +153,7 @@ export default function Page() {
               <Campsite state={state} formAction={formAction} />
             )}
             {state.step === 2 && (
-              <ContactInfo tickets={state.tickets} formAction={formAction} />
+              <ContactInfo state={state} tickets={state.tickets} formAction={formAction} />
             )}
             {state.step === 3 && <PaymentFlow formAction={formAction} />}
             {state.step === 4 && (

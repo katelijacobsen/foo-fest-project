@@ -20,7 +20,7 @@ export default function Cart({ cart }) {
 
   return (
     <section className="p-4 sm:p-8">
-      <aside className="flex flex-col gap-4 rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack p-6 sm:p-8">
+      <aside className="flex flex-col gap-4 rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack p-6 sm:p-8 w-72">
         <h3 className={`${ceasarDressing.className} text-xl sm:text-2xl`}>
           Indkøbskurv
         </h3>

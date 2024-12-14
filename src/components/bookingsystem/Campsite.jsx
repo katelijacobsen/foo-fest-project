@@ -42,21 +42,20 @@ export default function Campsite({ state, formAction }) {
   const [spots, setSpots] = useState([]);
   const [cart, setCart] = useContext(CartContext);
   const [twoPersonCount, setTwoPersonCount] = useState(cart.tents.twoPeople);
-  const [threePersonCount, setThreePersonCount] = useState(
-    cart.tents.threePeople
-  );
+  const [threePersonCount, setThreePersonCount] = useState(cart.tents.threePeople);
   const [selectedCampsite, setSelectedCampsite] = useState(cart.campsite);
   const [greenCamping, setGreenCamping] = useState(cart.tents.greenCamping);
-  const [error, setError] = useState("");
+  const [countError, setCountError] = useState("");
+  const [handleError, setHandleError] = useState("");
 
   const allowUpdate = (delta) => {
     const numPeople = state.tickets.single + state.tickets.vip;
     const numTents = twoPersonCount + threePersonCount;
     if (numTents + delta > numPeople) {
-      setError("Kære Høvding.. kun et telt til en billet.");
+      setCountError("Kære Høvding.. kun et telt til en billet.");
       return false;
     }
-    setError("");
+    setCountError("");
     return true;
   };
 
@@ -93,6 +92,8 @@ export default function Campsite({ state, formAction }) {
     setSelectedCampsite(campsite);
   };
 
+  
+
   const updateGreenCamping = (e) => {
     setGreenCamping(e.target.checked);
     setCart((prev) => {
@@ -113,6 +114,10 @@ export default function Campsite({ state, formAction }) {
   };
 
   const handleNext = (formData) => {
+    if (!selectedCampsite) {
+      setHandleError("Vælg venligst et campingområde, før du fortsætter.");
+      return;
+    }
     formData.set("campsite", selectedCampsite);
     formAction(formData);
   };
@@ -144,7 +149,7 @@ export default function Campsite({ state, formAction }) {
         <section>
           <h4
             className={`${ceasarDressing.className} text-3xl text-white mt-8`}
-          >
+            >
             LEJE AF TELTE
           </h4>
           <ul className="my-4 flex flex-col gap-6">
@@ -157,7 +162,7 @@ export default function Campsite({ state, formAction }) {
                 name="twoPeople"
                 count={twoPersonCount}
                 setCount={updateTwoPersonTentCount}
-              />
+                />
             </li>
             <li className="flex flex-col text-white gap-4">
               <div>
@@ -169,11 +174,11 @@ export default function Campsite({ state, formAction }) {
                 max={10}
                 count={threePersonCount}
                 setCount={updateThreePersonTentCount}
-              />
+                />
             </li>
           </ul>
+                {countError && <p className="text-red-500 text-sm mt-4">{countError}</p>}
         </section>
-        {error && <p className="text-red-500">{error}</p>}
         <section>
           <h3 className={`${ceasarDressing.className} text-3xl text-white`}>
             SUPPLEMENT
@@ -189,19 +194,19 @@ export default function Campsite({ state, formAction }) {
                 checked={greenCamping}
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 onChange={updateGreenCamping}
-              />
+                />
             </div>
             <div className="ms-2 text-sm">
               <label
                 htmlFor="helper-checkbox"
                 className="font-bold text-xl text-white"
-              >
+                >
                 Grøn Camping
               </label>
               <p
                 id="helper-checkbox-text"
                 className="text-xs font-normal text-gray-300"
-              >
+                >
                 249kr
               </p>
             </div>
@@ -213,19 +218,19 @@ export default function Campsite({ state, formAction }) {
           className={`${" font-bold px-8 py-2 my-8 text-xl bg-gradient-to-bl from-customPink text-white to-customOrange text-transparent hover:transform"}`}
           formAction={handlePrev}
           type="submit"
-        >
+          >
           Tilbage
         </button>
+        {handleError && <p className="text-red-500">{handleError}</p>}
         <button
           className={`${
             selectedCampsite
-              ? " font-bold py-2  px-8 my-8 text-xl bg-gradient-to-bl from-customPink text-white to-customOrange text-transparent hover:transform"
-              : "bg-gray-500 py-2 my-8 text-gray-300 cursor-not-allowed"
+            ? " font-bold py-2  px-8 my-8 text-xl bg-gradient-to-bl from-customPink text-white to-customOrange text-transparent hover:transform"
+            : "bg-gray-500 px-8 py-2 my-8 text-xl font-bold text-gray-300 cursor-not-allowed"
           }`}
           formAction={handleNext}
           type="submit"
-          disabled={!selectedCampsite}
-        >
+          >
           Næste
         </button>
       </div>

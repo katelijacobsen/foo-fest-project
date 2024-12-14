@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 export default function ContactInfo({ tickets, formAction }) {
   return (
-    <form className="text-white rounded-lg bg-gradient-to-tl border border-gray-900 from-customBlack_2 to-customBlack p-4">
+    <form className="text-white rounded-lg bg-gradient-to-tl border border-gray-500 from-customBlack_2 to-customBlack p-4">
       <fieldset className="grid gap-6 mb-6 md:grid-cols-2">
         <legend className="block mb-2 text-2xl">Personlig Information</legend>
         {Array.from({ length: tickets.single }, (_, i) => (

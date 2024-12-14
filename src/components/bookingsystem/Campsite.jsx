@@ -127,7 +127,7 @@ export default function Campsite({ state, formAction }) {
   }, []);
 
   return (
-    <form className="inline-flex flex-col flex-1 bg-gradient-to-tl border border-gray-900 from-customBlack to-customBlack_2 p-4 m-4 rounded-md">
+    <form className=" inline-flex flex-col flex-1 bg-gradient-to-tl border border-gray-500 from-customBlack to-customBlack_2 p-4 m-4 rounded-md">
       <h2 className={`${ceasarDressing.className} text-3xl text-white mb-4`}>
         HVOR VIL DU CAMPE?
       </h2>

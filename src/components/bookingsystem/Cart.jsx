@@ -53,14 +53,14 @@ export default function Cart({ cart }) {
             <section className="text-sm sm:text-base">
               <h2 className="font-bold">CAMPSITE</h2>
               <ul className="mt-2 space-y-2">
-                <li>{cart.campsite}</li>
+                <li className="font-bold">{cart.campsite}</li>
                 {cart.tents.twoPeople !== 0 && (
                   <li>
                     {cart.tents.twoPeople}x 2 Personers Telt{" "}
                     {cart.tents.twoPeople * 299} kr
                   </li>
                 )}
-                {cart.campsite && <li>+99kr Booking Fee</li>}
+                {cart.campsite && <li className="text-sm">+99kr Booking Fee</li>}
                 {cart.tents.threePeople !== 0 && (
                   <li>
                     {cart.tents.threePeople}x 3 Personers Telt{" "}

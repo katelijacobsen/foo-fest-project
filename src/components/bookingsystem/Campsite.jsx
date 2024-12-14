@@ -101,6 +101,12 @@ export default function Campsite({ state, formAction }) {
     });
   };
 
+  const handlePrev = (formData) => {
+    formData.set("campsite", selectedCampsite);
+    formData.set("stepBack", true);
+    formAction(formData);
+  }
+
   const handleNext = (formData) => {
     formData.set("campsite", selectedCampsite);
     formAction(formData);
@@ -131,11 +137,13 @@ export default function Campsite({ state, formAction }) {
       </ul>
       <div className="flex flex-col justify-evenly gap-4">
         <section>
-          <h4 className={`${ceasarDressing.className} text-3xl text-white mt-8`}>
+          <h4
+            className={`${ceasarDressing.className} text-3xl text-white mt-8`}
+          >
             LEJE AF TELTE
           </h4>
           <ul className="my-4 flex flex-col gap-6">
-            <li className="flex flex-col text-white flex gap-4">
+            <li className=" flex-col text-white flex gap-4">
               <div>
                 <h3 className="font-bold">2 Personers Telt</h3>
                 <p className="text-xs font-normal text-gray-300">299kr</p>
@@ -146,7 +154,7 @@ export default function Campsite({ state, formAction }) {
                 setCount={updateTwoPersonTentCount}
               />
             </li>
-            <li className="flex flex-col text-white flex gap-4">
+            <li className="flex flex-col text-white gap-4">
               <div>
                 <h3>3 Personers Telt</h3>
                 <p className="text-xs font-normal text-gray-300">399kr</p>
@@ -194,19 +202,27 @@ export default function Campsite({ state, formAction }) {
           </div>
         </section>
       </div>
-      
-      <button
-        className={`${
-          selectedCampsite
-            ? " font-bold py-2 my-8 text-xl bg-gradient-to-bl from-customPink text-white to-customOrange text-transparent hover:transform"
-            : "bg-gray-500 py-2 my-8 text-gray-300 cursor-not-allowed"
-        }`}
-        formAction={handleNext}
-        type="submit"
-        disabled={!selectedCampsite}
-      >
-        Næste
-      </button>
+      <div className="flex justify-between">
+        <button
+          className={`${" font-bold px-8 py-2 my-8 text-xl bg-gradient-to-bl from-customPink text-white to-customOrange text-transparent hover:transform"}`}
+          formAction={handlePrev}
+          type="submit"
+        >
+          Tilbage
+        </button>
+        <button
+          className={`${
+            selectedCampsite
+              ? " font-bold py-2  px-8 my-8 text-xl bg-gradient-to-bl from-customPink text-white to-customOrange text-transparent hover:transform"
+              : "bg-gray-500 py-2 my-8 text-gray-300 cursor-not-allowed"
+          }`}
+          formAction={handleNext}
+          type="submit"
+          disabled={!selectedCampsite}
+        >
+          Næste
+        </button>
+      </div>
     </form>
   );
 }

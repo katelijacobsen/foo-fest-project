@@ -20,6 +20,7 @@ module.exports = {
         customBlack_5: "#262628",
         customBlack_6: "#383838",
       },
+      
     },
   },
   plugins: [],

@@ -21,7 +21,7 @@ const ceasarDressing = Caesar_Dressing({
 // };
 
 const defaultState = {
-  step: 1,
+  step: 0,
   tickets: {
     single: 1,
     vip: 1,
@@ -51,10 +51,13 @@ const handleStep = (prev, formData) => {
   if (formData === null) {
     return defaultState;
   }
+
+  const step = formData.get("stepBack") ? -1 : +1;
+
   if (prev.step === 0) {
     return {
       ...prev,
-      step: prev.step + 1,
+      step: prev.step + step,
       tickets: {
         single: +formData.get("singleTickets"),
         vip: +formData.get("vipTickets"),
@@ -63,16 +66,16 @@ const handleStep = (prev, formData) => {
   }
   if (prev.step === 1) {
     console.log(formData.get("campsite"));
-    
+
     return {
       ...prev,
-      step: prev.step + 1,
+      step: prev.step + step,
       tents: {
         twoPeople: +formData.get("twoPeople"),
         threePeople: +formData.get("threePeople"),
         greenCamping: formData.get("greenCamping"),
       },
-      campsite: formData.get("campsite")
+      campsite: formData.get("campsite"),
     };
   }
   if (prev.step === 2) {
@@ -93,14 +96,14 @@ const handleStep = (prev, formData) => {
     }));
     return {
       ...prev,
-      step: prev.step + 1,
+      step: prev.step + step,
       guests: { single: singleGuests, vip: vipGuests },
     };
   }
   if (prev.step === 3) {
     return {
       ...prev,
-      step: prev.step + 1,
+      step: prev.step + step,
       payment: {
         number: formData.get("number"),
         name: formData.get("name"),
@@ -112,7 +115,7 @@ const handleStep = (prev, formData) => {
   if (prev.step === 4) {
     return {
       ...prev,
-      step: prev.step + 1,
+      step: prev.step + step,
     };
   }
 };
@@ -155,7 +158,9 @@ export default function Page() {
         </h1>
         <div className="flex flex-col md:flex-row justify-center">
           <section>
-            {state.step === 0 && <ChooseTicket formAction={formAction} />}
+            {state.step === 0 && (
+              <ChooseTicket cart={cart} formAction={formAction} />
+            )}
             {state.step === 1 && (
               <Campsite state={state} formAction={formAction} />
             )}
@@ -164,12 +169,14 @@ export default function Page() {
             )}
             {state.step === 3 && <PaymentFlow formAction={formAction} />}
             {state.step === 4 && (
-              <PaymentComfirmed state={state} formStatus={formStatus} startDraw={true} />
+              <PaymentComfirmed
+                state={state}
+                formStatus={formStatus}
+                startDraw={true}
+              />
             )}
           </section>
-          {state.step !== 4 && ( 
-            <Cart cart={cart} />
-          )}
+          {state.step !== 4 && <Cart cart={cart} />}
         </div>
       </main>
     </CartContext.Provider>

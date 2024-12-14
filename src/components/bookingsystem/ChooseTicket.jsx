@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";  // Import motion from Framer Motion
 import Card from "./Card";
 
 export default function ChooseTicket({ cart, formAction }) {
@@ -11,26 +12,38 @@ export default function ChooseTicket({ cart, formAction }) {
 
   return (
     <form className="flex flex-col md:flex-row gap-6 items-center justify-center md:justify-start">
-      <div className="flex flex-col items-center">
+      <motion.div
+        className="flex flex-col items-center"
+        initial={{ opacity: 0, y: 20 }}  // Start with opacity 0 and moved down
+        animate={{ opacity: 1, y: 0 }}  // Fade in and move up to the original position
+        transition={{ duration: 0.5 }}  // Smooth transition
+      >
         <Card
           ticketType="single"
           formAction={formAction}
           title="ENKEL BILLET"
           price="799"
           valuta="DKK"
-          
-          
+          header={`text-white`}
         />
-      </div>
-      <div className="flex flex-col items-center">
+      </motion.div>
+
+      <motion.div
+        className="flex flex-col items-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}  
+      >
         <Card
           ticketType="vip"
           formAction={formAction}
           title="VIP BILLET"
           price="1299"
           valuta="DKK"
+          border={`absolute inset-[-1000%] animate-[spin_3s_linear_infinite] dark:bg-[conic-gradient(from_90deg_at_50%_50%,#141415_0%,#A82023_50%,#141415_100%)] bg-[conic-gradient(from_90deg_at_50%_50%,#52525B_0%,#D4D4DA_50%,#52525B_100%)]`}
         />
-      </div>
+      </motion.div>
+
       <div className="w-full mt-4 md:mt-0 md:w-auto">
         <button
           type="submit"

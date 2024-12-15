@@ -6,8 +6,8 @@ import Footer from "@/components/global/Footer";
 
 export default async function Page() {
   const fetchBands = async () => {
-    // let response = await fetch("http://localhost:8080/bands");
-    let response = await fetch("https://spring-awesome-stream.glitch.me/bands");
+    let response = await fetch("http://localhost:8080/bands");
+    // let response = await fetch("https://spring-awesome-stream.glitch.me/bands");
     let data = await response.json();
     return data;
   };
@@ -15,13 +15,15 @@ export default async function Page() {
   const bands = await fetchBands();
 
   return (
-    <div>
+    <>
       <Header />
-      <div className="max-w-screen-xl mx-auto">
-        <Headline src={LineUpRune} text="2025 LINEUP" size="text-[4rem] md:text-[5rem]" width={45} height={45} />
-      </div>
-      <LineUpList initialLineup={bands} />
+      <main className="my-24">
+        <div className="max-w-screen-xl mx-auto mb-10 pl-4">
+          <Headline src={LineUpRune} text="2025 LINEUP" size="text-5xl md:text-6xl" width={45} height={45} />
+        </div>
+        <LineUpList initialLineup={bands} />
+      </main>
       <Footer />
-    </div>
+    </>
   );
 }

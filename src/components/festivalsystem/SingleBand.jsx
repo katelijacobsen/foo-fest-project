@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Caesar_Dressing } from "next/font/google";
+import BackButton from "@/components/festivalsystem/BackButton";
 
 import Link from "next/link";
 
@@ -18,6 +19,7 @@ const SingleBand = ({ band }) => {
 
   return (
     <section className="my-16 max-w-screen-xl mx-auto">
+      <BackButton />
       <div className="grid md:grid-cols-[1fr_1fr] max-w-screen-xl mx-auto md:gap-10">
         <div>
           <Image className="row-start-1 row-end-4 col-span-full justify-self-center" src={imageUrl} alt={name} width={700} height={700} />

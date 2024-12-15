@@ -10,36 +10,7 @@ const ceasarDressing = Caesar_Dressing({
   display: "swap",
 });
 
-const campingArea = [
-  {
-    area: "Svartheim",
-    spots: 400,
-    available: 336,
-  },
-  {
-    area: "Nilfheim",
-    spots: 300,
-    available: 0,
-  },
-  {
-    area: "Helheim",
-    spots: 100,
-    available: 96,
-  },
-  {
-    area: "Muspelheim",
-    spots: 200,
-    available: 175,
-  },
-  {
-    area: "Alfheim",
-    spots: 250,
-    available: 81,
-  },
-];
-
 export default function Campsite({ state, formAction }) {
-  const [spots, setSpots] = useState([]);
   const setCart = useContext(CartContext);
   const [twoPersonCount, setTwoPersonCount] = useState(0);
   const [threePersonCount, setThreePersonCount] = useState(0);
@@ -47,8 +18,26 @@ export default function Campsite({ state, formAction }) {
   const [greenCamping, setGreenCamping] = useState(false);
   const [error, setError] = useState("");
 
+  const [data, setData] = useState([]);
+
+  // skal bruges til når vi tilføjer loading https://nextjs.org/docs/pages/building-your-application/data-fetching/client-side
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/available-spots")
+      // fetch("https://spring-awesome-stream.glitch.me/available-spots")
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+        setLoading(false);
+      });
+  }, []);
+
+  // if (isLoading) return <p>Loading...</p>
+  // if (!data) return <p>No profile data</p>
+
+  const numPeople = state.tickets.single + state.tickets.vip;
   const allowUpdate = (delta) => {
-    const numPeople = state.tickets.single + state.tickets.vip;
     const numTents = twoPersonCount + threePersonCount;
     if (numTents + delta > numPeople) {
       setError("Du kan ikke vælge flere telte end billetter.");
@@ -106,23 +95,17 @@ export default function Campsite({ state, formAction }) {
     formAction(formData);
   };
 
-  useEffect(() => {
-    setSpots(campingArea);
-  }, []);
-
   return (
     <form className="inline-flex flex-col flex-1 bg-gradient-to-tl border border-gray-900 from-customBlack to-customBlack_2 p-10 rounded-md">
-      <h2 className={`${ceasarDressing.className} text-3xl text-white`}>
-        HVOR VIL DU CAMPE?
-      </h2>
+      <h2 className={`${ceasarDressing.className} text-3xl text-white`}>HVOR VIL DU CAMPE?</h2>
       <ul className="flex flex-wrap gap-4 flex-1 text-white">
-        {spots.map((spot, i) => (
+        {data.map((spot, i) => (
           <li
             onClick={() => updateCampsite(spot.area)}
             key={i}
-            className={`${
+            className={`${spot.available < numPeople && "bg-gray-300 text-gray-500 cursor-not-allowed"}${
               spot.area === selectedCampsite && "border border-green-600"
-            } bg-gradient-to-tl border border-gray-900 from-customBlack_2 to-customBlack p-2 rounded-md select-none cursor-pointer`}
+            }  bg-gradient-to-tl border border-gray-900 from-customBlack_2 to-customBlack p-2 rounded-md select-none cursor-pointer`}
           >
             <h2 className="text-2xl font-bold">{spot.area}</h2>
             <p>{spot.available} ledige pladser</p>
@@ -131,40 +114,27 @@ export default function Campsite({ state, formAction }) {
       </ul>
       <div className="flex flex-col justify-evenly gap-4">
         <section>
-          <h4 className={`${ceasarDressing.className} text-3xl text-white`}>
-            LEJE AF TELTE
-          </h4>
+          <h4 className={`${ceasarDressing.className} text-3xl text-white`}>LEJE AF TELTE</h4>
           <ul className="my-4 flex flex-col gap-6">
             <li className="text-white flex gap-12">
               <div>
                 <h3>2 Personers Telt</h3>
                 <p>+299kr</p>
               </div>
-              <CounterInput
-                name="twoPeople"
-                count={twoPersonCount}
-                setCount={updateTwoPersonTentCount}
-              />
+              <CounterInput name="twoPeople" count={twoPersonCount} setCount={updateTwoPersonTentCount} />
             </li>
             <li className="text-white  flex gap-12">
               <div>
                 <h3>3 Personers Telt</h3>
                 <p>+399kr</p>
               </div>
-              <CounterInput
-                name="threePeople"
-                max={10}
-                count={threePersonCount}
-                setCount={updateThreePersonTentCount}
-              />
+              <CounterInput name="threePeople" max={10} count={threePersonCount} setCount={updateThreePersonTentCount} />
             </li>
           </ul>
         </section>
         {error && <p className="text-red-500">{error}</p>}
         <section>
-          <h3 className={`${ceasarDressing.className} text-3xl text-white`}>
-            SUPPLEMENT
-          </h3>
+          <h3 className={`${ceasarDressing.className} text-3xl text-white`}>SUPPLEMENT</h3>
 
           <div className="flex">
             <div className="flex items-center h-5">
@@ -178,32 +148,17 @@ export default function Campsite({ state, formAction }) {
               />
             </div>
             <div className="ms-2 text-sm">
-              <label
-                htmlFor="helper-checkbox"
-                className="font-bold text-xl text-white"
-              >
+              <label htmlFor="helper-checkbox" className="font-bold text-xl text-white">
                 Grøn Camping
               </label>
-              <p
-                id="helper-checkbox-text"
-                className="text-xs font-normal text-gray-300"
-              >
+              <p id="helper-checkbox-text" className="text-xs font-normal text-gray-300">
                 + 249kr
               </p>
             </div>
           </div>
         </section>
       </div>
-      <button
-        className={`${
-          selectedCampsite
-            ? "bg-red-600 text-white cursor-pointer"
-            : "bg-gray-500 text-gray-300 cursor-not-allowed"
-        }`}
-        formAction={handleNext}
-        type="submit"
-        disabled={!selectedCampsite}
-      >
+      <button className={`${selectedCampsite ? "bg-red-600 text-white cursor-pointer" : "bg-gray-500 text-gray-300 cursor-not-allowed"}`} formAction={handleNext} type="submit" disabled={!selectedCampsite}>
         Næste
       </button>
     </form>

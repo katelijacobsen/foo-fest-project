@@ -26,7 +26,9 @@ const Header = () => {
           {/* <Link href="/">
             <Image src={Logo} width={100} height={100} alt="foofest logo" />
           </Link> */}
-          <p>Logo</p>
+          <Link href="/">
+            <p>Logo</p>
+          </Link>
         </div>
         <ul className="hidden md:flex md:gap-6 space-x-4 justify-between items-center">
           <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">

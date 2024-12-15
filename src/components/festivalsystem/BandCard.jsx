@@ -22,7 +22,7 @@ function BandCard({ name, genre, start, end, slug, day, logo, scene, width, logo
         )}
       </div>
       <div className="pt-2 px-1">
-        <h2 className="font-bold text-xl bg-gradient-to-bl from-customPink to-customOrange bg-clip-text text-transparent">{name}</h2>
+        <h2 className="font-bold text-xl bg-gradient-to-r from-customPink via-customRed to-customOrange bg-clip-text text-transparent">{name}</h2>
         <p className="text-customWhite_4">{genre.toUpperCase()}</p>
         <div className="flex gap-1 items-end">
           <p className="text-md">

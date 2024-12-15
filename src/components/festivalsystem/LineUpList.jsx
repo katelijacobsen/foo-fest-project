@@ -10,7 +10,7 @@ const LineUpList = ({ initialLineup }) => {
     <section className="max-w-screen-xl mx-auto p-2 mb-10">
       <ul className="flex flex-wrap gap-8 justify-center items-center">
         {bands.map((band, index) => (
-          <li>
+          <li key={index}>
             <LineUpCard key={index} slug={band.slug} logo={band.logo} name={band.name} bio={band.bio} />
           </li>
         ))}

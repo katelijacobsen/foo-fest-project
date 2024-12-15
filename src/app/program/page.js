@@ -74,16 +74,18 @@ async function Page() {
   });
 
   return (
-    <main>
+    <>
       <Header />
-      <section className="max-w-screen-xl mx-auto mb-16">
-        <div className="mt-20 mb-24">
-          <Headline src={MusicRune} text="PROGRAM" size="text-5xl md:text-8xl" width={40} height={40} />
-        </div>
-        <ProgramList mergedArray={mergedData} days={days} />
-      </section>
+      <main>
+        <section className="max-w-screen-xl mx-auto mb-6">
+          <div className="mt-24 mb-10 pl-4 ">
+            <Headline src={MusicRune} text="PROGRAM" size="text-5xl md:text-6xl" width={40} height={40} />
+          </div>
+          <ProgramList mergedArray={mergedData} days={days} />
+        </section>
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }
 

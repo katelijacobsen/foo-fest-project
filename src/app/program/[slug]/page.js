@@ -9,11 +9,13 @@ const Band = async ({ params }) => {
   let data = await response.json();
 
   return (
-    <section>
+    <>
       <Header />
-      <SingleBand band={data} />
+      <main>
+        <SingleBand band={data} />
+      </main>
       <Footer />
-    </section>
+    </>
   );
 };
 

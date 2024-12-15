@@ -49,7 +49,7 @@ const ProgramForCurrentDay = ({ mergedArray }) => {
   return (
     <section className="py-6 px-4 max-w-screen-xl mx-auto">
       <div>
-        <Headline width={45} height={45} src={MusicRune} size="text-4xl md:text-6xl" text="DAGENS PROGRAM" />
+        <Headline width={45} height={45} src={MusicRune} size="text-5xl md:text-6xl" text="DAGENS PROGRAM" />
       </div>
       <div>
         <div className="py-6">

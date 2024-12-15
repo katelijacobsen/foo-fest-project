@@ -11,19 +11,19 @@ const Accordionitem = ({ isOpen, setIsOpen, questionOne, questionTwo, questionTh
         className="flex items-center justify-between border-white w-full border-b-2"
       >
         <div>
-          <p className="pb-1 text-lg md:text-xl">{questionOne}</p>
-          <p className="pb-1 text-lg md:text-xl">{questionTwo}</p>
-          <p className="pb-1 text-lg md:text-xl">{questionThree}</p>
-          <p className="pb-1 text-lg md:text-xl">{questionFour}</p>
+          <p className="text-base md:text-lg">{questionOne}</p>
+          <p className="text-base md:text-lg">{questionTwo}</p>
+          <p className="text-base md:text-lg">{questionThree}</p>
+          <p className="text-base md:text-lg">{questionFour}</p>
         </div>
         <div>{isOpen == item ? <FiMinus className="place-items-center w-5 h-5 text-white" /> : <GoPlus className=" w-5 h-5 text-white" />}</div>
       </button>
       {isOpen == item && (
-        <div className="">
-          <p className="text-lg md:text-xl"> {textOne}</p>
-          <p className="text-lg md:text-xl"> {textTwo}</p>
-          <p className="text-lg md:text-xl"> {textThree}</p>
-          <p className="text-lg md:text-xl"> {textFour}</p>
+        <div>
+          <p className="text-base md:text-lg text-customWhite_3"> {textOne}</p>
+          <p className="text-base md:text-lg text-customWhite_3"> {textTwo}</p>
+          <p className="text-base md:text-lg text-customWhite_3"> {textThree}</p>
+          <p className="text-base md:text-lg text-customWhite_3"> {textFour}</p>
         </div>
       )}
     </li>

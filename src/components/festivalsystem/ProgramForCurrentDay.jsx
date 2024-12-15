@@ -53,7 +53,7 @@ const ProgramForCurrentDay = ({ mergedArray }) => {
       </div>
       <div>
         <div className="py-6">
-          <h1 className={`${ceasarDressing.className} pb-4 text-3xl md:text-5xl`}>Midgard</h1>
+          <h1 className={`${ceasarDressing.className} pb-4 text-3xl md:text-5xl`}>MIDGARD</h1>
           <div className="overflow-x-auto" ref={scrollContainerRef1}>
             <div className="flex gap-2">
               {sortedByTime("Midgard").map((band) => (
@@ -71,7 +71,7 @@ const ProgramForCurrentDay = ({ mergedArray }) => {
           </div>
         </div>
         <div className="py-6">
-          <h1 className={`${ceasarDressing.className} pb-4 text-3xl md:text-5xl`}>Vanaheim</h1>
+          <h1 className={`${ceasarDressing.className} pb-4 text-3xl md:text-5xl`}>VANAHEIM</h1>
           <div className="overflow-x-auto" ref={scrollContainerRef2}>
             <div className="flex gap-2">
               {sortedByTime("Vanaheim").map((band) => (
@@ -89,7 +89,7 @@ const ProgramForCurrentDay = ({ mergedArray }) => {
           </div>
         </div>
         <div className="py-6">
-          <h1 className={`${ceasarDressing.className} pb-4 text-3xl md:text-5xl`}>Jotunheim</h1>
+          <h1 className={`${ceasarDressing.className} pb-4 text-3xl md:text-5xl`}>JOTUNHEIM</h1>
           <div className="overflow-x-auto" ref={scrollContainerRef3}>
             <div className="flex gap-2">
               {sortedByTime("Jotunheim").map((band) => (

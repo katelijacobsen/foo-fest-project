@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-function BandCard({ name, genre, start, end, slug, day, logo, scene, width }) {
+function BandCard({ name, genre, start, end, slug, day, logo, scene, width, logoCredits }) {
   const imageUrl = logo && (logo.startsWith("https://") || logo.startsWith("http://")) ? logo : `http://localhost:8080/logos/${logo}`;
   // const imageUrl = logo && (logo.startsWith("https://") || logo.startsWith("http://")) ? logo : `https://spring-awesome-stream.glitch.me/logos/${logo}`;
 
@@ -12,7 +12,7 @@ function BandCard({ name, genre, start, end, slug, day, logo, scene, width }) {
       <div className="relative w-full h-64">
         {imageUrl ? (
           <>
-            <Image className="hover:brightness-50 transition ease-in-out duration-75 w-full h-full object-cover" src={imageUrl} width={400} height={400} alt={`${name} logo`} />
+            <Image className="hover:brightness-50 transition ease-in-out duration-75 w-full h-full object-cover" src={imageUrl} width={400} height={400} alt={`${name} logo - ${logoCredits}`} />
             <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex items-center justify-center transition-all duration-300">
               <p className="text-white text-center text-3xl font-bold">{name}</p>
             </div>

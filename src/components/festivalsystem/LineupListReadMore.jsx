@@ -25,7 +25,7 @@ const LineupListReadMore = ({ initialLineup, artists }) => {
       <ul className="flex flex-wrap justify-center items-center gap-4 pt-6">
         {bands.slice(0, 15).map((band, index) => (
           <li key={band.slug} className={index < 20 ? "text-3xl lg:text-5xl transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105" : index < 30 ? "text-2xl lg:text-3xl transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105" : "text-lg lg:text-xl transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105"}>
-            <Link href={`/pages/program/${band.slug}`} key={band.slug}>
+            <Link href={`/program/${band.slug}`} key={band.slug}>
               {band.name}
             </Link>
           </li>
@@ -38,7 +38,7 @@ const LineupListReadMore = ({ initialLineup, artists }) => {
         <ul className="flex flex-wrap justify-center items-center gap-4">
           {bands.slice(15, 25).map((band, index) => (
             <li key={band.slug} className={index < 50 ? "text-xl lg:text-2xl transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105" : index < 60 ? "text-lg lg:text-xl transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105" : index < 70 ? "text-base lg:text-md transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105" : "text-sm lg:text-md transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105"}>
-              <Link href={`/pages/program/${band.slug}`} key={band.slug}>
+              <Link href={`/program/${band.slug}`} key={band.slug}>
                 {band.name}
               </Link>
             </li>

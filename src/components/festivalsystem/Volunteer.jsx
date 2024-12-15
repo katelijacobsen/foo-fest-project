@@ -2,14 +2,6 @@ import PrimaryButton from "@/components/global/buttonFolder/PrimaryButton";
 import Link from "next/link";
 import Headline from "@/components/global/Headline";
 import VolunteerRune from "@/img/svg/volunteer_rune.svg";
-import VolunteerIllustration from "@/img/svg/volunteer_illustration.svg";
-import { Caesar_Dressing } from "next/font/google";
-
-const ceasarDressing = Caesar_Dressing({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
 
 const Volunteer = () => {
   return (
@@ -22,7 +14,7 @@ const Volunteer = () => {
       </div>
       <div className="grid place-content-center pt-4">
         <Link href="/volenteer">
-          <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Læs mere" />
+          <PrimaryButton aria_label_text="Read more" color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Læs mere" />
         </Link>
       </div>
     </section>

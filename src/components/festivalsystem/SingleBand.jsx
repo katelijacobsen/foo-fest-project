@@ -19,7 +19,7 @@ const SingleBand = ({ band }) => {
 
   return (
     <section className="my-16 max-w-screen-xl mx-auto">
-      <BackButton />
+      <BackButton aria_label_text="back to previous page" />
       <div className="grid md:grid-cols-[1fr_1fr] max-w-screen-xl mx-auto md:gap-10">
         <div>
           <Image className="row-start-1 row-end-4 col-span-full justify-self-center" src={imageUrl} alt={name} width={700} height={700} />

@@ -22,12 +22,12 @@ const Header = () => {
   return (
     <header>
       <nav className="flex justify-between items-center bg-gradient-to-b from-customBlack to-transparent fixed z-30 top-0 p-4 w-full">
-        <li className="list-none">
+        <div className="list-none">
           {/* <Link href="/">
             <Image src={Logo} width={100} height={100} alt="foofest logo" />
           </Link> */}
           <p>Logo</p>
-        </li>
+        </div>
         <ul className="hidden md:flex md:gap-6 space-x-4 justify-between items-center">
           <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
             <Link href="/program">Program</Link>
@@ -41,9 +41,11 @@ const Header = () => {
           <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
             <Link href="/volunteer">Bliv Frivillig</Link>
           </li>
-          <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Køb billetter">
-            <Link href="/payment" />
-          </PrimaryButton>
+          <li>
+            <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Køb billetter">
+              <Link href="/payment" />
+            </PrimaryButton>
+          </li>
         </ul>
 
         {/* Burger-menu for små skærme */}

@@ -24,11 +24,11 @@ const LineupListReadMore = ({ initialLineup, artists }) => {
 
       <ul className="flex flex-wrap justify-center items-center gap-4 pt-6">
         {bands.slice(0, 15).map((band, index) => (
-          <Link href={`/pages/program/${band.slug}`} key={band.slug}>
-            <li key={band.slug} className={index < 20 ? "text-3xl lg:text-5xl transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105" : index < 30 ? "text-2xl lg:text-3xl transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105" : "text-lg lg:text-xl transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105"}>
+          <li key={band.slug} className={index < 20 ? "text-3xl lg:text-5xl transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105" : index < 30 ? "text-2xl lg:text-3xl transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105" : "text-lg lg:text-xl transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105"}>
+            <Link href={`/pages/program/${band.slug}`} key={band.slug}>
               {band.name}
-            </li>
-          </Link>
+            </Link>
+          </li>
         ))}
       </ul>
       <button className=" font-bold text-xl bg-gradient-to-bl from-customPink to-customOrange bg-clip-text text-transparent pt-4" onClick={() => setIsExpanded(!isExpanded)}>
@@ -37,18 +37,18 @@ const LineupListReadMore = ({ initialLineup, artists }) => {
       {isExpanded && (
         <ul className="flex flex-wrap justify-center items-center gap-4">
           {bands.slice(15, 25).map((band, index) => (
-            <Link href={`/pages/program/${band.slug}`} key={band.slug}>
-              <li key={band.slug} className={index < 50 ? "text-xl lg:text-2xl transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105" : index < 60 ? "text-lg lg:text-xl transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105" : index < 70 ? "text-base lg:text-md transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105" : "text-sm lg:text-md transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105"}>
+            <li key={band.slug} className={index < 50 ? "text-xl lg:text-2xl transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105" : index < 60 ? "text-lg lg:text-xl transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105" : index < 70 ? "text-base lg:text-md transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105" : "text-sm lg:text-md transition ease-in-out hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent hover:scale-105"}>
+              <Link href={`/pages/program/${band.slug}`} key={band.slug}>
                 {band.name}
-              </li>
-            </Link>
+              </Link>
+            </li>
           ))}
         </ul>
       )}
 
       <div className="grid place-content-center pt-8">
         <Link href="/lineup">
-          <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Se det fulde lineup" />
+          <PrimaryButton aria_label_text="View more artists" color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Se det fulde lineup" />
         </Link>
       </div>
     </section>

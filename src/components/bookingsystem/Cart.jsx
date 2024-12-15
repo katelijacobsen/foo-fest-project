@@ -15,7 +15,7 @@ export default function Cart({ cart }) {
     cart.tickets.vip * 1299 +
     cart.tents.twoPeople * 299 +
     cart.tents.threePeople * 399 +
-    (cart.greenCamping ? 249 : 0) +
+    (cart.tents.greenCamping ? 249 : 0) +
     (cart.campsite ? 99 : 0);
 
   return (
@@ -67,7 +67,7 @@ export default function Cart({ cart }) {
                     {cart.tents.threePeople * 399} kr
                   </li>
                 )}
-                {cart.greenCamping && <li>+249kr for Grøn Camping</li>}
+                {cart.tents.greenCamping && <li>+249kr for Grøn Camping</li>}
               </ul>
             </section>
 

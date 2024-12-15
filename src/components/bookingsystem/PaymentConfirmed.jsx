@@ -34,7 +34,6 @@ export default function PaymentConfirmed({ state, formStatus, startDraw }) {
         Ordre Bekræftelse
       </h2>
 
-      {/* SVG animation */}
       <div className="flex justify-center items-center w-full mb-6 ">
         <motion.svg
           className="w-36 h-auto"

@@ -19,13 +19,13 @@ function LineUpCard({ name, logo, bio }) {
   // const imageUrl = logo && (logo.startsWith("https://") || logo.startsWith("http://")) ? logo : `https://spring-awesome-stream.glitch.me/logos/${logo}`;
 
   return (
-    <div className="flip-card w-[400px] h-[300px] cursor-pointer" onClick={handleFlip}>
+    <div className="flip-card w-[350px] md:w-[400px] h-[300px] cursor-pointer" onClick={handleFlip}>
       <motion.div className="flip-card-inner w-[100%] h-[100%] border-solid border-[1px] border-gray-600" initial={false} animate={{ rotateY: isFlipped ? 180 : 360 }} transition={{ duration: 0.6, animationDirection: "normal" }} onAnimationComplete={() => setIsAnimating(false)}>
         <div className="flip-card-front w-[100%] h-[100%] bg-customBlack">
           <div className="relative w-full h-64">
             {imageUrl ? (
               <>
-                <Image className="hover:brightness-50 transition ease-in-out duration-75 w-full h-full object-cover" quality={75} src={imageUrl} width={400} height={400} alt={`${name} logo`} />
+                <Image className="hover:brightness-50 transition ease-in-out duration-75 w-full h-full object-cover" quality={75} src={imageUrl} width={199} height={128} alt={`${name} logo`} sizes="(min-width: 780px) 398px, 348px" priority={true} />
                 <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex items-center justify-center transition-all duration-300">
                   <p className="text-white text-center text-3xl font-bold">{name}</p>
                 </div>

@@ -119,7 +119,7 @@ const handleStep = (prev, formData) => {
     }));
     return {
       ...prev,
-      step: prev.step + step,
+      step: prev.step + 1,
       guests: { single: singleGuests, vip: vipGuests },
     };
   }

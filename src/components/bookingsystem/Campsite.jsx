@@ -212,8 +212,8 @@ export default function Campsite({ state, formAction }) {
         <button
           className={`${
             selectedCampsite
-            ? " font-bold py-2  px-8 my-8 text-xl bg-gradient-to-bl from-customPink text-white to-customOrange text-transparent hover:transform"
-            : "bg-gray-500 px-8 py-2 my-8 text-xl font-bold text-gray-300 cursor-not-allowed"
+            ? " font-bold py-2  px-8 my-8 ml-auto text-xl bg-gradient-to-bl from-customPink text-white to-customOrange text-transparent hover:transform"
+            : "bg-gray-500 px-8 py-2 my-8 text-xl ml-auto font-bold text-gray-300 cursor-not-allowed"
           }`}
           formAction={handleNext}
           type="submit"

@@ -107,12 +107,6 @@ export default function Campsite({ state, formAction }) {
     });
   };
 
-  const handlePrev = (formData) => {
-    formData.set("campsite", selectedCampsite);
-    formData.set("stepBack", true);
-    formAction(formData);
-  };
-
   const handleNext = (formData) => {
     if (!selectedCampsite) {
       setHandleError("Vælg venligst et campingområde, før du fortsætter.");
@@ -214,13 +208,6 @@ export default function Campsite({ state, formAction }) {
         </section>
       </div>
       <div className="flex justify-between">
-        <button
-          className={`${" font-bold px-8 py-2 my-8 text-xl bg-gradient-to-bl from-customPink text-white to-customOrange text-transparent hover:transform"}`}
-          formAction={handlePrev}
-          type="submit"
-          >
-          Tilbage
-        </button>
         {handleError && <p className="text-red-500">{handleError}</p>}
         <button
           className={`${

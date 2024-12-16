@@ -56,8 +56,6 @@ const handleStep = (prev, formData) => {
   if (formData === null) {
     return defaultState;
   }
-  const step = formData.get("stepBack") ? -1 : +1;
-
   //=================//
   // Hvis vores previous step er lig med 0 så gå vider til det næste skridt.
   // formatér vores valg af billettr og  brug get() metoden til at få dataen med som numbers ("+" foran formData ).
@@ -68,7 +66,7 @@ const handleStep = (prev, formData) => {
   if (prev.step === 0) {
     return {
       ...prev,
-      step: prev.step + step,
+      step: prev.step + 1,
       tickets: {
         single: +formData.get("singleTickets"),
         vip: +formData.get("vipTickets"),
@@ -84,7 +82,7 @@ const handleStep = (prev, formData) => {
 
     return {
       ...prev,
-      step: prev.step + step,
+      step: prev.step + 1,
       tents: {
         twoPeople: +formData.get("twoPeople"),
         threePeople: +formData.get("threePeople"),
@@ -95,11 +93,10 @@ const handleStep = (prev, formData) => {
   }
 
   if (prev.step === 2) {
-
     //=================//
     //Vi laver en liste over vores billetter med Array (statisk metode, som laver en ny liste ud fra vores data)
     // & ved at loop igennem antallet af billetter brugeren valgt i begyndelsen.
-    //=================// 
+    //=================//
 
     const singleGuests = Array.from(
       { length: prev.tickets.single },
@@ -130,7 +127,7 @@ const handleStep = (prev, formData) => {
   if (prev.step === 3) {
     return {
       ...prev,
-      step: prev.step + step,
+      step: prev.step + 1,
       payment: {
         number: formData.get("number"),
         name: formData.get("name"),
@@ -142,7 +139,7 @@ const handleStep = (prev, formData) => {
   if (prev.step === 4) {
     return {
       ...prev,
-      step: prev.step + step,
+      step: prev.step + 1,
     };
   }
 };
@@ -203,10 +200,7 @@ export default function Page() {
             )}
             {state.step === 3 && <PaymentFlow formAction={formAction} />}
             {state.step === 4 && (
-              <PaymentComfirmed
-                state={state}
-                startDraw={true}
-              />
+              <PaymentComfirmed state={state} startDraw={true} />
             )}
           </section>
           {state.step !== 4 && <Cart cart={cart} />}

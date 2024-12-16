@@ -45,7 +45,7 @@ const Header = () => {
           </li>
           <li>
             <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Køb billetter">
-              <Link href="/payment" />
+              <Link href="/tickets" />
             </PrimaryButton>
           </li>
         </ul>

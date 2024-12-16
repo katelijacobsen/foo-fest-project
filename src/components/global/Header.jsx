@@ -41,7 +41,7 @@ const Header = () => {
             <Link href="/volunteer">Bliv Frivillig</Link>
           </li>
           <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Køb billetter">
-            <Link href="/payment" />
+            <Link href="/tickets" />
           </PrimaryButton>
         </ul>
 
@@ -78,11 +78,13 @@ const Header = () => {
                   BLIV FRIVILLIG
                 </Link>
               </li>
+              <li>
               <button>
-                <Link href="/payment" className={`${ceasarDressing.className} text-4xl hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent`}>
+                <Link className={`${ceasarDressing.className} text-4xl hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent`} href="/tickets">
                   Køb billetter
                 </Link>
               </button>
+              </li>
             </ul>
           </div>
         )}

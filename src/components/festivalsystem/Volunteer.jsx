@@ -17,7 +17,7 @@ const Volunteer = () => {
           <p className="py-4 text-black md:text-2xl">Er du vild med rockmusik og vil være en del af noget episk? Foo Fest søger frivillige til at hjælpe med alt fra bar og madboder til backstage og festivalstemning! Som tak for din indsats får du Gratis billet til festivalen, et kig bag kulisserne og en oplevelse for livet med nye venner og masser af god musik! Tilmeld dig nu, og vær med til at gøre Foo Fest uforglemmelig! Lad os rocke sammen!</p>
         </div>
         <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Læs mere">
-          <Link href="/pages/volunteer" />
+          <Link href="/volunteer" />
         </PrimaryButton>
       </div>
     </section>

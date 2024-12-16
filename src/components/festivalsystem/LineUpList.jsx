@@ -1,10 +1,15 @@
 "use client";
-import { useState } from "react";
-import Link from "next/link";
+import { useState, useEffect } from "react";
 import LineUpCard from "@/components/festivalsystem/LineUpCard";
 
 const LineUpList = ({ initialLineup }) => {
   const [bands, setBands] = useState(initialLineup);
+
+  // Sortér bands alfabetisk efter navn
+  useEffect(() => {
+    const sortedBands = [...initialLineup].sort((a, b) => a.name.localeCompare(b.name));
+    setBands(sortedBands);
+  }, [initialLineup]);
 
   return (
     <section className="max-w-screen-xl mx-auto p-2 mb-10">

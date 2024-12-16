@@ -11,7 +11,7 @@ const LineUpList = ({ initialLineup }) => {
       <ul className="flex flex-wrap gap-8 justify-center items-center">
         {bands.map((band, index) => (
           <li key={index}>
-            <LineUpCard key={index} slug={band.slug} logo={band.logo} name={band.name} bio={band.bio} />
+            <LineUpCard key={index} slug={band.slug} logo={band.logo} name={band.name} bio={band.bio} start={band.start} end={band.end} scene={band.scene} />
           </li>
         ))}
       </ul>

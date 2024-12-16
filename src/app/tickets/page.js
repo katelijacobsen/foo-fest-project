@@ -142,6 +142,9 @@ const handleStep = (prev, formData) => {
     };
   }
 };
+//===================//
+// createContext-hook
+//===================//
 // Deler data uden at propdril fra Page. Så kan vi for adgang til vores data.
 // Opretter en standardværdier til vores indkøbskurv. Den er på 0 indtil brugeren tilføjer noget.
 // Vi siger bare her at CartContext er navnet på vores kontekst. Så dataen bliver delt op tværs af vores komponenter.
@@ -162,9 +165,15 @@ export default function Page() {
     },
   };
   // Forskellige Hooks der bliver anvendt i vores parent-komponent, så vi også kan sende dem vider til vores children (så de kan snak med hinanden)
+  //===================//
+  // useState-hook
+  //===================//
   // cart er vores værdi vi sender vider i vores komponenter, mens setCart er vores funktion til at opdatere vores cart-variabel.
   // Vi giver vores useState hook 'defaultCart' som standartværdi (tom kurv).
   const [cart, setCart] = useState(defaultCart);
+  //===================//
+  // useActionState-hook
+  //===================//
   // Bruger useActionState-hook til at håndtere vores data-tilstand. state er vores variabel, der bliver opdateret for hver brugeren handling
   // der sker i hver komponent.
   // F.eks. har vi givet state vider til campsite. Ligesom en filmappe struktur prøver den at finde antal af billetter vi tidliger har

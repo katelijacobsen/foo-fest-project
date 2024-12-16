@@ -25,9 +25,3 @@ const LineUpList = ({ initialLineup }) => {
 };
 
 export default LineUpList;
-
-{
-  /* <li key={band.slug} className={index < 13 ? "text-3xl lg:text-5xl" : index < 40 ? "text-xl lg:text-3xl" : index < 50 ? "text-lg lg:text-xl" : index < 60 ? "text-md lg:text-lg" : index < 70 ? "text-base lg:text-md" : index < 80 ? "text-sm lg:text-md" : "text-xs lg:text-sm"}>
-{band.name}
-</li> */
-}

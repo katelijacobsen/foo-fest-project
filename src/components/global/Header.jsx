@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="flex justify-between sticky top-0 p-4">
+      <nav className="flex justify-between sticky z-10 top-0 p-4">
         <li className="list-none">
           {/* <Link href="/">
             <Image src={Logo} width={100} height={100} alt="foofest logo" />

@@ -1,9 +1,9 @@
 "use client";
 import { useState, useEffect, useContext } from "react";
 import CounterInput from "./CounterInput";
-import { Caesar_Dressing } from "next/font/google";
 import { CartContext } from "@/app/tickets/page";
 import { motion } from "framer-motion";
+import { Caesar_Dressing } from "next/font/google";
 
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],
@@ -50,7 +50,10 @@ export default function Campsite({ state, formAction }) {
   const [greenCamping, setGreenCamping] = useState(cart.tents.greenCamping);
   const [countError, setCountError] = useState("");
   const [handleError, setHandleError] = useState("");
-
+// delta er en matematisk kort fortegnelse for +1 / -1. Den tilføjer vi som parameter til vores allowUpdate funktion.
+// Funktionen kigger og tjekker om der kan tilføjes et telt eller ej, som brugeren prøver at tilføje.
+// numPeople er summen at billetterne vi har tilføjet, hvor numTents er summen af begge typer telte.
+// Hvis brugeren prøver at tilføje en telt mere end billetter, returneres 'error'.
   const allowUpdate = (delta) => {
     const numPeople = state.tickets.single + state.tickets.vip;
     const numTents = twoPersonCount + threePersonCount;

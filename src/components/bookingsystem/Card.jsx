@@ -32,7 +32,7 @@ export default function Card({
   };
 
   return (
-    <div className="relative group rounded-xl inline-block p-[2px] overflow-hidden w-72 m-4 transition-transform hover:scale-105">
+    <div className="relative z-10 group rounded-xl inline-block p-[2px] overflow-hidden w-72 m-4 transition-transform hover:scale-105">
       <span className={`${border || "default-class"} absolute inset-[-1000%] animate-[spin_3s_linear_infinite]`} />
       <div className="relative bg-gradient-to-tl from-customBlack to-customBlack_2 z-0 rounded-xl flex items-center justify-center">
         <div

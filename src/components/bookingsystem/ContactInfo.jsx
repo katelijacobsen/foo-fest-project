@@ -22,20 +22,20 @@ export default function ContactInfo({ tickets, formAction }) {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.3 }}
-      className="text-white rounded-lg bg-gradient-to-tl border border-gray-500 from-customBlack_2 to-customBlack p-4"
+      className="text-white rounded-lg bg-gradient-to-tl border border-gray-500 from-customBlack_2 to-customBlack p-4 relative z-0"
       onChange={handleInputChange}
     >
       <fieldset className="grid gap-6 mb-6 md:grid-cols-2">
         <legend className={`${ceasarDressing.className} block mb-2 text-3xl`}>
           PERSONLIG INFORMATION
         </legend>
-          {Array.from({ length: tickets.single }, (_, i) => (
-            <ContactForm key={i} i={i} ticketType="single" />
-          ))}
-        <div className="relative group rounded-xl inline-block p-[2px] overflow-hidden shadow-lg">
-          <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] dark:bg-[conic-gradient(from_90deg_at_50%_50%,#EC2783_0%,#141415_50%,#EC2783_100%)] bg-[conic-gradient(from_90deg_at_50%_50%,#52525B_0%,#D4D4DA_50%,#52525B_100%)]" />
-          <div className="relative bg-gradient-to-tl from-customBlack_2 to-customBlack z-0  p-2 rounded-xl">
-            <div className="rounded-xl inline-block p-2 overflow-hidden">
+        {Array.from({ length: tickets.single }, (_, i) => (
+          <ContactForm key={i} i={i} ticketType="single" />
+        ))}
+        <div className="relative z-10 group rounded-xl inline-block p-[2px] overflow-hidden shadow-lg">
+          <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#EC2783_0%,#141415_50%,#EC2783_100%)]" />
+          <div className="relative bg-gradient-to-tl from-customBlack_2 to-customBlack z-0 rounded-xl">
+            <div className="rounded-xl overflow-hidden">
               {Array.from({ length: tickets.vip }, (_, i) => (
                 <ContactForm key={i} i={i} ticketType="vip" />
               ))}
@@ -62,6 +62,9 @@ export default function ContactInfo({ tickets, formAction }) {
 }
 
 function ContactForm({ i, ticketType }) {
+  //Her bruger jeg staggerChildren så jeg giver hver children en lille delay-animation
+  // Tilføjer i parent komponenten en variant/tilstand på children komponenterne kan arve det vider.
+  // Derefter giver jeg hver children inputSpring, hvordan de skal animeres ind (har gjort det som konstant)
   const staggerInputs = {
     hidden: { opacity: 0 },
     visible: {
@@ -82,14 +85,23 @@ function ContactForm({ i, ticketType }) {
   };
 
   return (
-    <motion.div initial="hidden" animate="visible" variants={staggerInputs}>
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={staggerInputs}
+      className="p-2"
+    >
+    {/* ticketType kigger om det en single/vip og laver en conditionel rendering. Vi gav den property tidligere til Cards i ChooseTickets-komponenten. */}
       {ticketType === "single" && (
         <motion.h2 className="font-bold text-xl" variants={inputSpring}>
           Enkelt Billet
         </motion.h2>
       )}
       {ticketType === "vip" && (
-        <motion.h2 variants={inputSpring} className="font-bold text-xl bg-gradient-to-r from-customPink via-customRed to-customOrange bg-clip-text text-transparent">
+        <motion.h2
+          variants={inputSpring}
+          className="font-bold text-xl bg-gradient-to-r from-customPink via-customRed to-customOrange bg-clip-text text-transparent"
+        >
           VIP Billet
         </motion.h2>
       )}

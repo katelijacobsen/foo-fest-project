@@ -1,6 +1,6 @@
 import { Caesar_Dressing } from "next/font/google";
 import { FaBasketShopping } from "react-icons/fa6";
-
+import { motion } from "framer-motion";
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],
   weight: "400",
@@ -19,17 +19,39 @@ export default function Cart({ cart }) {
     (cart.campsite ? 99 : 0);
 
   return (
-    <section className="p-4 sm:p-8">
-      <aside className="flex flex-col gap-4 rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack p-6 sm:p-8 w-72">
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+      className="p-4 sm:p-8"
+    >
+      <motion.aside
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, width: 250, height: 420 }}
+        style={{ width: 0, height: 0 }}
+        transition={{ duration: 0.8, ease: "easeInOut" }}
+        className="flex flex-col gap-4 rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack p-6 sm:p-8 w-72"
+      >
         <h3 className={`${ceasarDressing.className} text-xl sm:text-2xl`}>
           Indkøbskurv
         </h3>
         {emptyCart ? (
           <div className="flex flex-col items-center justify-center gap-2 text-gray-200">
-            <FaBasketShopping size={72} />
-            <p className="text-center text-sm sm:text-base">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.8, ease: "easeInOut" }}
+            >
+              <FaBasketShopping size={72} />
+            </motion.div>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1, ease: "easeInOut" }}
+              className="text-center text-sm sm:text-base"
+            >
               Høvding! Tilføj bytte i din kurv.
-            </p>
+            </motion.p>
           </div>
         ) : (
           <>
@@ -57,7 +79,9 @@ export default function Cart({ cart }) {
                   <ul className="">
                     <li className="font-bold text-lg">{cart.campsite}</li>
                     {cart.campsite && (
-                      <li className="text-xs font-normal text-gray-300">+99kr Booking Fee</li>
+                      <li className="text-xs font-normal text-gray-300">
+                        +99kr Booking Gebyr
+                      </li>
                     )}
                     {cart.tents.twoPeople !== 0 && (
                       <li>
@@ -72,7 +96,7 @@ export default function Cart({ cart }) {
                       </li>
                     )}
                     {cart.tents.greenCamping && (
-                      <li>+249kr for Grøn Camping</li>
+                      <li>Grøn Camping 249kr</li>
                     )}
                   </ul>
                 </>
@@ -85,7 +109,7 @@ export default function Cart({ cart }) {
             </section>
           </>
         )}
-      </aside>
-    </section>
+      </motion.aside>
+    </motion.section>
   );
 }

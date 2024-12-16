@@ -15,7 +15,7 @@ export default function ChooseTicket({ cart, formAction }) {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
-      className="bg-gradient-to-tl from-customBlack_6 to-customBlack border border-gray-500 rounded-lg m-4 grid grid-rows-2 gap-4 w-full"
+      className="relative z-10 bg-gradient-to-tl from-customBlack_6 to-customBlack border border-gray-500 rounded-lg m-4 grid grid-rows-2 gap-4 w-full"
     >
       <motion.div
         className="flex flex-col items-center row-span-1"

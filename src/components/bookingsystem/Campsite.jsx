@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import CounterInput from "./CounterInput";
 import { Caesar_Dressing } from "next/font/google";
 import { CartContext } from "@/app/tickets/page";
+import { motion } from "framer-motion";
 
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],
@@ -42,7 +43,9 @@ export default function Campsite({ state, formAction }) {
   const [spots, setSpots] = useState([]);
   const [cart, setCart] = useContext(CartContext);
   const [twoPersonCount, setTwoPersonCount] = useState(cart.tents.twoPeople);
-  const [threePersonCount, setThreePersonCount] = useState(cart.tents.threePeople);
+  const [threePersonCount, setThreePersonCount] = useState(
+    cart.tents.threePeople
+  );
   const [selectedCampsite, setSelectedCampsite] = useState(cart.campsite);
   const [greenCamping, setGreenCamping] = useState(cart.tents.greenCamping);
   const [countError, setCountError] = useState("");
@@ -92,8 +95,6 @@ export default function Campsite({ state, formAction }) {
     setSelectedCampsite(campsite);
   };
 
-  
-
   const updateGreenCamping = (e) => {
     setGreenCamping(e.target.checked);
     setCart((prev) => {
@@ -121,7 +122,12 @@ export default function Campsite({ state, formAction }) {
   }, []);
 
   return (
-    <form className=" inline-flex flex-col flex-1 bg-gradient-to-tl border border-gray-500 from-customBlack to-customBlack_2 p-4 m-4 rounded-md">
+    <motion.form
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.3 }}
+      className=" inline-flex flex-col flex-1 bg-gradient-to-tl border border-gray-500 from-customBlack to-customBlack_2 p-4 m-4 rounded-md"
+    >
       <h2 className={`${ceasarDressing.className} text-3xl text-white mb-4`}>
         HVOR VIL DU CAMPE?
       </h2>
@@ -143,7 +149,7 @@ export default function Campsite({ state, formAction }) {
         <section>
           <h4
             className={`${ceasarDressing.className} text-3xl text-white mt-8`}
-            >
+          >
             LEJE AF TELTE
           </h4>
           <ul className="my-4 flex flex-col gap-6">
@@ -156,7 +162,7 @@ export default function Campsite({ state, formAction }) {
                 name="twoPeople"
                 count={twoPersonCount}
                 setCount={updateTwoPersonTentCount}
-                />
+              />
             </li>
             <li className="flex flex-col text-white gap-4">
               <div>
@@ -168,10 +174,12 @@ export default function Campsite({ state, formAction }) {
                 max={10}
                 count={threePersonCount}
                 setCount={updateThreePersonTentCount}
-                />
+              />
             </li>
           </ul>
-                {countError && <p className="text-red-500 text-sm mt-4">{countError}</p>}
+          {countError && (
+            <p className="text-red-500 text-sm mt-4">{countError}</p>
+          )}
         </section>
         <section>
           <h3 className={`${ceasarDressing.className} text-3xl text-white`}>
@@ -188,19 +196,19 @@ export default function Campsite({ state, formAction }) {
                 checked={greenCamping}
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 onChange={updateGreenCamping}
-                />
+              />
             </div>
             <div className="ms-2 text-sm">
               <label
                 htmlFor="helper-checkbox"
                 className="font-bold text-xl text-white"
-                >
+              >
                 Grøn Camping
               </label>
               <p
                 id="helper-checkbox-text"
                 className="text-xs font-normal text-gray-300"
-                >
+              >
                 249kr
               </p>
             </div>
@@ -212,15 +220,15 @@ export default function Campsite({ state, formAction }) {
         <button
           className={`${
             selectedCampsite
-            ? " font-bold py-2  px-8 my-8 ml-auto text-xl bg-gradient-to-bl from-customPink text-white to-customOrange text-transparent hover:transform"
-            : "bg-gray-500 px-8 py-2 my-8 text-xl ml-auto font-bold text-gray-300 cursor-not-allowed"
+              ? " font-bold py-2  px-8 my-8 ml-auto text-xl bg-gradient-to-bl from-customPink text-white to-customOrange text-transparent hover:transform"
+              : "bg-gray-500 px-8 py-2 my-8 text-xl ml-auto font-bold text-gray-300 cursor-not-allowed"
           }`}
           formAction={handleNext}
           type="submit"
-          >
+        >
           Næste
         </button>
       </div>
-    </form>
+    </motion.form>
   );
 }

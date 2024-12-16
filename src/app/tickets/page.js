@@ -6,10 +6,10 @@ import PaymentFlow from "@/components/bookingsystem/PaymentFlow";
 import PaymentComfirmed from "@/components/bookingsystem/PaymentConfirmed";
 import Cart from "@/components/bookingsystem/Cart";
 import { createContext, useActionState } from "react";
-import { Caesar_Dressing } from "next/font/google";
 import { useState } from "react";
 import MyMarquee from "@/components/festivalsystem/MyMarquee";
 import Header from "@/components/global/Header";
+import { Caesar_Dressing } from "next/font/google";
 
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],
@@ -191,12 +191,12 @@ export default function Page() {
       <CartContext.Provider value={[cart, setCart]}>
         <main>
           {/* Vi giver hver children komponenter en conditional rendering og sender vores cart & formAction vider */}
+          <MyMarquee />
           <h1
             className={`${ceasarDressing.className} mx-5 mt-10 text-6xl sm:text-6xl lg:text-6xl md:text-6xl text-white`}
           >
             BILLETTER
           </h1>
-          <MyMarquee />
           <div className="flex flex-col md:flex-row justify-center">
             <section>
               {state.step === 0 && (
@@ -207,9 +207,9 @@ export default function Page() {
               )}
               {state.step === 2 && (
                 <ContactInfo
-                  state={state}
-                  tickets={state.tickets}
-                  formAction={formAction}
+                state={state}
+                tickets={state.tickets}
+                formAction={formAction}
                 />
               )}
               {state.step === 3 && <PaymentFlow formAction={formAction} />}

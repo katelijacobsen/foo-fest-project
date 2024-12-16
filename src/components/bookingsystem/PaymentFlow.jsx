@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import { Caesar_Dressing } from "next/font/google";
-
+import { motion } from "framer-motion";
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],
   weight: "400",
@@ -46,10 +46,15 @@ const PaymentForm = ({ formAction, router }) => {
 
   return (
     <>
-      <div className=" border border-gray-600 p-4 sm:p-8 rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack m-4">
-      <p className="bg-gradient-to-bl from-customPink text-white to-customOrange w-full text-center text-xl sm:text-2xl font-bold">
-        {mins} : {String(secs).padStart(2, "0")}
-      </p>
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.3 }}
+        className=" border border-gray-600 p-4 sm:p-8 rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack m-4"
+      >
+        <p className="bg-gradient-to-bl rounded-sm from-customPink text-white to-customOrange w-full text-center text-xl sm:text-2xl font-bold">
+          {mins} : {String(secs).padStart(2, "0")}
+        </p>
         <h2
           className={`${ceasarDressing.className} text-2xl sm:text-3xl my-4 text-left`}
         >
@@ -132,13 +137,13 @@ const PaymentForm = ({ formAction, router }) => {
             </div>
             <button
               formAction={formAction}
-              className="font-bold px-8 py-2 my-8 text-xl bg-gradient-to-bl from-customPink text-white to-customOrange w-full sm:w-auto"
+              className="font-bold px-8 py-2 my-8 text-xl rounded-sm bg-gradient-to-bl from-customPink text-white to-customOrange w-full sm:w-auto"
             >
               Afslut & Betal
             </button>
           </form>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

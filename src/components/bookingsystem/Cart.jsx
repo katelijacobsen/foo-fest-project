@@ -34,7 +34,7 @@ export default function Cart({ cart }) {
         ) : (
           <>
             <section className="text-sm sm:text-base">
-              <h2 className="font-bold">BILLETTER</h2>
+              <h2 className="font-bold border-b ">BILLETTER</h2>
               <ul className="mt-2 space-y-2">
                 {cart.tickets.single !== 0 && (
                   <li>
@@ -51,29 +51,37 @@ export default function Cart({ cart }) {
             </section>
 
             <section className="text-sm sm:text-base">
-              <h2 className="font-bold">CAMPSITE</h2>
-              <ul className="mt-2 space-y-2">
-                <li className="font-bold">{cart.campsite}</li>
-                {cart.tents.twoPeople !== 0 && (
-                  <li>
-                    {cart.tents.twoPeople}x 2 Personers Telt{" "}
-                    {cart.tents.twoPeople * 299} kr
-                  </li>
-                )}
-                {cart.campsite && <li className="text-sm">+99kr Booking Fee</li>}
-                {cart.tents.threePeople !== 0 && (
-                  <li>
-                    {cart.tents.threePeople}x 3 Personers Telt{" "}
-                    {cart.tents.threePeople * 399} kr
-                  </li>
-                )}
-                {cart.tents.greenCamping && <li>+249kr for Grøn Camping</li>}
-              </ul>
+              {cart.campsite ? (
+                <>
+                  <h2 className="font-bold border-b">CAMPSITE</h2>
+                  <ul className="">
+                    <li className="font-bold text-lg">{cart.campsite}</li>
+                    {cart.campsite && (
+                      <li className="text-xs font-normal text-gray-300">+99kr Booking Fee</li>
+                    )}
+                    {cart.tents.twoPeople !== 0 && (
+                      <li>
+                        {cart.tents.twoPeople}x 2 Personers Telt{" "}
+                        {cart.tents.twoPeople * 299} kr
+                      </li>
+                    )}
+                    {cart.tents.threePeople !== 0 && (
+                      <li>
+                        {cart.tents.threePeople}x 3 Personers Telt{" "}
+                        {cart.tents.threePeople * 399} kr
+                      </li>
+                    )}
+                    {cart.tents.greenCamping && (
+                      <li>+249kr for Grøn Camping</li>
+                    )}
+                  </ul>
+                </>
+              ) : null}
             </section>
 
             <section className="text-sm sm:text-base">
-              <h2 className="font-bold">TOTAL</h2>
-              <p className="mt-2 font-bold">{sumCart} DKK</p>
+              <h2 className="font-bold bold border-b">TOTAL</h2>
+              <p className="mt-2 font-bold text-end">{sumCart} DKK</p>
             </section>
           </>
         )}

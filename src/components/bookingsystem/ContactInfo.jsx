@@ -29,12 +29,10 @@ export default function ContactInfo({ tickets, formAction }) {
         <legend className={`${ceasarDressing.className} block mb-2 text-3xl`}>
           PERSONLIG INFORMATION
         </legend>
-        <div className="p-5">
           {Array.from({ length: tickets.single }, (_, i) => (
             <ContactForm key={i} i={i} ticketType="single" />
           ))}
-        </div>
-        <div className="relative group rounded-xl inline-block p-[2px] overflow-hidden ">
+        <div className="relative group rounded-xl inline-block p-[2px] overflow-hidden shadow-lg">
           <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] dark:bg-[conic-gradient(from_90deg_at_50%_50%,#EC2783_0%,#141415_50%,#EC2783_100%)] bg-[conic-gradient(from_90deg_at_50%_50%,#52525B_0%,#D4D4DA_50%,#52525B_100%)]" />
           <div className="relative bg-gradient-to-tl from-customBlack_2 to-customBlack z-0  p-2 rounded-xl">
             <div className="rounded-xl inline-block p-2 overflow-hidden">

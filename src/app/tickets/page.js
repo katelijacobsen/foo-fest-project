@@ -8,6 +8,8 @@ import Cart from "@/components/bookingsystem/Cart";
 import { createContext, useActionState } from "react";
 import { Caesar_Dressing } from "next/font/google";
 import { useState } from "react";
+import MyMarquee from "@/components/festivalsystem/MyMarquee";
+import Header from "@/components/global/Header";
 
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],
@@ -182,38 +184,43 @@ export default function Page() {
 
   console.log(state);
   return (
-    //wrapper komponenter ind med useContext så det kan opdatere indkøbskurven.
-    <CartContext.Provider value={[cart, setCart]}>
-      <main>
-        {/* Vi giver hver children komponenter en conditional rendering og sender vores cart & formAction vider */}
-        <h1
-          className={`${ceasarDressing.className} mx-5 mt-10 text-6xl sm:text-6xl lg:text-6xl md:text-6xl text-white`}
-        >
-          BILLETTER
-        </h1>
-        <div className="flex flex-col md:flex-row justify-center">
-          <section>
-            {state.step === 0 && (
-              <ChooseTicket cart={cart} formAction={formAction} />
-            )}
-            {state.step === 1 && (
-              <Campsite state={state} formAction={formAction} />
-            )}
-            {state.step === 2 && (
-              <ContactInfo
-                state={state}
-                tickets={state.tickets}
-                formAction={formAction}
-              />
-            )}
-            {state.step === 3 && <PaymentFlow formAction={formAction} />}
-            {state.step === 4 && (
-              <PaymentComfirmed state={state} startDraw={true} />
-            )}
-          </section>
-          {state.step !== 4 && <Cart cart={cart} />}
-        </div>
-      </main>
-    </CartContext.Provider>
+    <>
+    <Header />
+      {/* wrapper komponenter ind med useContext så det kan opdatere
+      indkøbskurven. */}
+      <CartContext.Provider value={[cart, setCart]}>
+        <main>
+          {/* Vi giver hver children komponenter en conditional rendering og sender vores cart & formAction vider */}
+          <h1
+            className={`${ceasarDressing.className} mx-5 mt-10 text-6xl sm:text-6xl lg:text-6xl md:text-6xl text-white`}
+          >
+            BILLETTER
+          </h1>
+          <MyMarquee />
+          <div className="flex flex-col md:flex-row justify-center">
+            <section>
+              {state.step === 0 && (
+                <ChooseTicket cart={cart} formAction={formAction} />
+              )}
+              {state.step === 1 && (
+                <Campsite state={state} formAction={formAction} />
+              )}
+              {state.step === 2 && (
+                <ContactInfo
+                  state={state}
+                  tickets={state.tickets}
+                  formAction={formAction}
+                />
+              )}
+              {state.step === 3 && <PaymentFlow formAction={formAction} />}
+              {state.step === 4 && (
+                <PaymentComfirmed state={state} startDraw={true} />
+              )}
+            </section>
+            {state.step !== 4 && <Cart cart={cart} />}
+          </div>
+        </main>
+      </CartContext.Provider>
+    </>
   );
 }

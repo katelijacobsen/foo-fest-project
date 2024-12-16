@@ -28,7 +28,7 @@ export default function Cart({ cart }) {
       <motion.aside
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, width: 250, height: 420 }}
-        style={{ width: 0, height: 0 }}
+        style={{ width: 0, height: 420 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
         className="flex flex-col gap-4 rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack p-6 sm:p-8 w-72"
       >

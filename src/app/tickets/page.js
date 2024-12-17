@@ -10,6 +10,7 @@ import { createContext, useActionState } from "react";
 import { Caesar_Dressing } from "next/font/google";
 import { useFormStatus } from "react-dom";
 import { useState, useEffect } from "react";
+import MyMarquee from "@/components/festivalsystem/MyMarquee";
 
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],
@@ -173,7 +174,8 @@ export default function Page() {
   const formStatus = useFormStatus();
   console.log(state);
   return (
-    <>
+    <main className="pt-24">
+      <MyMarquee/>
       <Header />
       {/* wrapper komponenter ind med useContext så det kan opdatere
       indkøbskurven. */}
@@ -193,6 +195,6 @@ export default function Page() {
           </div>
         </main>
       </CartContext.Provider>
-    </>
+    </main>
   );
 }

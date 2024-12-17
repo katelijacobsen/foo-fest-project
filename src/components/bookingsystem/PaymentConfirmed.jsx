@@ -149,7 +149,7 @@ export default function PaymentConfirmed({ state }) {
                 <tr className="border-gray-600 border-l border-r border-b">
                   {state.tents.twoPeople > 0 && (
                     <td className="px-4 py-2 text-left">
-                      {state.tents.thwoPeople} To Personers Telte
+                      {state.tents.twoPeople} x To Personers Telte
                     </td>
                   )}
                   {state.tents.twoPeople > 0 && (
@@ -161,7 +161,7 @@ export default function PaymentConfirmed({ state }) {
                 <tr className="border-gray-600 border-l border-r border-b">
                   {state.tents.threePeople > 0 && (
                     <td className="px-4 py-2 text-left">
-                      {state.tents.threePeople} Tre Personers Telte
+                      {state.tents.threePeople} x Tre Personers Telte
                     </td>
                   )}
                   {state.tents.threePeople > 0 && (

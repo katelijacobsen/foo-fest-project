@@ -4,6 +4,8 @@ import CounterInput from "./CounterInput";
 import { CartContext } from "@/app/tickets/page";
 import { motion } from "framer-motion";
 import { Caesar_Dressing } from "next/font/google";
+import { FaLeaf } from "react-icons/fa6";
+import { IoIosAlert } from "react-icons/io";
 
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],
@@ -18,7 +20,8 @@ export default function Campsite({ state, formAction }) {
   const [threePersonCount, setThreePersonCount] = useState(0);
   const [selectedCampsite, setSelectedCampsite] = useState(undefined);
   const [greenCamping, setGreenCamping] = useState(false);
-  const [error, setError] = useState("");
+  const [countError, setCountError] = useState("");
+  const [handleError, setHandleError] = useState("");
 
   const [data, setData] = useState([]);
 
@@ -27,7 +30,7 @@ export default function Campsite({ state, formAction }) {
 
   useEffect(() => {
     // fetch("http://localhost:8080/available-spots")
-      fetch("https://spring-awesome-stream.glitch.me/available-spots")
+    fetch("https://spring-awesome-stream.glitch.me/available-spots")
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -39,10 +42,10 @@ export default function Campsite({ state, formAction }) {
   const allowUpdate = (delta) => {
     const numTents = twoPersonCount + threePersonCount;
     if (numTents + delta > numPeople) {
-      setError("Kære Høvding.. kun et telt til en billet.");
+      setCountError("Kære Høvding.. kun et telt til en billet.");
       return false;
     }
-    setError("");
+    setCountError("");
     return true;
   };
 
@@ -90,92 +93,154 @@ export default function Campsite({ state, formAction }) {
   };
 
   const handleNext = (formData) => {
-    // if (!selectedCampsite) {
-    //   setHandleError("Vælg venligst et campingområde, før du fortsætter.");
-    //   return;
-    // }
+    if (!selectedCampsite) {
+      setHandleError("Vælg venligst et campingområde, før du fortsætter.");
+      return;
+    }
     formData.set("campsite", selectedCampsite);
     formAction(formData);
   };
 
   return (
-    <motion.form initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }} className=" inline-flex flex-col flex-1 bg-gradient-to-tl border border-gray-500 bg-customBlack_5 p-4 m-4 rounded-md">
-      <h2 className={`${ceasarDressing.className} text-3xl text-white mb-4`}>HVOR VIL DU CAMPE?</h2>
-      <ul className="flex flex-wrap gap-4 flex-1 text-white">
-        {data.map((spot, i) => (
-          <li
-            onClick={() => updateCampsite(spot.area)}
-            key={i}
-            className={`${spot.available < numPeople && "bg-gray-300 text-gray-500 cursor-not-allowed hidden "}${
-              spot.area === selectedCampsite && "border border-green-600"
-            } bg-gradient-to-tl border border-gray-900 from-customBlack_2 to-customBlack p-2 rounded-md select-none cursor-pointer w-56`}
-          >
-            <h2 className="text-2xl font-bold">{spot.area}</h2>
-            <p>{spot.available} ledige pladser</p>
-          </li>
-        ))}
-      </ul>
-      <div className="flex flex-col justify-evenly gap-4">
-        <section>
-          <h4 className={`${ceasarDressing.className} text-3xl text-white mt-8`}>LEJE AF TELTE</h4>
-          <ul className="my-4 flex flex-col gap-6">
-            <li className=" flex-col text-white flex gap-4">
-              <div>
-                <h3 className="font-bold">2 Personers Telt</h3>
-                <p className="text-xs font-normal text-gray-300">299kr</p>
-              </div>
-              <CounterInput name="twoPeople" count={twoPersonCount} setCount={updateTwoPersonTentCount} />
-            </li>
-            <li className="flex flex-col text-white gap-4">
-              <div>
-                <h3>3 Personers Telt</h3>
-                <p className="text-xs font-normal text-gray-300">399kr</p>
-              </div>
-              <CounterInput name="threePeople" max={10} count={threePersonCount} setCount={updateThreePersonTentCount} />
-            </li>
-          </ul>
-          {/* {countError && <p className="text-red-500 text-sm mt-4">{countError}</p>} */}
-        </section>
-        <section>
-          <h3 className={`${ceasarDressing.className} text-3xl text-white`}>SUPPLEMENT</h3>
-
-          <div className="flex">
-            <div className="flex items-center h-5">
-              <input
-                id="helper-checkbox"
-                aria-describedby="helper-checkbox-text"
-                name="greenCamping"
-                type="checkbox"
-                checked={greenCamping}
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                onChange={updateGreenCamping}
-              />
-            </div>
-            <div className="ms-2 text-sm">
-              <label htmlFor="helper-checkbox" className="font-bold text-xl text-white">
-                Grøn Camping
-              </label>
-              <p id="helper-checkbox-text" className="text-xs font-normal text-gray-300">
-                + 249kr
-              </p>
-            </div>
+    <div className="flex justify-center mx-4">
+      <motion.form
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.3 }}
+        className=" inline-flex flex-col flex-1 bg-gradient-to-tl border border-gray-500 bg-customBlack_5 p-4 my-4 rounded-md"
+      >
+        <h2 className={`${ceasarDressing.className} text-3xl text-white mb-4`}>
+          HVOR VIL DU CAMPE?
+        </h2>
+        {isLoading && (
+          <div className="flex justify-center items-center">
+            <div className="loader w-12 h-12"></div>
           </div>
-        </section>
-      </div>
-      <div className="flex justify-between">
-        {/* {handleError && <p className="text-red-500">{handleError}</p>} */}
-        <button
-          className={`${
-            selectedCampsite
-              ? " font-bold py-2 rounded-sm px-8 my-8 ml-auto text-xl bg-gradient-to-bl from-customPink text-white to-customOrange text-transparent hover:transform"
-              : "bg-gray-500 rounded-sm px-8 py-2 my-8 text-xl ml-auto font-bold text-gray-300 cursor-not-allowed"
-          }`}
-          formAction={handleNext}
-          type="submit"
-        >
-          Næste
-        </button>
-      </div>
-    </motion.form>
+        )}
+        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1 text-white">
+          {data.map((spot, i) => (
+            <li
+              onClick={() => updateCampsite(spot.area)}
+              key={i}
+              className={`${
+                spot.available < numPeople &&
+                "bg-gray-300 text-gray-500 cursor-not-allowed hidden disabled:"
+              }${
+                spot.area === selectedCampsite && "border-4"
+              } bg-gradient-to-tl border border-gray-900 from-customBlack_2 to-customBlack p-2 rounded-md select-none cursor-pointer`}
+              style={{
+                borderImage:
+                  spot.area === selectedCampsite
+                    ? "linear-gradient(to right, #EC2783, #D82023 , #EC4D08) 1"
+                    : "none",
+                borderRadius: "0.375rem",
+                borderWidth: spot.area === selectedCampsite ? "2px" : "1px",
+              }}
+            >
+              <h2 className="text-2xl font-bold">{spot.area}</h2>
+              <p>{spot.available} ledige pladser</p>
+            </li>
+          ))}
+        </ul>
+
+        <div className="flex flex-col justify-evenly gap-4">
+          <section>
+            <h4
+              className={`${ceasarDressing.className} text-3xl text-white mt-8`}
+            >
+              LEJE AF TELTE
+            </h4>
+            <ul className="my-4 inline-flex flex-col gap-6">
+              <li className=" flex-row text-white flex gap-12 bg-gradient-to-tl border border-gray-900 from-customBlack_2 to-customBlack p-4 rounded-md">
+                <div>
+                  <h3 className="font-bold text-xl">2 Personers Telt</h3>
+                  <p className="text-xs font-normal text-gray-300">299kr</p>
+                </div>
+                <CounterInput
+                  name="twoPeople"
+                  count={twoPersonCount}
+                  setCount={updateTwoPersonTentCount}
+                />
+              </li>
+              <li className="flex flex-row text-white gap-12  bg-gradient-to-tl border border-gray-900 from-customBlack_2 to-customBlack p-4 rounded-md">
+                <div>
+                  <h3 className="font-bold text-xl">3 Personers Telt</h3>
+                  <p className="text-xs font-normal text-gray-300">399kr</p>
+                </div>
+                <CounterInput
+                  name="threePeople"
+                  max={10}
+                  count={threePersonCount}
+                  setCount={updateThreePersonTentCount}
+                />
+              </li>
+            </ul>
+            {countError && (
+              <p className="text-red-500 flex items-center gap-2">
+                <IoIosAlert size={36} /> {countError}
+              </p>
+            )}
+          </section>
+          <section>
+            <h3
+              className={`${ceasarDressing.className} text-3xl text-white mb-4`}
+            >
+              SUPPLEMENT
+            </h3>
+
+            <div className="flex items-center p-4 rounded-md bg-gradient-to-tl border border-green-800 from-black to-green-900">
+              <div className="flex h-5">
+                <input
+                  id="helper-checkbox"
+                  aria-describedby="helper-checkbox-text"
+                  name="greenCamping"
+                  type="checkbox"
+                  checked={greenCamping}
+                  className="w-6 h-6 bg-gray-100 border-gray-300 rounded-full focus:ring-green-500 dark:ring-offset-gray-800 focus:ring-2 checked:bg-green-600 checked:border-green-600"
+                  onChange={updateGreenCamping}
+                />
+              </div>
+              <div className="ms-2 text-sm">
+                <label
+                  htmlFor="helper-checkbox"
+                  className="font-bold inline-flex gap-2 items-baseline text-xl text-white"
+                >
+                  Grøn Camping <FaLeaf className="text-green-400" />
+                </label>
+                <p
+                  id="helper-checkbox-text"
+                  className="text-xs font-normal text-gray-300"
+                >
+                  249kr
+                </p>
+                <p className="font-light text-sm text-gray-100 w-64">
+                  Perfekt til dig, der ønsker en mere miljøvenlig
+                  festivaloplevelse.
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div className="flex flex-col items-end">
+          {handleError && (
+            <p className="text-red-500 flex items-center gap-2">
+              <IoIosAlert size={36} />
+              {handleError}
+            </p>
+          )}
+          <button
+            className={`${
+              selectedCampsite
+                ? " font-bold py-2 rounded-sm px-8 my-8 ml-auto text-xl bg-gradient-to-bl from-customPink text-white to-customOrange text-transparent hover:transform"
+                : "bg-gray-500 rounded-sm px-8 py-2 my-8 text-xl ml-auto font-bold text-gray-300 cursor-not-allowed"
+            }`}
+            formAction={handleNext}
+            type="submit"
+          >
+            Næste
+          </button>
+        </div>
+      </motion.form>
+    </div>
   );
 }

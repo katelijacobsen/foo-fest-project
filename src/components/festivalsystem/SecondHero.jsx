@@ -3,6 +3,7 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef } from "react";
 import { Caesar_Dressing } from "next/font/google";
+import { FaArrowDown } from "react-icons/fa6";
 
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],

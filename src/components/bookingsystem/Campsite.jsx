@@ -13,7 +13,7 @@ const ceasarDressing = Caesar_Dressing({
 
 export default function Campsite({ state, formAction }) {
   const [spots, setSpots] = useState([]);
-  const setCart = useContext(CartContext);
+  const [cart, setCart] = useContext(CartContext);
   const [twoPersonCount, setTwoPersonCount] = useState(0);
   const [threePersonCount, setThreePersonCount] = useState(0);
   const [selectedCampsite, setSelectedCampsite] = useState(undefined);
@@ -39,10 +39,10 @@ export default function Campsite({ state, formAction }) {
   const allowUpdate = (delta) => {
     const numTents = twoPersonCount + threePersonCount;
     if (numTents + delta > numPeople) {
-      setCountError("Kære Høvding.. kun et telt til en billet.");
+      setError("Kære Høvding.. kun et telt til en billet.");
       return false;
     }
-    setCountError("");
+    setError("");
     return true;
   };
 
@@ -84,19 +84,16 @@ export default function Campsite({ state, formAction }) {
     setCart((prev) => {
       return {
         ...prev,
-        tents: {
-          ...prev.tents,
-          greenCamping: e.target.checked,
-        },
+        greenCamping: e.target.checked,
       };
     });
   };
 
   const handleNext = (formData) => {
-    if (!selectedCampsite) {
-      setHandleError("Vælg venligst et campingområde, før du fortsætter.");
-      return;
-    }
+    // if (!selectedCampsite) {
+    //   setHandleError("Vælg venligst et campingområde, før du fortsætter.");
+    //   return;
+    // }
     formData.set("campsite", selectedCampsite);
     formAction(formData);
   };
@@ -137,7 +134,7 @@ export default function Campsite({ state, formAction }) {
               <CounterInput name="threePeople" max={10} count={threePersonCount} setCount={updateThreePersonTentCount} />
             </li>
           </ul>
-          {countError && <p className="text-red-500 text-sm mt-4">{countError}</p>}
+          {/* {countError && <p className="text-red-500 text-sm mt-4">{countError}</p>} */}
         </section>
         <section>
           <h3 className={`${ceasarDressing.className} text-3xl text-white`}>SUPPLEMENT</h3>
@@ -166,7 +163,7 @@ export default function Campsite({ state, formAction }) {
         </section>
       </div>
       <div className="flex justify-between">
-        {handleError && <p className="text-red-500">{handleError}</p>}
+        {/* {handleError && <p className="text-red-500">{handleError}</p>} */}
         <button
           className={`${
             selectedCampsite

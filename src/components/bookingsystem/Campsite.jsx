@@ -20,6 +20,22 @@ export default function Campsite({ state, formAction }) {
   const [greenCamping, setGreenCamping] = useState(false);
   const [error, setError] = useState("");
 
+  const [data, setData] = useState([]);
+
+  // skal bruges til når vi tilføjer loading https://nextjs.org/docs/pages/building-your-application/data-fetching/client-side
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/available-spots")
+      // fetch("https://spring-awesome-stream.glitch.me/available-spots")
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+        setLoading(false);
+      });
+  }, []);
+
+  const numPeople = state.tickets.single + state.tickets.vip;
   const allowUpdate = (delta) => {
     const numTents = twoPersonCount + threePersonCount;
     if (numTents + delta > numPeople) {
@@ -86,21 +102,14 @@ export default function Campsite({ state, formAction }) {
   };
 
   return (
-    <motion.form
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.3 }}
-      className=" inline-flex flex-col flex-1 bg-gradient-to-tl border border-gray-500 bg-customBlack_5 p-4 m-4 rounded-md"
-    >
-      <h2 className={`${ceasarDressing.className} text-3xl text-white mb-4`}>
-        HVOR VIL DU CAMPE?
-      </h2>
+    <motion.form initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }} className=" inline-flex flex-col flex-1 bg-gradient-to-tl border border-gray-500 bg-customBlack_5 p-4 m-4 rounded-md">
+      <h2 className={`${ceasarDressing.className} text-3xl text-white mb-4`}>HVOR VIL DU CAMPE?</h2>
       <ul className="flex flex-wrap gap-4 flex-1 text-white">
         {data.map((spot, i) => (
           <li
             onClick={() => updateCampsite(spot.area)}
             key={i}
-            className={`${spot.available < numPeople && "bg-gray-300 text-gray-500 cursor-not-allowed"}${
+            className={`${spot.available < numPeople && "bg-gray-300 text-gray-500 cursor-not-allowed hidden "}${
               spot.area === selectedCampsite && "border border-green-600"
             } bg-gradient-to-tl border border-gray-900 from-customBlack_2 to-customBlack p-2 rounded-md select-none cursor-pointer w-56`}
           >
@@ -111,11 +120,7 @@ export default function Campsite({ state, formAction }) {
       </ul>
       <div className="flex flex-col justify-evenly gap-4">
         <section>
-          <h4
-            className={`${ceasarDressing.className} text-3xl text-white mt-8`}
-          >
-            LEJE AF TELTE
-          </h4>
+          <h4 className={`${ceasarDressing.className} text-3xl text-white mt-8`}>LEJE AF TELTE</h4>
           <ul className="my-4 flex flex-col gap-6">
             <li className=" flex-col text-white flex gap-4">
               <div>
@@ -132,9 +137,7 @@ export default function Campsite({ state, formAction }) {
               <CounterInput name="threePeople" max={10} count={threePersonCount} setCount={updateThreePersonTentCount} />
             </li>
           </ul>
-          {countError && (
-            <p className="text-red-500 text-sm mt-4">{countError}</p>
-          )}
+          {countError && <p className="text-red-500 text-sm mt-4">{countError}</p>}
         </section>
         <section>
           <h3 className={`${ceasarDressing.className} text-3xl text-white`}>SUPPLEMENT</h3>
@@ -155,10 +158,7 @@ export default function Campsite({ state, formAction }) {
               <label htmlFor="helper-checkbox" className="font-bold text-xl text-white">
                 Grøn Camping
               </label>
-              <p
-                id="helper-checkbox-text"
-                className="text-xs font-normal text-gray-300"
-              >
+              <p id="helper-checkbox-text" className="text-xs font-normal text-gray-300">
                 + 249kr
               </p>
             </div>

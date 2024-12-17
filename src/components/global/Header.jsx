@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Caesar_Dressing } from "next/font/google";
 import Image from "next/image";
+
 import Logo from "@/img/svg/Logo.svg";
 import PrimaryButton from "@/components/global/buttonFolder/PrimaryButton";
 
@@ -21,35 +22,31 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="flex justify-between items-center fixed z-30 top-0 p-4 w-full">
-        <div className="list-none backdrop-blur-[2px] bg-gradient-to-b from-customBlack to-transparent">
-          {/* <Link href="/">
+      <nav className="fixed z-30 top-0 w-full">
+        <div className="flex py-2 px-4 justify-between items-center w-full list-none backdrop-blur-[2px] bg-gradient-to-b from-customBlack to-transparent">
+          <Link href="/">
             <Image src={Logo} width={100} height={100} alt="foofest logo" />
-          </Link> */}
-          <div>
-            <Link href="/">
-              <Image src={Logo} width={120} height={120} alt="foofest logo" />
-            </Link>
-          </div>
-          <div>
-            <ul className="hidden md:flex md:gap-6 space-x-4 justify-between items-center">
-              <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
-                <Link href="/program">Program</Link>
-              </li>
-              <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
-                <Link href="/lineup">Line-Up</Link>
-              </li>
-              <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
-                <Link href="/camping">Camping</Link>
-              </li>
-              <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
-                <Link href="/volunteer">Bliv Frivillig</Link>
-              </li>
-              <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Køb billetter">
-                <Link href="/tickets" />
-              </PrimaryButton>
-            </ul>
-          </div>
+          </Link>
+
+          <ul className="hidden md:flex md:gap-6 space-x-4 justify-between items-center">
+            <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
+              <Link href="/program">Program</Link>
+            </li>
+            <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
+              <Link href="/lineup">Line-Up</Link>
+            </li>
+            <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
+              <Link href="/camping">Camping</Link>
+            </li>
+            <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
+              <Link href="/volunteer">Bliv Frivillig</Link>
+            </li>
+            <li>
+              <Link href="/tickets">
+                <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Køb billetter" />
+              </Link>
+            </li>
+          </ul>
         </div>
 
         {/* Burger-menu for små skærme */}
@@ -89,13 +86,11 @@ const Header = () => {
                   BLIV FRIVILLIG
                 </Link>
               </li>
-              <li>
-                <button>
-                  <Link className={`${ceasarDressing.className} text-4xl hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent`} href="/tickets">
-                    Køb billetter
-                  </Link>
-                </button>
-              </li>
+              <button>
+                <Link href="/tickets" className={`${ceasarDressing.className} text-4xl hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent`}>
+                  Køb billetter
+                </Link>
+              </button>
             </ul>
           </div>
         )}

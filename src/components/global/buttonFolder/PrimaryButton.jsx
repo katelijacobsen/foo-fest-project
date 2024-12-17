@@ -1,9 +1,9 @@
 "use client";
 import { motion } from "motion/react";
-const Button = ({ buttonContent, color, aria_label_text }) => {
+const Button = ({ buttonContent, color, aria_label_text, type }) => {
   return (
     <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-      <button aria-label={aria_label_text} type="button" className={`rounded-sm px-8 py-3 text-customWhite  ${color}   w-fit`}>
+      <button aria-label={aria_label_text} type={type} className={`rounded-sm px-8 py-3 text-customWhite  ${color}   w-fit`}>
         {buttonContent}
       </button>
     </motion.div>

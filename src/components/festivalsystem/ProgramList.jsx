@@ -66,7 +66,7 @@ function ProgramList({ mergedArray, days }) {
             </div>
             <section className="p-2 md:px-6 md:py-12 z-0">
               <div className="grid md:grid-cols-[.5fr_1fr] mb-20">
-                <div className="sticky top-24 md:top-28 self-start z-10 bg-gradient-to-bl from-customBlack to-transparent w-fit px-2 py-2">
+                <div className="sticky top-[120px] md:top-28 self-start z-10 bg-gradient-to-bl from-customBlack to-transparent w-fit px-2 py-2">
                   <h2 className={`${ceasarDressing.className} text-3xl md:text-4xl`}>MIDGARD</h2>
                 </div>
                 <div className="grid grid-cols-2 gap-4 ">
@@ -77,7 +77,7 @@ function ProgramList({ mergedArray, days }) {
                 </div>
               </div>
               <div className="grid md:grid-cols-[.5fr_1fr] mb-20">
-                <div className="sticky top-24 md:top-28 self-start z-10 bg-gradient-to-bl from-customBlack to-transparent w-fit px-2 py-2">
+                <div className="sticky top-[120px] md:top-28 self-start z-10 bg-gradient-to-bl from-customBlack to-transparent w-fit px-2 py-2">
                   <h2 className={`${ceasarDressing.className}  text-3xl md:text-4xl`}>VANAHEIM</h2>
                 </div>
                 <div className="grid grid-cols-2 gap-4 ">
@@ -87,7 +87,7 @@ function ProgramList({ mergedArray, days }) {
                 </div>
               </div>
               <div className="grid md:grid-cols-[.5fr_1fr] mb-20">
-                <div className="sticky top-24 md:top-28 self-start z-10 bg-gradient-to-bl from-customBlack to-transparent w-fit px-2 py-2">
+                <div className="sticky top-[120px] md:top-28 self-start z-10 bg-gradient-to-bl from-customBlack to-transparent w-fit px-2 py-2">
                   <h2 className={`${ceasarDressing.className}  text-3xl md:text-4xl`}>JOTUNHEIM</h2>
                 </div>
                 <div className="grid grid-cols-2 gap-4 ">

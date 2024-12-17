@@ -18,7 +18,7 @@ const SingleBand = ({ band }) => {
   const imageUrl = logo && (logo.startsWith("https://") || logo.startsWith("http://")) ? logo : `https://spring-awesome-stream.glitch.me/logos/${logo}`;
 
   return (
-    <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1 }} animate={{ y: -40 }}>
+    <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.5 }} animate={{ y: -40 }}>
       <section className="my-40 md:px-4 md:mt-48 max-w-screen-xl mx-auto">
         <BackButton aria_label_text="back to previous page" />
         <div className="grid md:grid-cols-[1fr_1fr] max-w-screen-xl mx-auto md:gap-10">

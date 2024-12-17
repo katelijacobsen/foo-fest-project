@@ -33,9 +33,6 @@ export default function Campsite({ state, formAction }) {
       });
   }, []);
 
-  // if (isLoading) return <p>Loading...</p>
-  // if (!data) return <p>No profile data</p>
-
   const numPeople = state.tickets.single + state.tickets.vip;
   const allowUpdate = (delta) => {
     const numTents = twoPersonCount + threePersonCount;
@@ -103,7 +100,7 @@ export default function Campsite({ state, formAction }) {
           <li
             onClick={() => updateCampsite(spot.area)}
             key={i}
-            className={`${spot.available < numPeople && "bg-gray-300 text-gray-500 cursor-not-allowed"}${
+            className={`${spot.available < numPeople && "bg-gray-300 text-gray-500 cursor-not-allowed hidden "}${
               spot.area === selectedCampsite && "border border-green-600"
             }  bg-gradient-to-tl border border-gray-900 from-customBlack_2 to-customBlack p-2 rounded-md select-none cursor-pointer`}
           >

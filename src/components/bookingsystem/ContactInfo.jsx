@@ -1,6 +1,4 @@
-import PrimaryBtn from "@/components/global/buttonFolder/SecondButton";
-import { motion } from "framer-motion";
-import { useEffect } from "react";
+"use client";
 
 export default function ContactInfo({ tickets, formAction }) {
   return (
@@ -14,44 +12,39 @@ export default function ContactInfo({ tickets, formAction }) {
           <ContactForm key={i} i={i} ticketType="vip" />
         ))}
       </fieldset>
+
       <button formAction={formAction}>Næste</button>
     </form>
   );
 }
 
-function ContactForm({i, ticketType}) {
+function ContactForm({ i, ticketType }) {
   return (
     <div>
       {ticketType === "single" && <h2 className="font-bold text-xl">Enkelt Billet</h2>}
       {ticketType === "vip" && <h2>VIP Billet</h2>}
       <div className="mb-2.5">
-        <label
-          htmlFor={`${ticketType}_firstName_${i}`}
-          className="block text-sm font-medium text-white "
-        >
+        <label htmlFor={`${ticketType}_firstName_${i}`} className="block text-sm font-medium text-white ">
           Fornavn
         </label>
         <input
           name={`${ticketType}_firstName_${i}`}
           type="text"
           placeholder="Joe"
-          autoComplete="name"
+          autoComplete="given-name"
           required
           className="bg-gray-100 border border-gray-200 text-gray-900 text-sm rounded-md w-full p-2.5 focus:outline-none focus:ring-2 valid:[&:not(:placeholder-shown):not(:focus)]:bg-green-50 valid:[&:not(:placeholder-shown):not(:focus)]:border-green-500 valid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-green-500 invalid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-red-50 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
         />
       </div>
       <div className="mb-2.5">
-        <label
-          htmlFor={`${ticketType}_lastName_${i}`}
-          className="block text-sm font-medium text-white "
-        >
+        <label htmlFor={`${ticketType}_lastName_${i}`} className="block text-sm font-medium text-white ">
           Efternavn
         </label>
         <input
           name={`${ticketType}_lastName_${i}`}
           type="text"
           placeholder="Doe"
-          autoComplete="name"
+          autoComplete="family-name"
           required
           className="bg-gray-100 border border-gray-200 text-gray-900 text-sm rounded-md w-full p-2.5 focus:outline-none focus:ring-2 valid:[&:not(:placeholder-shown):not(:focus)]:bg-green-50 valid:[&:not(:placeholder-shown):not(:focus)]:border-green-500 valid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-green-500 invalid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-red-50 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
         />
@@ -59,7 +52,7 @@ function ContactForm({i, ticketType}) {
       <div className="mb-2.5">
         <label htmlFor={`${ticketType}_email_${i}`}>Email</label>
         <input
-        className="bg-gray-100 border border-gray-200 text-gray-900 text-sm rounded-md w-full p-2.5 focus:outline-none focus:ring-2 valid:[&:not(:placeholder-shown):not(:focus)]:bg-green-50 valid:[&:not(:placeholder-shown):not(:focus)]:border-green-500 valid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-green-500 invalid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-red-50 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
+          className="bg-gray-100 border border-gray-200 text-gray-900 text-sm rounded-md w-full p-2.5 focus:outline-none focus:ring-2 valid:[&:not(:placeholder-shown):not(:focus)]:bg-green-50 valid:[&:not(:placeholder-shown):not(:focus)]:border-green-500 valid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-green-500 invalid:[&:not(:placeholder-shown):not(:focus)]:focus:ring-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:bg-red-50 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
           name={`${ticketType}_email_${i}`}
           type="email"
           placeholder="joedoe@example.com"

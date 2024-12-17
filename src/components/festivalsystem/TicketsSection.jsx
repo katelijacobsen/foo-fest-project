@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const TicketsSection = () => {
   return (
-    <section className="h-[70vh] md:h-screen grid place-content-center px-4">
+    <section className="h-[80vh] md:h-screen md:mt-16 grid place-content-center px-4">
       <div className="grid gap-4  max-w-screen-xl mx-auto">
         <Image className="justify-self-center" srcSet={`${Tickets} 320w, ${Tickets} 680w, ${Tickets} 960w, ${Tickets} 1980w`} src={Tickets} alt="billetter" />
         <div>

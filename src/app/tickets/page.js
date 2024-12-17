@@ -10,7 +10,7 @@ import { createContext, useActionState } from "react";
 import { Caesar_Dressing } from "next/font/google";
 import { useFormStatus } from "react-dom";
 import { useState, useEffect } from "react";
-
+import Header from "@/components/global/Header";
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],
   weight: "400",
@@ -24,7 +24,8 @@ const ceasarDressing = Caesar_Dressing({
 const defaultState = {
   step: 0,
   tickets: {
-    single: 1,
+    single: 0,
+    vip: 0,
   },
   campsite: undefined,
   tents: {
@@ -169,7 +170,7 @@ export default function Page() {
   // F.eks. har vi givet state vider til campsite. Ligesom en filmappe struktur prøver den at finde antal af billetter vi tidliger har
   // valgt, og bruger det samme antal telte-billetter brugern må bruge.
   const [state, formAction] = useActionState(handleStep, defaultState);
-
+  const formStatus = useFormStatus();
   console.log(state);
   return (
     <>

@@ -26,28 +26,30 @@ const Header = () => {
           {/* <Link href="/">
             <Image src={Logo} width={100} height={100} alt="foofest logo" />
           </Link> */}
-
-          <Link href="/">
-            <Image src={Logo} width={120} height={120} alt="foofest logo" />
-          </Link>
-
-          <ul className="hidden md:flex md:gap-6 space-x-4 justify-between items-center">
-            <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
-              <Link href="/program">Program</Link>
-            </li>
-            <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
-              <Link href="/lineup">Line-Up</Link>
-            </li>
-            <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
-              <Link href="/camping">Camping</Link>
-            </li>
-            <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
-              <Link href="/volunteer">Bliv Frivillig</Link>
-            </li>
-            <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Køb billetter">
-              <Link href="/tickets" />
-            </PrimaryButton>
-          </ul>
+          <div>
+            <Link href="/">
+              <Image src={Logo} width={120} height={120} alt="foofest logo" />
+            </Link>
+          </div>
+          <div>
+            <ul className="hidden md:flex md:gap-6 space-x-4 justify-between items-center">
+              <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
+                <Link href="/program">Program</Link>
+              </li>
+              <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
+                <Link href="/lineup">Line-Up</Link>
+              </li>
+              <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
+                <Link href="/camping">Camping</Link>
+              </li>
+              <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
+                <Link href="/volunteer">Bliv Frivillig</Link>
+              </li>
+              <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Køb billetter">
+                <Link href="/tickets" />
+              </PrimaryButton>
+            </ul>
+          </div>
         </div>
 
         {/* Burger-menu for små skærme */}

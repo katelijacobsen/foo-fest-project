@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Caesar_Dressing } from "next/font/google";
 import Image from "next/image";
-// import Logo from "@/img/fooFestLogo.png";
+import Logo from "@/img/svg/Logo.svg";
 import PrimaryButton from "@/components/global/buttonFolder/PrimaryButton";
 
 const ceasarDressing = Caesar_Dressing({
@@ -21,15 +21,12 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="flex justify-between items-center bg-gradient-to-b from-customBlack to-transparent fixed z-30 top-0 p-4 w-full">
-        <div className="list-none">
-          {/* <Link href="/">
-            <Image src={Logo} width={100} height={100} alt="foofest logo" />
-          </Link> */}
+      <nav className="flex justify-between sticky z-10 top-0 p-4">
+        <li className="list-none">
           <Link href="/">
-            <p>Logo</p>
+            <Image src={Logo} width={120} height={120} alt="foofest logo" />
           </Link>
-        </div>
+        </li>
         <ul className="hidden md:flex md:gap-6 space-x-4 justify-between items-center">
           <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
             <Link href="/program">Program</Link>
@@ -43,11 +40,9 @@ const Header = () => {
           <li className="hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent">
             <Link href="/volunteer">Bliv Frivillig</Link>
           </li>
-          <li>
-            <Link href="/tickets">
-              <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Køb billetter" />
-            </Link>
-          </li>
+          <PrimaryButton color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Køb billetter">
+            <Link href="/tickets" />
+          </PrimaryButton>
         </ul>
 
         {/* Burger-menu for små skærme */}
@@ -87,11 +82,13 @@ const Header = () => {
                   BLIV FRIVILLIG
                 </Link>
               </li>
+              <li>
               <button>
-                <Link href="/tickets" className={`${ceasarDressing.className} text-4xl hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent`}>
+                <Link className={`${ceasarDressing.className} text-4xl hover:bg-gradient-to-bl hover:from-customPink hover:to-customOrange hover:bg-clip-text hover:text-transparent`} href="/tickets">
                   Køb billetter
                 </Link>
               </button>
+              </li>
             </ul>
           </div>
         )}

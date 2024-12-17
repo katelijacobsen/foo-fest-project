@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import { Caesar_Dressing } from "next/font/google";
-
+import { motion } from "framer-motion";
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],
   weight: "400",
@@ -46,11 +46,20 @@ const PaymentForm = ({ formAction, router }) => {
 
   return (
     <>
-      <p className="bg-customRed text-black w-full text-center text-xl sm:text-2xl font-bold">
-        {mins} : {String(secs).padStart(2, "0")}
-      </p>
-      <div className=" border border-gray-600 p-4 sm:p-8 rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack m-4">
-        <h2 className={`${ceasarDressing.className} text-2xl sm:text-3xl my-4 text-left`}>BETALINGSKORT</h2>
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.3 }}
+        className=" border border-gray-600 p-4 sm:p-8 rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack m-4"
+      >
+        <p className="bg-gradient-to-bl rounded-sm from-customPink text-white to-customOrange w-full text-center text-xl sm:text-2xl font-bold">
+          {mins} : {String(secs).padStart(2, "0")}
+        </p>
+        <h2
+          className={`${ceasarDressing.className} text-2xl sm:text-3xl my-4 text-left`}
+        >
+          BETALINGSKORT
+        </h2>
 
         <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center p-4 sm:p-8 gap-4">
           <div className="flex-shrink-0">
@@ -81,12 +90,15 @@ const PaymentForm = ({ formAction, router }) => {
                 <input className="p-2 rounded-md w-full text-black border-2 focus:ring focus:ring-customRed" name="cvc" value={state.cvc} onChange={handleInputChange} onFocus={handleInputFocus} required placeholder="CVC" type="number" />
               </div>
             </div>
-            <button formAction={formAction} className="bg-red-500 p-4 rounded-md text-white font-bold w-full sm:w-auto">
+            <button
+              formAction={formAction}
+              className="font-bold px-8 py-2 my-8 text-xl rounded-sm bg-gradient-to-bl from-customPink text-white to-customOrange w-full sm:w-auto"
+            >
               Afslut & Betal
             </button>
           </form>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

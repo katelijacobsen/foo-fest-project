@@ -10,8 +10,8 @@ const LineUpList = ({ mergedData }) => {
 
   // Sortér bands alfabetisk efter navn
   useEffect(() => {
-    const sortedBands = [...mergedData].sort((a, b) => a.name.localeCompare(b.name));
-    setBands(sortedBands);
+    const sortedBandsAlphabetic = [...mergedData].sort((a, b) => a.name.localeCompare(b.name));
+    setBands(sortedBandsAlphabetic);
   }, [mergedData]);
 
   return (

@@ -10,7 +10,7 @@ import { createContext, useActionState } from "react";
 import { Caesar_Dressing } from "next/font/google";
 import { useFormStatus } from "react-dom";
 import { useState, useEffect } from "react";
-import Header from "@/components/global/Header";
+
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],
   weight: "400",

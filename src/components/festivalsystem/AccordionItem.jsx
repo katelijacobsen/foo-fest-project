@@ -10,7 +10,7 @@ const Accordionitem = ({ isOpen, setIsOpen, questionOne, questionTwo, questionTh
         }}
         className="flex items-center justify-between border-white w-full border-b-2"
       >
-        <div>
+        <div className="pb-1 text-left">
           <p className="text-base md:text-lg">{questionOne}</p>
           <p className="text-base md:text-lg">{questionTwo}</p>
           <p className="text-base md:text-lg">{questionThree}</p>
@@ -19,7 +19,7 @@ const Accordionitem = ({ isOpen, setIsOpen, questionOne, questionTwo, questionTh
         <div>{isOpen == item ? <FiMinus className="place-items-center w-5 h-5 text-white" /> : <GoPlus className=" w-5 h-5 text-white" />}</div>
       </button>
       {isOpen == item && (
-        <div>
+        <div className="pt-1">
           <p className="text-base md:text-lg text-customWhite_3"> {textOne}</p>
           <p className="text-base md:text-lg text-customWhite_3"> {textTwo}</p>
           <p className="text-base md:text-lg text-customWhite_3"> {textThree}</p>

@@ -7,9 +7,10 @@ import MotionWhileInView from "@/components/festivalsystem/MotionWhileInView";
 import Footer from "@/components/global/Footer";
 import TicketsSection from "@/components/festivalsystem/TicketsSection";
 import dynamic from "next/dynamic";
+// import ThirdHero from "@/components/festivalsystem/ThirdHero";
 
 //lazyloading af herosection
-const HeroSection = dynamic(() => import("@/components/festivalsystem/SecondHero"));
+const HeroSection = dynamic(() => import("@/components/festivalsystem/ThirdHero"));
 const ProgramForCurrentDay = dynamic(() => import("@/components/festivalsystem/ProgramForCurrentDay"));
 
 export default async function Home() {
@@ -61,7 +62,8 @@ export default async function Home() {
   return (
     <div>
       <Header />
-      <HeroSection />
+      {/* <HeroSection /> */}
+      <HeroSection text="FOOFEST" />
       <TicketsSection />
       <LineupListReadMore initialLineup={bands} />
       <ProgramForCurrentDay mergedArray={mergedData} days={days} />

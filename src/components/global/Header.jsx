@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="flex justify-between items-center bg-gradient-to-b from-customBlack to-transparent fixed z-30 top-0 p-4 w-full">
+      <nav className="flex justify-between items-center backdrop-blur-[2px] bg-gradient-to-b from-customBlack to-transparent fixed z-30 top-0 p-4 w-full">
         <div className="list-none">
           {/* <Link href="/">
             <Image src={Logo} width={100} height={100} alt="foofest logo" />

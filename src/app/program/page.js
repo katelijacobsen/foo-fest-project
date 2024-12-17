@@ -1,8 +1,7 @@
 import React from "react";
 import ProgramList from "@/components/festivalsystem/ProgramList";
 import Header from "@/components/global/Header";
-import Headline from "@/components/global/Headline";
-import MusicRune from "@/img/svg/music_rune.svg";
+
 import Footer from "@/components/global/Footer";
 import { Caesar_Dressing } from "next/font/google";
 
@@ -77,10 +76,7 @@ async function Page() {
     <>
       <Header />
       <main>
-        <section className="max-w-screen-xl mx-auto mb-6">
-          <div className="mt-24 mb-10 pl-4 ">
-            <Headline src={MusicRune} text="PROGRAM" size="text-5xl md:text-6xl" width={40} height={40} />
-          </div>
+        <section className="max-w-screen-xl mx-auto mb-6 mt-40">
           <ProgramList mergedArray={mergedData} days={days} />
         </section>
       </main>

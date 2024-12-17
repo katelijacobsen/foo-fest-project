@@ -1,12 +1,18 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+
+//komponenter
 import BandCard from "./BandCard";
 import Headline from "../global/Headline";
-import MusicRune from "@/img/svg/music_rune.svg";
 import PrimaryButton from "@/components/global/buttonFolder/PrimaryButton";
-import Link from "next/link";
+
+//ikoner
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa6";
+import MusicRune from "@/img/svg/music_rune.svg";
+
+//font
 import { Caesar_Dressing } from "next/font/google";
 
 const ceasarDressing = Caesar_Dressing({
@@ -18,6 +24,7 @@ const ceasarDressing = Caesar_Dressing({
 const ProgramForCurrentDay = ({ mergedArray }) => {
   const [currentDay, setCurrentDay] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+
   //useRef bruges til knapper til scrollcontainer, da vi ønsker at ændre DOM'en elementet (scrollcontaineren) direkte
   const scrollContainerRef1 = useRef(null);
   const scrollContainerRef2 = useRef(null);
@@ -47,7 +54,7 @@ const ProgramForCurrentDay = ({ mergedArray }) => {
   };
 
   return (
-    <section className="py-6 px-4 max-w-screen-xl mx-auto">
+    <section className="my-24 py-6 px-4 max-w-screen-xl mx-auto">
       <div>
         <Headline width={45} height={45} src={MusicRune} size="text-5xl md:text-6xl" text="DAGENS PROGRAM" />
       </div>
@@ -55,7 +62,7 @@ const ProgramForCurrentDay = ({ mergedArray }) => {
         <div className="py-6">
           <h1 className={`${ceasarDressing.className} pb-4 text-3xl md:text-5xl`}>MIDGARD</h1>
           <div className="overflow-x-auto" ref={scrollContainerRef1}>
-            <div className="flex gap-2">
+            <div className="flex gap-4">
               {sortedByTime("Midgard").map((band) => (
                 <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} width="min-w-72" />
               ))}
@@ -73,7 +80,7 @@ const ProgramForCurrentDay = ({ mergedArray }) => {
         <div className="py-6">
           <h1 className={`${ceasarDressing.className} pb-4 text-3xl md:text-5xl`}>VANAHEIM</h1>
           <div className="overflow-x-auto" ref={scrollContainerRef2}>
-            <div className="flex gap-2">
+            <div className="flex gap-4">
               {sortedByTime("Vanaheim").map((band) => (
                 <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} width="min-w-72" />
               ))}
@@ -91,7 +98,7 @@ const ProgramForCurrentDay = ({ mergedArray }) => {
         <div className="py-6">
           <h1 className={`${ceasarDressing.className} pb-4 text-3xl md:text-5xl`}>JOTUNHEIM</h1>
           <div className="overflow-x-auto" ref={scrollContainerRef3}>
-            <div className="flex gap-2">
+            <div className="flex gap-4">
               {sortedByTime("Jotunheim").map((band) => (
                 <BandCard slug={band.slug} src={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logo={band.logo} logoCredits={band.logoCredits} scene={band.scene} width="min-w-72" />
               ))}

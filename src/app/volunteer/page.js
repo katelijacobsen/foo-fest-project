@@ -12,8 +12,8 @@ export default async function Page() {
   return (
     <>
       <Header />
-      <main className="mt-24">
-        <section className="p-4 max-w-screen-xl mx-auto">
+      <main>
+        <section className="p-4 max-w-screen-xl mx-auto mt-20 md:mt-24">
           <div className="grid gap-4 md:grid-cols-2 ">
             <div>
               <Headline src={VolunteerRune} text="BLIV FRIVILLIG" size="text-5xl md:text-6xl" width={45} height={45} />

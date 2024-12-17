@@ -129,7 +129,7 @@ export default function Campsite({ state, formAction }) {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.3 }}
-      className=" inline-flex flex-col flex-1 bg-gradient-to-tl border border-gray-500 from-customBlack to-customBlack_2 p-4 m-4 rounded-md"
+      className=" inline-flex flex-col flex-1 bg-gradient-to-tl border border-gray-500 bg-customBlack_5 p-4 m-4 rounded-md"
     >
       <h2 className={`${ceasarDressing.className} text-3xl text-white mb-4`}>
         HVOR VIL DU CAMPE?

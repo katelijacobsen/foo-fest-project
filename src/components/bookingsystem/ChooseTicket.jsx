@@ -15,7 +15,7 @@ export default function ChooseTicket({ cart, formAction }) {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
-      className="relative z-10 bg-gradient-to-tl from-customBlack_6 to-customBlack border border-gray-500 rounded-lg m-4 grid grid-rows-2 gap-4 w-full"
+      className="relative z-10 bg-customBlack_5 border border-customBlack_2 rounded-lg m-4 grid grid-rows-2 gap-4 w-full"
     >
       <motion.div
         className="flex flex-col items-center row-span-1"
@@ -47,7 +47,7 @@ export default function ChooseTicket({ cart, formAction }) {
           border={`absolute inset-[-1000%] animate-[spin_3s_linear_infinite] dark:bg-[conic-gradient(from_90deg_at_50%_50%,#141415_0%,#A82023_50%,#141415_100%)] bg-[conic-gradient(from_90deg_at_50%_50%,#52525B_0%,#D4D4DA_50%,#52525B_100%)]`}
         />
       </motion.div>
-      <div className="w-full mt-4 md:mt-0 md:w-auto row-span-1 place-self-end md:m-4">
+      <div className="w-full mt-4 md:mt-0 md:w-auto row-span-2 sm:col-span-2 place-self-end md:m-4">
         <button
           type="submit"
           formAction={formAction}

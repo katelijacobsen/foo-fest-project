@@ -33,7 +33,7 @@ export default function ContactInfo({ tickets, formAction }) {
           <ContactForm key={i} i={i} ticketType="single" />
         ))}
         <div className="relative z-10 group rounded-xl inline-block p-[2px] overflow-hidden shadow-lg">
-          <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#EC2783_0%,#141415_50%,#EC2783_100%)]" />
+          <span className="absolute inset-[-1000%] animate-[spin_7s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#EC2783_0%,#141415_50%,#EC2783_100%)]" />
           <div className="relative bg-gradient-to-tl from-customBlack_2 to-customBlack z-0 rounded-xl">
             <div className="rounded-xl overflow-hidden">
               {Array.from({ length: tickets.vip }, (_, i) => (

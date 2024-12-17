@@ -16,6 +16,9 @@ const ceasarDressing = Caesar_Dressing({
   weight: "400",
   display: "swap",
 });
+
+
+
 //=================//
 // constant variabel hvor vi definere indholdet når ikke noget er blevet valgt. Variablen bruger vi til at refreshe vores
 // Multistep-form (f.eks. hvis brugeren er gået over de 5min i PaymentFlow).
@@ -24,8 +27,7 @@ const defaultState = {
   step: 0,
   tickets: {
     single: 1,
-    vip: 1,
-  },
+},
   campsite: undefined,
   tents: {
     twoPeople: 0,
@@ -191,7 +193,6 @@ export default function Page() {
       <CartContext.Provider value={[cart, setCart]}>
         <main>
           {/* Vi giver hver children komponenter en conditional rendering og sender vores cart & formAction vider. Cart bliver ikke vist ved 4. step med !== */}
-          <MyMarquee />
           <h1
             className={`${ceasarDressing.className} mx-5 mt-10 text-6xl sm:text-6xl lg:text-6xl md:text-6xl text-white`}
           >

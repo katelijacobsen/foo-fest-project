@@ -30,7 +30,7 @@ export default function Cart({ cart }) {
         animate={{ opacity: 1, width: 250, height: 420 }}
         style={{ width: 0, height: 420 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
-        className="flex flex-col gap-4 rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack p-6 sm:p-8 w-72"
+        className="flex flex-col gap-4 rounded-lg bg-customBlack_5 p-6 sm:p-8 w-72"
       >
         <h3 className={`${ceasarDressing.className} text-xl sm:text-2xl`}>
           Indkøbskurv

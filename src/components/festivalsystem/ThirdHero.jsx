@@ -33,7 +33,7 @@ const ThirdHero = ({ text }) => {
       <div className="grid place-content-center h-[90vh]">
         <div className="flex justify-center items-center">
           {splittedText.map((current, index) => (
-            <motion.div key={index} ref={ref} variants={pullupVariant} initial="initial" animate={isInView ? "animate" : ""} custom={index} className={`${ceasarDressing.className} text-[7rem] md:text-[15rem]`}>
+            <motion.div key={index} ref={ref} variants={pullupVariant} initial="initial" animate={isInView ? "animate" : ""} custom={index} className={`${ceasarDressing.className} text-8xl md:text-9xl`}>
               {current === " " ? <span>&nbsp;</span> : current}
             </motion.div>
           ))}

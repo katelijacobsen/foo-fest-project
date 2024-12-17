@@ -5,6 +5,7 @@ import ContactInfo from "@/components/bookingsystem/ContactInfo";
 import PaymentFlow from "@/components/bookingsystem/PaymentFlow";
 import PaymentComfirmed from "@/components/bookingsystem/PaymentConfirmed";
 import Cart from "@/components/bookingsystem/Cart";
+import Header from "@/components/global/Header";
 import { createContext, useActionState } from "react";
 import { Caesar_Dressing } from "next/font/google";
 import { useFormStatus } from "react-dom";

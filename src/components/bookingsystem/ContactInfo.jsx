@@ -22,7 +22,7 @@ export default function ContactInfo({ tickets, formAction }) {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.3 }}
-      className="text-white rounded-lg bg-gradient-to-tl border border-gray-500 from-customBlack_2 to-customBlack p-4 relative z-0"
+      className="text-white rounded-lg  bg-customBlack_5 border border-gray-500 p-4 relative z-0"
       onChange={handleInputChange}
     >
       <fieldset className="grid gap-6 mb-6 md:grid-cols-2">

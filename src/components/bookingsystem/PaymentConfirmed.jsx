@@ -49,7 +49,7 @@ export default function PaymentConfirmed({ state }) {
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1.5, ease: [0, 0.71, 0.2, 1.01], delay: 0.5 }}
-      className="p-6 flex flex-col items-center justify-center rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack m-8"
+      className="p-6 flex flex-col items-center justify-center rounded-lg bg-customBlack_5 m-8 border border-customBlack_2"
     >
       <h2
         className={`${ceasarDressing.className} text-2xl md:text-4xl text-center mb-6 text-white`}

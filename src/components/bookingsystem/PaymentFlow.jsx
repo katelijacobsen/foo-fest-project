@@ -50,7 +50,7 @@ const PaymentForm = ({ formAction, router }) => {
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.3 }}
-        className=" border border-gray-600 p-4 sm:p-8 rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack m-4"
+        className=" border border-customBlack_2 p-4 sm:p-8 rounded-lg bg-customBlack_5 m-4"
       >
         <p className="bg-gradient-to-bl rounded-sm from-customPink text-white to-customOrange w-full text-center text-xl sm:text-2xl font-bold">
           {mins} : {String(secs).padStart(2, "0")}
@@ -80,7 +80,7 @@ const PaymentForm = ({ formAction, router }) => {
                 Kortnummer
               </label>
               <input
-                className="p-2 rounded-md w-full text-black border-2 focus:ring focus:ring-customRed"
+                className="p-2 rounded-md w-full text-black border-2 focus:ring focus:ring-customRed [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 name="number"
                 value={state.number}
                 onChange={handleInputChange}
@@ -109,7 +109,7 @@ const PaymentForm = ({ formAction, router }) => {
                   Udløbsdato
                 </label>
                 <input
-                  className="p-2 rounded-md w-full text-black border-2 focus:ring focus:ring-customRed"
+                  className="p-2 rounded-md w-full text-black border-2 focus:ring focus:ring-customRed [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   name="expiry"
                   value={state.expiry}
                   onChange={handleInputChange}
@@ -124,7 +124,7 @@ const PaymentForm = ({ formAction, router }) => {
                   CVC
                 </label>
                 <input
-                  className="p-2 rounded-md w-full text-black border-2 focus:ring focus:ring-customRed"
+                  className="p-2 rounded-md w-full text-black border-2 focus:ring focus:ring-customRed [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   name="cvc"
                   value={state.cvc}
                   onChange={handleInputChange}

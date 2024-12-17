@@ -16,7 +16,7 @@ export default function ChooseTicket({ cart, formAction }) {
     initial={{ opacity: 0, scale: 0.9 }}
     animate={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.3 }}
-    className="relative z-10 bg-customBlack_5 border border-customBlack_2 rounded-lg m-4 grid grid-rows-[auto_auto_1fr] grid-cols-1 sm:grid-cols-2 gap-4 w-72"
+    className="relative z-10 bg-customBlack_5 border border-customBlack_2 rounded-lg m-4 grid grid-rows-[auto_auto_1fr] grid-cols-1 sm:grid-cols-2 gap-4 sm:w-full "
   >
     <h2 className=" m-8 col-span-1 sm:col-span-2 text-left text-lg sm:text-xl md:text-2xl ">
       Vælg venligst en type billet

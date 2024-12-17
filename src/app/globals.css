@@ -15,7 +15,7 @@
   }
   .animate-shine {
     background: linear-gradient(90deg, #eaeaea, #7c7c7c, #eaeaea);
-    background-size: 300% 100%;
+    background-size: 200% 100%;
     background-clip: text;
     -webkit-background-clip: text;
   }

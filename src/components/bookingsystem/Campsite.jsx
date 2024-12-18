@@ -22,15 +22,16 @@ export default function Campsite({ state, formAction }) {
   const [greenCamping, setGreenCamping] = useState(false);
   const [countError, setCountError] = useState("");
   const [handleError, setHandleError] = useState("");
+  const [spotHandler, setSpotHandler] = useState(0);
 
   const [data, setData] = useState([]);
 
   // skal bruges til når vi tilføjer loading https://nextjs.org/docs/pages/building-your-application/data-fetching/client-side
   const [isLoading, setLoading] = useState(true);
-
+  const url = "https://spring-awesome-stream.glitch.me/available-spots";
   useEffect(() => {
     // fetch("http://localhost:8080/available-spots")
-    fetch("https://spring-awesome-stream.glitch.me/available-spots")
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -104,25 +105,27 @@ export default function Campsite({ state, formAction }) {
     console.log("numAvabiel", selectedCampsite[1]);
     console.log("numPeople", numPeople);
     console.log("spotsLeft", selectedCampsite[1] - numPeople);
-    useEffect(() => {
-      console.log("useEffect bliver brugt", data);
-      fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          apikey: apikey,
-          Prefer: "return=representation",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          return () => console.log("date kommer vel?", data);
-        });
-    }, [data]);
+    const spotsLeft = selectedCampsite[1] - numPeople;
+    setSpotHandler(spotsLeft);
 
     formAction(formData);
   };
+
+  useEffect(() => {
+    if (spotHandler === 0) return;
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        // apikey: apikey,
+        Prefer: "return=representation",
+      },
+      body: JSON.stringify({
+        area: selectedCampsite[0],
+        available: spotHandler,
+      }),
+    });
+  }, [spotHandler]);
 
   return (
     <div className="flex justify-center mx-4">

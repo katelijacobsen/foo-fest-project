@@ -102,6 +102,22 @@ export default function Campsite({ state, formAction }) {
     formAction(formData);
   };
 
+  useEffect(() => {
+    if (spotHandler === 0) return;
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        // apikey: apikey,
+        Prefer: "return=representation",
+      },
+      body: JSON.stringify({
+        area: selectedCampsite[0],
+        available: spotHandler,
+      }),
+    });
+  }, [spotHandler]);
+
   return (
     <div className="flex justify-center mx-4">
       <motion.form initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }} className=" inline-flex flex-col flex-1 bg-gradient-to-tl border border-gray-500 bg-customBlack_5 p-4 my-4 rounded-md">

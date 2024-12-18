@@ -1,13 +1,11 @@
 import Header from "@/components/global/Header";
 import LineupListReadMore from "@/components/festivalsystem/LineupListReadMore";
-// import ProgramForCurrentDay from "@/components/festivalsystem/ProgramForCurrentDay";
 import Camping from "@/components/festivalsystem/Camping";
 import Volunteer from "@/components/festivalsystem/VolunteerSection";
 import Footer from "@/components/global/Footer";
 import TicketsSection from "@/components/festivalsystem/TicketsSection";
 import dynamic from "next/dynamic";
 import TestSection from "@/components/festivalsystem/TestSection";
-// import ThirdHero from "@/components/festivalsystem/ThirdHero";
 
 //lazyloading af herosection
 const HeroSection = dynamic(() => import("@/components/festivalsystem/ThirdHero"));

@@ -73,7 +73,7 @@ export default function Campsite({ state, formAction }) {
     setThreePersonCount(count);
   };
 
-  const updateCampsite = (campsite) => {
+  const updateCampsite = (campsite, availableSpots) => {
     setCart((prev) => {
       return {
         ...prev,

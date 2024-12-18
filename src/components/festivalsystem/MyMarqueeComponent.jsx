@@ -1,12 +1,5 @@
 import Image from "next/image";
 import MusicRune from "@/img/svg/music_rune_white.svg";
-// import { Caesar_Dressing } from "next/font/google";
-
-// const ceasarDressing = Caesar_Dressing({
-//   subsets: ["latin"],
-//   weight: "400",
-//   display: "swap",
-// });
 
 const MyComponent = () => {
   return (

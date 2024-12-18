@@ -26,6 +26,8 @@ export default async function Page() {
     let data = await response.json();
     return data;
   };
+
+  //Fået hjælp af tutorer til at merge datasæt
   // Ved hjælp af await bliver alle tre API'er kaldt, og resultaterne gemmes i variablerne bands, schedule og events.
   // Dette gør data tilgængelig til videre behandling i koden.
   const bands = await fetchBands();

@@ -34,6 +34,7 @@ function ProgramList({ mergedArray, days }) {
     setSelectedDay(day);
   };
 
+  //Fået hjælp af tutorer til at sortere bands efter tid
   // Funktionen starter med at filtrerer ud fra scene og dag
   // Sorterer herefter "bands" ud fra sammenlignign af starttidspunkterne
   const sortedByTime = (scene) => {
@@ -66,7 +67,7 @@ function ProgramList({ mergedArray, days }) {
             </div>
             <section className="p-2 md:px-6 md:py-12 z-0">
               <div className="grid md:grid-cols-[.5fr_1fr] mb-20">
-                <div className="sticky top-24 md:top-28 self-start z-10 bg-gradient-to-bl from-customBlack to-transparent w-fit px-2 py-2">
+                <div className="sticky top-[120px] md:top-28 self-start z-10 bg-gradient-to-bl from-customBlack to-transparent w-fit px-2 py-2">
                   <h2 className={`${ceasarDressing.className} text-3xl md:text-4xl`}>MIDGARD</h2>
                 </div>
                 <div className="grid grid-cols-2 gap-4 ">
@@ -77,7 +78,7 @@ function ProgramList({ mergedArray, days }) {
                 </div>
               </div>
               <div className="grid md:grid-cols-[.5fr_1fr] mb-20">
-                <div className="sticky top-24 md:top-28 self-start z-10 bg-gradient-to-bl from-customBlack to-transparent w-fit px-2 py-2">
+                <div className="sticky top-[120px] md:top-28 self-start z-10 bg-gradient-to-bl from-customBlack to-transparent w-fit px-2 py-2">
                   <h2 className={`${ceasarDressing.className}  text-3xl md:text-4xl`}>VANAHEIM</h2>
                 </div>
                 <div className="grid grid-cols-2 gap-4 ">
@@ -87,7 +88,7 @@ function ProgramList({ mergedArray, days }) {
                 </div>
               </div>
               <div className="grid md:grid-cols-[.5fr_1fr] mb-20">
-                <div className="sticky top-24 md:top-28 self-start z-10 bg-gradient-to-bl from-customBlack to-transparent w-fit px-2 py-2">
+                <div className="sticky top-[120px] md:top-28 self-start z-10 bg-gradient-to-bl from-customBlack to-transparent w-fit px-2 py-2">
                   <h2 className={`${ceasarDressing.className}  text-3xl md:text-4xl`}>JOTUNHEIM</h2>
                 </div>
                 <div className="grid grid-cols-2 gap-4 ">
@@ -105,32 +106,3 @@ function ProgramList({ mergedArray, days }) {
 }
 
 export default ProgramList;
-
-{
-  /* <div className="grid grid-cols-[auto_.5fr_1fr]">
-<div className="sticky top-0 self-start">
-  <Headline src={MusicRune} text="MIDGARD" />
-</div>
-<div className="flex gap-4 overflow-x-scroll  mb-20 snap-mandatory snap-x">
-  {sortedByTime("Midgard").map((band) => (
-    <BandCard slug={band.slug} logo={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} />
-  ))}
-</div>
-</div>
-<div>
-<Headline src={MusicRune} text="VANAHAIM" />
-<div className="flex gap-4 overflow-x-scroll mb-20 snap-mandatory snap-x">
-  {sortedByTime("Vanaheim").map((band) => (
-    <BandCard slug={band.slug} logo={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} />
-  ))}
-</div>
-</div>
-<div>
-<Headline src={MusicRune} text="JOTUNHEIM" />
-<div className="flex gap-4 overflow-x-scroll mb-20 snap-mandatory snap-x">
-  {sortedByTime("Jotunheim").map((band) => (
-    <BandCard slug={band.slug} logo={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logoCredits={band.logoCredits} />
-  ))}
-</div>
-</div> */
-}

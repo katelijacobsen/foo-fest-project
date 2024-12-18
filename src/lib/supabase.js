@@ -1,5 +1,6 @@
-const url = "https://cwhdfybelixklhkkgwhq.supabase.co/rest/v1/subscribtions";
-const apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3aGRmeWJlbGl4a2xoa2tnd2hxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI1MzQ3ODYsImV4cCI6MjA0ODExMDc4Nn0.Rh3FiAeWBLC--MXyVX7dYuYgkDdVgjNqGdWZcp1mKXA";
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const apikey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
 const headersList = {
   Accept: "application/json",
   "Content-Type": "application/json",

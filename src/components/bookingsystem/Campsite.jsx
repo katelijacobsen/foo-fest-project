@@ -131,7 +131,7 @@ export default function Campsite({ state, formAction }) {
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1 text-white">
           {data.map((spot, i) => (
             <li
-              onClick={() => updateCampsite(spot.area)}
+              onClick={() => updateCampsite(spot.area, spot.available)}
               key={i}
               className={`${spot.available < numPeople && "bg-gray-300 text-gray-500 cursor-not-allowed hidden disabled"}${
                 spot.area === selectedCampsite && "border-4"

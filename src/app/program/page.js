@@ -61,7 +61,7 @@ async function Page() {
     <>
       <Header />
       <main>
-        <section className="max-w-screen-xl mx-auto mb-6 mt-40">
+        <section className="max-w-screen-xl mx-auto py-[10vh]">
           <ProgramList mergedArray={mergedData} days={days} />
         </section>
       </main>

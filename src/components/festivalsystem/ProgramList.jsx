@@ -5,15 +5,6 @@ import { motion } from "framer-motion";
 import Headline from "@/components/global/Headline";
 import MusicRune from "@/img/svg/music_rune.svg";
 
-//font
-// import { Caesar_Dressing } from "next/font/google";
-
-// const ceasarDressing = Caesar_Dressing({
-//   subsets: ["latin"],
-//   weight: "400",
-//   display: "swap",
-// });
-
 function ProgramList({ mergedArray, days }) {
   const [selectedDay, setSelectedDay] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -52,7 +43,7 @@ function ProgramList({ mergedArray, days }) {
     <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.5 }} animate={{ y: -40 }}>
       <>
         {isLoading ? (
-          <p>Loading...</p>
+          <p className="text-center text-[2vw]">Hente program...</p>
         ) : (
           <div>
             <div className="mt-24 mb-10 pl-4 ">

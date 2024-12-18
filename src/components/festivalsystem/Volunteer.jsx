@@ -10,7 +10,7 @@ import RuneCircle from "@/img/svg/rune_circle.svg";
 const Volunteer = () => {
   return (
     <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.5 }} animate={{ y: -40 }}>
-      <section className="p-4 max-w-screen-xl mx-auto mt-32">
+      <section className="px-4 py-[20vh] max-w-screen-xl mx-auto ">
         <div className="grid md:grid-cols-2">
           <div>
             <Headline src={VolunteerRune} text="BLIV FRIVILLIG" size="text-5xl md:text-6xl" width={45} height={45} />

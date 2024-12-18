@@ -55,7 +55,7 @@ const ProgramForCurrentDay = ({ mergedArray }) => {
 
   return (
     <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.3 }} animate={{ y: -40 }}>
-      <section className="my-24 py-6 px-4 max-w-screen-xl mx-auto">
+      <section className="py-[10vh] px-4 max-w-screen-xl mx-auto">
         <div>
           <Headline width={45} height={45} src={MusicRune} size="text-5xl md:text-6xl" text="DAGENS PROGRAM" />
         </div>

@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const Camping = () => {
   return (
     <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.5 }} animate={{ y: -40 }}>
-      <section className="p-4 max-w-screen-xl mx-auto mt-28">
+      <section className="px-4 max-w-screen-xl mx-auto py-[12vh]">
         <div className="grid gap-4 my-14">
           <div className="max-w-[35rem]">
             <Headline src={CampingRune} width={45} height={45} size="text-4xl md:text-6xl" text="CAMPING" />

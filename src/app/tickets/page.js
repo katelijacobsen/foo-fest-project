@@ -8,7 +8,6 @@ import Cart from "@/components/bookingsystem/Cart";
 import Header from "@/components/global/Header";
 import { createContext, useActionState } from "react";
 import { Caesar_Dressing } from "next/font/google";
-import { useFormStatus } from "react-dom";
 import { useState, useEffect } from "react";
 import MyMarquee from "@/components/festivalsystem/MyMarquee";
 
@@ -171,7 +170,6 @@ export default function Page() {
   // F.eks. har vi givet state vider til campsite. Ligesom en filmappe struktur prøver den at finde antal af billetter vi tidliger har
   // valgt, og bruger det samme antal telte-billetter brugern må bruge.
   const [state, formAction] = useActionState(handleStep, defaultState);
-  const formStatus = useFormStatus();
   console.log(state);
   return (
     <main className="pt-24">

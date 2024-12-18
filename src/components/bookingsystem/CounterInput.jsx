@@ -1,4 +1,3 @@
-//Vi skal bruge useState til at kunne køre det klientens side.
 import { FiPlus, FiMinus } from "react-icons/fi";
 
 const CounterInput = ({ count, setCount, max, name }) => {

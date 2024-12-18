@@ -12,7 +12,7 @@ const TicketsSection = () => {
           <p className="text-center text-xl md:text-2xl md:max-w-[45rem]">På Foo Fest kan du vælge mellem en almindelig billet eller opgradere til en VIP-oplevelse, der giver dig den ultimative luksus og komfort under festivalen. Forkæl dig selv med noget ekstra og gør din festival uforglemmelig!</p>
         </div>
         <div className="justify-self-center pt-4">
-          <Link href="/payment">
+          <Link href="/tickets">
             <PrimaryButton aria_label_text="Buy tickets button" color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Køb billetter" />
           </Link>
         </div>

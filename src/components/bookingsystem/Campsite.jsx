@@ -109,9 +109,10 @@ export default function Campsite({ state, formAction }) {
         transition={{ duration: 0.3 }}
         className=" inline-flex flex-col flex-1 bg-gradient-to-tl border border-gray-500 bg-customBlack_5 p-4 my-4 rounded-md"
       >
-        <h2 className={`${ceasarDressing.className} text-3xl text-white mb-4`}>
+        <h2 className={`${ceasarDressing.className} text-3xl text-white`}>
           HVOR VIL DU CAMPE?
         </h2>
+        <h3 className="font-bold text-sm mb-4 text-gray-400">VÆLG VENLIGST EN LEDIG CAMPINGOMRÅDE</h3>
         {isLoading && (
           <div className="flex justify-center items-center">
             <div className="loader w-12 h-12"></div>

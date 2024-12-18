@@ -18,7 +18,8 @@ export default function Campsite({ state, formAction }) {
   const [cart, setCart] = useContext(CartContext);
   const [twoPersonCount, setTwoPersonCount] = useState(0);
   const [threePersonCount, setThreePersonCount] = useState(0);
-  const [selectedCampsite, setSelectedCampsite] = useState(undefined);
+
+  const [selectedCampsite, setSelectedCampsite] = useState([]);
   const [greenCamping, setGreenCamping] = useState(false);
   const [countError, setCountError] = useState("");
   const [handleError, setHandleError] = useState("");
@@ -93,7 +94,7 @@ export default function Campsite({ state, formAction }) {
     });
   };
 
-  const handleNext = (formData, availableSpots) => {
+  const handleNext = (formData) => {
     if (!selectedCampsite) {
       setHandleError("Vælg venligst et campingområde, før du fortsætter.");
       return;

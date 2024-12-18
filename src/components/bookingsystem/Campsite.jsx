@@ -27,7 +27,7 @@ export default function Campsite({ state, formAction }) {
 
   useEffect(() => {
     // fetch("http://localhost:8080/available-spots")
-      fetch("https://spring-awesome-stream.glitch.me/available-spots")
+    fetch("https://spring-awesome-stream.glitch.me/available-spots")
       .then((res) => res.json())
       .then((data) => {
         setData(data);

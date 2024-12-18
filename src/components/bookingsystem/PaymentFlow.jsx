@@ -8,6 +8,23 @@ const ceasarDressing = Caesar_Dressing({
   weight: "400",
   display: "swap",
 });
+// const apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impna3Ntb3VoYWxzeGV6aXl0eWdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQyOTU1NjEsImV4cCI6MjA0OTg3MTU2MX0.WPZoRN3URqEILGHGLXl1kdWFJCj40mQWEdPfULA1Gto";
+// const url = "https://jgksmouhalsxeziytygd.supabase.co/rest/v1/personer";
+// useEffect(() => {
+//   fetch(url, {
+//     method: "PUT",
+//     headers: {
+//       "Content-Type": "application/json",
+//       apikey: apikey,
+//       Prefer: "return=representation",
+//     },
+//     body: JSON.stringify(data),
+//   })
+//     .then((res) => res.json())
+//     .then((data) => {
+//       return () => console.log("date kommer vel?", data);
+//     });
+// }, []);
 
 const PaymentForm = ({ formAction, router }) => {
   const [timeLeft, setTimeLeft] = useState(60 * 5 * 1000); // math is mathing
@@ -46,20 +63,11 @@ const PaymentForm = ({ formAction, router }) => {
 
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.3 }}
-        className=" border border-gray-600 p-4 sm:p-8 rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack m-4"
-      >
+      <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }} className=" border border-gray-600 p-4 sm:p-8 rounded-lg bg-gradient-to-tl from-customBlack_2 to-customBlack m-4">
         <p className="bg-gradient-to-bl rounded-sm from-customPink text-white to-customOrange w-full text-center text-xl sm:text-2xl font-bold">
           {mins} : {String(secs).padStart(2, "0")}
         </p>
-        <h2
-          className={`${ceasarDressing.className} text-2xl sm:text-3xl my-4 text-left`}
-        >
-          BETALINGSKORT
-        </h2>
+        <h2 className={`${ceasarDressing.className} text-2xl sm:text-3xl my-4 text-left`}>BETALINGSKORT</h2>
 
         <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center p-4 sm:p-8 gap-4">
           <div className="flex-shrink-0">
@@ -70,7 +78,16 @@ const PaymentForm = ({ formAction, router }) => {
               <label htmlFor="kortnummer" className="font-bold text-md">
                 Kortnummer
               </label>
-              <input className="p-2 rounded-md w-full text-black border-2 focus:ring focus:ring-customRed" name="number" value={state.number} onChange={handleInputChange} onFocus={handleInputFocus} required placeholder="1234 1234 1234 1234" type="number" />
+              <input
+                className="p-2 rounded-md w-full text-black border-2 focus:ring focus:ring-customRed"
+                name="number"
+                value={state.number}
+                onChange={handleInputChange}
+                onFocus={handleInputFocus}
+                required
+                placeholder="1234 1234 1234 1234"
+                type="number"
+              />
               <label htmlFor="kortHolder" className="font-bold text-md">
                 Kortholder
               </label>
@@ -90,10 +107,7 @@ const PaymentForm = ({ formAction, router }) => {
                 <input className="p-2 rounded-md w-full text-black border-2 focus:ring focus:ring-customRed" name="cvc" value={state.cvc} onChange={handleInputChange} onFocus={handleInputFocus} required placeholder="CVC" type="number" />
               </div>
             </div>
-            <button
-              formAction={formAction}
-              className="font-bold px-8 py-2 my-8 text-xl rounded-sm bg-gradient-to-bl from-customPink text-white to-customOrange w-full sm:w-auto"
-            >
+            <button formAction={formAction} className="font-bold px-8 py-2 my-8 text-xl rounded-sm bg-gradient-to-bl from-customPink text-white to-customOrange w-full sm:w-auto">
               Afslut & Betal
             </button>
           </form>

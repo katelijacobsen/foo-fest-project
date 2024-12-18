@@ -125,7 +125,7 @@ export default function Campsite({ state, formAction }) {
               key={i}
               className={`${
                 spot.available < numPeople &&
-                "bg-gray-300 text-gray-500 cursor-not-allowed hidden disabled:"
+                "bg-gray-300 text-gray-500 cursor-not-allowed hidden disabled"
               }${
                 spot.area === selectedCampsite && "border-4"
               } bg-gradient-to-tl border border-gray-900 from-customBlack_2 to-customBlack p-2 rounded-md select-none cursor-pointer`}

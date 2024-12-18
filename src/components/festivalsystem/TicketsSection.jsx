@@ -9,7 +9,7 @@ const TicketsSection = () => {
       <div className="grid gap-4  max-w-screen-xl mx-auto">
         <Image className="justify-self-center" srcSet={`${Tickets} 320w, ${Tickets} 680w, ${Tickets} 960w, ${Tickets} 1980w`} src={Tickets} alt="billetter" />
         <div>
-          <p className="text-center text-xl md:text-2xl md:max-w-[50rem]">På Foo Fest kan du vælge mellem en almindelig billet eller opgradere til en VIP-oplevelse, der giver dig den ultimative luksus og komfort under festivalen. Forkæl dig selv med noget ekstra og gør din festival uforglemmelig!</p>
+          <p className="text-center text-xl md:text-2xl md:max-w-[45rem]">På Foo Fest kan du vælge mellem en almindelig billet eller opgradere til en VIP-oplevelse, der giver dig den ultimative luksus og komfort under festivalen. Forkæl dig selv med noget ekstra og gør din festival uforglemmelig!</p>
         </div>
         <div className="justify-self-center pt-4">
           <Link href="/payment">

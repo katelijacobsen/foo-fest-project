@@ -1,27 +1,24 @@
 "use client";
-
-import Image from "next/image";
-import CampingMap from "@/img/svg/camping_map.svg";
-import Headline from "../global/Headline";
+import Accordion from "@/components/festivalsystem/Accordion";
+import Headline from "@/components/global/Headline";
 import CampingRune from "@/img/svg/camping_rune.svg";
-import Link from "next/link";
-import PrimaryButton from "@/components/global/buttonFolder/PrimaryButton";
 import { motion } from "framer-motion";
 
-const Camping = ({ text }) => {
+const Camping = () => {
   return (
-    <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.3 }} animate={{ y: -40 }}>
-      <section className="py-6 px-4 h-screen grid place-content-center md:grid-cols-2 gap-4 max-w-screen-xl mx-auto items-start">
-        <div>
-          <Headline src={CampingRune} width={45} height={45} size="text-5xl md:text-6xl" text="CAMPING" />
-          <p className="pt-6 text-base md:text-lg">{text}</p>
-          <div className="inline-block pt-6 pb-3">
-            <Link href="/camping">
-              <PrimaryButton aria_label_text="Læs mere" color="bg-gradient-to-r from-[#ec2783] from-12% via-[#d82023] via-46% to-[#ec4d08] to-87%" buttonContent="Læs mere" />
-            </Link>
+    <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.5 }} animate={{ y: -40 }}>
+      <section className="p-4 max-w-screen-xl mx-auto mt-32">
+        <div className="grid gap-4 my-14">
+          <div className="max-w-[35rem]">
+            <Headline src={CampingRune} width={45} height={45} size="text-4xl md:text-6xl" text="CAMPING" />
+            <p className="pt-4">Det bedste ved at campere tæt på festivalpladsen er, at grænserne mellem lejrens intimitet og koncertens ekstase næsten forsvinder. Du kan starte din dag med stille toner fra en lut ved lejrbålet og slutte den med hæsblæsende headbanging foran scenen. Camping og musik bliver to sider af samme oplevelse – lige så uadskillelige som Odin og hans ravne.</p>
           </div>
+          <div className="py-6 md:py-11 w-full mx-auto">
+            <h2 className="font-bold text-xl md:text-2xl pb-4">Ofte stillede spørgsmål</h2>
+            <Accordion questionOne="Hvor rene er camping pladserne?" textOne="De reneste campingpladser du har set. Vi går meget op i at stille skraldespnade til rådighed og der er frivillige, som løbende rydder op på pladserne." questionTwo="Hvor tæt på ligger toilletterne?" textTwo="Der er mange toiletfaciliteter på festivalen, så du skal ikke være nervøs for, at der ligger toiletter i dit område." questionThree="Hvor mange telte kan der være på én plads?" textThree="Det er meget forskelligt i forhold til, hvor stor pladsen er." questionFour="Bliver der ryddet op efter mig?" textFour="Vi opfordrer til, at du selv står for din oprydning." MobileTextSize="text-xl" DesktoptextSize="text-2xl" />
+          </div>
+          {/* <Image className="place-self-center" src={CampingMap} alt="billede af camping områder" width={500} height={500} /> */}
         </div>
-        <Image className="justify-self-center" src={CampingMap} alt="illustration af campingpladser" width={650} height={650} />
       </section>
     </motion.section>
   );

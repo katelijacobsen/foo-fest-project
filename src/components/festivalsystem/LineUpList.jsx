@@ -15,7 +15,7 @@ const LineUpList = ({ mergedData }) => {
   }, [mergedData]);
 
   return (
-    <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.8 }} animate={{ y: -40 }}>
+    <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.5 }} animate={{ y: -40 }}>
       <section className="max-w-screen-xl mx-auto p-2 mt-32 md:mt-40 ">
         <div className="max-w-screen-xl mx-auto mb-10 pl-4">
           <Headline src={LineUpRune} text="2025 LINEUP" size="text-5xl md:text-6xl" width={45} height={45} />

@@ -6,13 +6,13 @@ import Headline from "@/components/global/Headline";
 import MusicRune from "@/img/svg/music_rune.svg";
 
 //font
-import { Caesar_Dressing } from "next/font/google";
+// import { Caesar_Dressing } from "next/font/google";
 
-const ceasarDressing = Caesar_Dressing({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
+// const ceasarDressing = Caesar_Dressing({
+//   subsets: ["latin"],
+//   weight: "400",
+//   display: "swap",
+// });
 
 function ProgramList({ mergedArray, days }) {
   const [selectedDay, setSelectedDay] = useState("");
@@ -49,7 +49,7 @@ function ProgramList({ mergedArray, days }) {
   };
 
   return (
-    <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.8 }} animate={{ y: -40 }}>
+    <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.5 }} animate={{ y: -40 }}>
       <>
         {isLoading ? (
           <p>Loading...</p>
@@ -68,7 +68,7 @@ function ProgramList({ mergedArray, days }) {
             <section className="p-2 md:px-6 md:py-12 z-0">
               <div className="grid md:grid-cols-[.5fr_1fr] mb-20">
                 <div className="sticky top-[120px] md:top-28 self-start z-10 bg-gradient-to-bl from-customBlack to-transparent w-fit px-2 py-2">
-                  <h2 className={`${ceasarDressing.className} text-3xl md:text-4xl`}>MIDGARD</h2>
+                  <h2 className="text-3xl md:text-4xl">Midgard</h2>
                 </div>
                 <div className="grid grid-cols-2 gap-4 ">
                   {/* Vi mapper med sortedByTime istedet for newArray (filtreringen sker i sortedByTime istedt for her) */}
@@ -79,7 +79,7 @@ function ProgramList({ mergedArray, days }) {
               </div>
               <div className="grid md:grid-cols-[.5fr_1fr] mb-20">
                 <div className="sticky top-[120px] md:top-28 self-start z-10 bg-gradient-to-bl from-customBlack to-transparent w-fit px-2 py-2">
-                  <h2 className={`${ceasarDressing.className}  text-3xl md:text-4xl`}>VANAHEIM</h2>
+                  <h2 className="text-3xl md:text-4xl">Vanaheim</h2>
                 </div>
                 <div className="grid grid-cols-2 gap-4 ">
                   {sortedByTime("Vanaheim").map((band) => (
@@ -89,7 +89,7 @@ function ProgramList({ mergedArray, days }) {
               </div>
               <div className="grid md:grid-cols-[.5fr_1fr] mb-20">
                 <div className="sticky top-[120px] md:top-28 self-start z-10 bg-gradient-to-bl from-customBlack to-transparent w-fit px-2 py-2">
-                  <h2 className={`${ceasarDressing.className}  text-3xl md:text-4xl`}>JOTUNHEIM</h2>
+                  <h2 className="text-3xl md:text-4xl">Jotunheim</h2>
                 </div>
                 <div className="grid grid-cols-2 gap-4 ">
                   {sortedByTime("Jotunheim").map((band) => (

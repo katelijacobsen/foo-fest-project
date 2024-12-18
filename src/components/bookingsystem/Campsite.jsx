@@ -18,7 +18,7 @@ export default function Campsite({ state, formAction }) {
   const [cart, setCart] = useContext(CartContext);
   const [twoPersonCount, setTwoPersonCount] = useState(0);
   const [threePersonCount, setThreePersonCount] = useState(0);
-  const [selectedCampsite, setSelectedCampsite] = useState(undefined);
+  const [selectedCampsite, setSelectedCampsite] = useState([]);
   const [greenCamping, setGreenCamping] = useState(false);
   const [countError, setCountError] = useState("");
   const [handleError, setHandleError] = useState("");
@@ -72,14 +72,16 @@ export default function Campsite({ state, formAction }) {
     setThreePersonCount(count);
   };
 
-  const updateCampsite = (campsite) => {
+  const updateCampsite = (campsite, availableSpots) => {
+    console.log(campsite, "YOLO");
+    console.log(availableSpots, "YOLO");
     setCart((prev) => {
       return {
         ...prev,
         campsite,
       };
     });
-    setSelectedCampsite(campsite);
+    setSelectedCampsite([campsite, availableSpots]);
   };
 
   const updateGreenCamping = (e) => {
@@ -93,25 +95,39 @@ export default function Campsite({ state, formAction }) {
   };
 
   const handleNext = (formData) => {
-    if (!selectedCampsite) {
+    if (!selectedCampsite[0]) {
       setHandleError("Vælg venligst et campingområde, før du fortsætter.");
       return;
     }
     formData.set("campsite", selectedCampsite);
+    console.log("capmayte", selectedCampsite[0]);
+    console.log("numAvabiel", selectedCampsite[1]);
+    console.log("numPeople", numPeople);
+    console.log("spotsLeft", selectedCampsite[1] - numPeople);
+    useEffect(() => {
+      console.log("useEffect bliver brugt", data);
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: apikey,
+          Prefer: "return=representation",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          return () => console.log("date kommer vel?", data);
+        });
+    }, [data]);
+
     formAction(formData);
   };
 
   return (
     <div className="flex justify-center mx-4">
-      <motion.form
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.3 }}
-        className=" inline-flex flex-col flex-1 bg-gradient-to-tl border border-gray-500 bg-customBlack_5 p-4 my-4 rounded-md"
-      >
-        <h2 className={`${ceasarDressing.className} text-3xl text-white mb-4`}>
-          HVOR VIL DU CAMPE?
-        </h2>
+      <motion.form initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }} className=" inline-flex flex-col flex-1 bg-gradient-to-tl border border-gray-500 bg-customBlack_5 p-4 my-4 rounded-md">
+        <h2 className={`${ceasarDressing.className} text-3xl text-white mb-4`}>HVOR VIL DU CAMPE?</h2>
         {isLoading && (
           <div className="flex justify-center items-center">
             <div className="loader w-12 h-12"></div>
@@ -120,19 +136,13 @@ export default function Campsite({ state, formAction }) {
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1 text-white">
           {data.map((spot, i) => (
             <li
-              onClick={() => updateCampsite(spot.area)}
+              onClick={() => updateCampsite(spot.area, spot.available)}
               key={i}
-              className={`${
-                spot.available < numPeople &&
-                "bg-gray-300 text-gray-500 cursor-not-allowed hidden disabled:"
-              }${
+              className={`${spot.available < numPeople && "bg-gray-300 text-gray-500 cursor-not-allowed hidden disabled:"}${
                 spot.area === selectedCampsite && "border-4"
               } bg-gradient-to-tl border border-gray-900 from-customBlack_2 to-customBlack p-2 rounded-md select-none cursor-pointer`}
               style={{
-                borderImage:
-                  spot.area === selectedCampsite
-                    ? "linear-gradient(to right, #EC2783, #D82023 , #EC4D08) 1"
-                    : "none",
+                borderImage: spot.area === selectedCampsite ? "linear-gradient(to right, #EC2783, #D82023 , #EC4D08) 1" : "none",
                 borderRadius: "0.375rem",
                 borderWidth: spot.area === selectedCampsite ? "2px" : "1px",
               }}
@@ -145,34 +155,21 @@ export default function Campsite({ state, formAction }) {
 
         <div className="flex flex-col justify-evenly gap-4">
           <section>
-            <h4
-              className={`${ceasarDressing.className} text-3xl text-white mt-8`}
-            >
-              LEJE AF TELTE
-            </h4>
+            <h4 className={`${ceasarDressing.className} text-3xl text-white mt-8`}>LEJE AF TELTE</h4>
             <ul className="my-4 inline-flex flex-col gap-6">
               <li className=" flex-row text-white flex gap-12 bg-gradient-to-tl border border-gray-900 from-customBlack_2 to-customBlack p-4 rounded-md">
                 <div>
                   <h3 className="font-bold text-xl">2 Personers Telt</h3>
                   <p className="text-xs font-normal text-gray-300">299kr</p>
                 </div>
-                <CounterInput
-                  name="twoPeople"
-                  count={twoPersonCount}
-                  setCount={updateTwoPersonTentCount}
-                />
+                <CounterInput name="twoPeople" count={twoPersonCount} setCount={updateTwoPersonTentCount} />
               </li>
               <li className="flex flex-row text-white gap-12  bg-gradient-to-tl border border-gray-900 from-customBlack_2 to-customBlack p-4 rounded-md">
                 <div>
                   <h3 className="font-bold text-xl">3 Personers Telt</h3>
                   <p className="text-xs font-normal text-gray-300">399kr</p>
                 </div>
-                <CounterInput
-                  name="threePeople"
-                  max={10}
-                  count={threePersonCount}
-                  setCount={updateThreePersonTentCount}
-                />
+                <CounterInput name="threePeople" max={10} count={threePersonCount} setCount={updateThreePersonTentCount} />
               </li>
             </ul>
             {countError && (
@@ -182,11 +179,7 @@ export default function Campsite({ state, formAction }) {
             )}
           </section>
           <section>
-            <h3
-              className={`${ceasarDressing.className} text-3xl text-white mb-4`}
-            >
-              SUPPLEMENT
-            </h3>
+            <h3 className={`${ceasarDressing.className} text-3xl text-white mb-4`}>SUPPLEMENT</h3>
 
             <div className="flex items-center p-4 rounded-md bg-gradient-to-tl border border-green-800 from-black to-green-900">
               <div className="flex h-5">
@@ -201,22 +194,13 @@ export default function Campsite({ state, formAction }) {
                 />
               </div>
               <div className="ms-2 text-sm">
-                <label
-                  htmlFor="helper-checkbox"
-                  className="font-bold inline-flex gap-2 items-baseline text-xl text-white"
-                >
+                <label htmlFor="helper-checkbox" className="font-bold inline-flex gap-2 items-baseline text-xl text-white">
                   Grøn Camping <FaLeaf className="text-green-400" />
                 </label>
-                <p
-                  id="helper-checkbox-text"
-                  className="text-xs font-normal text-gray-300"
-                >
+                <p id="helper-checkbox-text" className="text-xs font-normal text-gray-300">
                   249kr
                 </p>
-                <p className="font-light text-sm text-gray-100 w-64">
-                  Perfekt til dig, der ønsker en mere miljøvenlig
-                  festivaloplevelse.
-                </p>
+                <p className="font-light text-sm text-gray-100 w-64">Perfekt til dig, der ønsker en mere miljøvenlig festivaloplevelse.</p>
               </div>
             </div>
           </section>

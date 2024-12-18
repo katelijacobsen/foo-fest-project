@@ -1,6 +1,6 @@
 import Header from "@/components/global/Header";
 import LineupListReadMore from "@/components/festivalsystem/LineupListReadMore";
-import Camping from "@/components/festivalsystem/Camping";
+import Camping from "@/components/festivalsystem/CampingSection";
 import Volunteer from "@/components/festivalsystem/VolunteerSection";
 import Footer from "@/components/global/Footer";
 import TicketsSection from "@/components/festivalsystem/TicketsSection";
@@ -28,16 +28,16 @@ export default async function Home() {
   };
 
   // fetch datasæt med endpoint /events
-  const fetchEvents = async () => {
-    let response = await fetch("http://localhost:8080/events");
-    // let response = await fetch("https://spring-awesome-stream.glitch.me/events");
-    let data = await response.json();
-    return data;
-  };
+  // const fetchEvents = async () => {
+  //   let response = await fetch("http://localhost:8080/events");
+  // let response = await fetch("https://spring-awesome-stream.glitch.me/events");
+  //   let data = await response.json();
+  //   return data;
+  // };
 
   const bands = await fetchBands();
   const schedule = await fetchSchedule();
-  const events = await fetchEvents();
+  // const events = await fetchEvents();
 
   //Fået hjælp af tutorer til at merge datasæt
   const scenes = ["Midgard", "Vanaheim", "Jotunheim"];

@@ -1,15 +1,7 @@
 import React from "react";
 import ProgramList from "@/components/festivalsystem/ProgramList";
 import Header from "@/components/global/Header";
-
 import Footer from "@/components/global/Footer";
-import { Caesar_Dressing } from "next/font/google";
-
-const ceasarDressing = Caesar_Dressing({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
 
 async function Page() {
   // fetch datasæt med endpoint /bands
@@ -29,20 +21,20 @@ async function Page() {
   };
 
   // fetch datasæt med endpoint /events
-  const fetchEvents = async () => {
-    let response = await fetch("http://localhost:8080/events");
-    // let response = await fetch("https://spring-awesome-stream.glitch.me/events");
-    let data = await response.json();
-    return data;
-  };
+  // const fetchEvents = async () => {
+  //   let response = await fetch("http://localhost:8080/events");
+  // let response = await fetch("https://spring-awesome-stream.glitch.me/events");
+  //   let data = await response.json();
+  //   return data;
+  // };
 
-  //Fået hjælp af tutorer til at merge datasæt
   // Ved hjælp af await bliver alle tre API'er kaldt, og resultaterne gemmes i variablerne bands, schedule og events.
   // Dette gør data tilgængelig til videre behandling i koden.
   const bands = await fetchBands();
   const schedule = await fetchSchedule();
-  const events = await fetchEvents();
+  // const events = await fetchEvents();
 
+  //Fået hjælp af tutorer til at merge datasæt
   // scenes og days er arrays, der bruges som hjælp til at strukturere dataene.
   // scenes repræsenterer de forskellige koncertscener.
   // days repræsenterer ugens dage.

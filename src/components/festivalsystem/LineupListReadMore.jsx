@@ -6,7 +6,7 @@ import Headline from "../global/Headline";
 import LineupRune from "@/img/svg/lineup_rune.svg";
 import PrimaryButton from "@/components/global/buttonFolder/PrimaryButton";
 
-const LineupListReadMore = ({ initialLineup, artists }) => {
+const LineupListReadMore = ({ initialLineup }) => {
   const [bands, setBands] = useState(initialLineup);
   const [isExpanded, setIsExpanded] = useState(false);
 

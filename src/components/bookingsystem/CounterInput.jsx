@@ -1,6 +1,4 @@
-"use client";
 //Vi skal bruge useState til at kunne køre det klientens side.
-import { useState } from "react";
 import { FiPlus, FiMinus } from "react-icons/fi";
 
 const CounterInput = ({ count, setCount, max, name }) => {

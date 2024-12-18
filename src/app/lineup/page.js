@@ -19,20 +19,11 @@ export default async function Page() {
     return data;
   };
 
-  // fetch datasæt med endpoint /events
-  const fetchEvents = async () => {
-    // let response = await fetch("http://localhost:8080/events");
-    let response = await fetch("https://spring-awesome-stream.glitch.me/events");
-    let data = await response.json();
-    return data;
-  };
-
   //Fået hjælp af tutorer til at merge datasæt
   // Ved hjælp af await bliver alle tre API'er kaldt, og resultaterne gemmes i variablerne bands, schedule og events.
   // Dette gør data tilgængelig til videre behandling i koden.
   const bands = await fetchBands();
   const schedule = await fetchSchedule();
-  const events = await fetchEvents();
 
   // scenes og days er arrays, der bruges som hjælp til at strukturere dataene.
   // scenes repræsenterer de forskellige koncertscener.

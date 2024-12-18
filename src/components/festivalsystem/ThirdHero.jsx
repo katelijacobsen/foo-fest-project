@@ -32,7 +32,7 @@ const ThirdHero = ({ text }) => {
   return (
     <section>
       <div className="grid place-content-center h-[80vh] md:h-[90vh]">
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center leading-0">
           {/* https://ui.indie-starter.dev/docs/text-animation */}
           {splittedText.map((current, index) => (
             <motion.div key={index} ref={ref} variants={pullupVariant} initial="initial" animate={isInView ? "animate" : ""} custom={index} className={`${ceasarDressing.className} text-[18vw]`}>
@@ -40,9 +40,11 @@ const ThirdHero = ({ text }) => {
             </motion.div>
           ))}
         </div>
-        <div className="py-4">
-          <h2 className="text-[5vw] md:text-[2.5vw] text-center">Camp som en ægte viking – og skrål til musikken som en kriger.</h2>
-        </div>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.8 }} animate={{ y: 10 }}>
+          <div className="px-4">
+            <h2 className="text-[5vw] md:text-[2vw] max-w-[45rem] text-center">Camp som en viking og skrål som en kriger.</h2>
+          </div>
+        </motion.div>
         <div className="grid place-content-center mt-16">
           <FaArrowDown className="text-customOrange w-12 h-12 animate-bounce" />
         </div>

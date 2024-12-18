@@ -55,13 +55,13 @@ const ProgramForCurrentDay = ({ mergedArray }) => {
 
   return (
     <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.3 }} animate={{ y: -40 }}>
-      <section className="my-24 py-6 px-4 max-w-screen-xl mx-auto">
+      <section className="py-[10vh] px-4 max-w-screen-xl mx-auto">
         <div>
           <Headline width={45} height={45} src={MusicRune} size="text-5xl md:text-6xl" text="DAGENS PROGRAM" />
         </div>
         <div>
           <div className="py-6">
-            <h1 className={`${ceasarDressing.className} pb-4 text-3xl md:text-5xl`}>MIDGARD</h1>
+            <h1 className={`pb-4 text-3xl md:text-5xl`}>Midgard</h1>
             <div className="overflow-x-auto" ref={scrollContainerRef1}>
               <div className="flex gap-4">
                 {sortedByTime("Midgard").map((band) => (
@@ -79,7 +79,7 @@ const ProgramForCurrentDay = ({ mergedArray }) => {
             </div>
           </div>
           <div className="py-6">
-            <h1 className={`${ceasarDressing.className} pb-4 text-3xl md:text-5xl`}>VANAHEIM</h1>
+            <h1 className={` pb-4 text-3xl md:text-5xl`}>Vanaheim</h1>
             <div className="overflow-x-auto" ref={scrollContainerRef2}>
               <div className="flex gap-4">
                 {sortedByTime("Vanaheim").map((band) => (
@@ -97,7 +97,7 @@ const ProgramForCurrentDay = ({ mergedArray }) => {
             </div>
           </div>
           <div className="py-6">
-            <h1 className={`${ceasarDressing.className} pb-4 text-3xl md:text-5xl`}>JOTUNHEIM</h1>
+            <h1 className={` pb-4 text-3xl md:text-5xl`}>Jotunheim</h1>
             <div className="overflow-x-auto" ref={scrollContainerRef3}>
               <div className="flex gap-4">
                 {sortedByTime("Jotunheim").map((band) => (

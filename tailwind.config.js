@@ -1,10 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./src/pages/**/*.{js,ts,jsx,tsx,mdx}", "./src/components/**/*.{js,ts,jsx,tsx,mdx}", "./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
       colors: {
@@ -25,18 +21,18 @@ module.exports = {
         customBlack_6: "#383838",
       },
       borderImage: {
-        'gradient-custom': 'linear-gradient(to right, #D82023 ,#EC2783, #EC4D08)',
+        "gradient-custom": "linear-gradient(to right, #D82023 ,#EC2783, #EC4D08)",
       },
       animation: {
-        shine: 'shine 8s infinite linear',
+        shine: "shine 8s infinite linear",
       },
       keyframes: {
         shine: {
-          '0%': {
-            backgroundPosition: '-200% 0',
+          "0%": {
+            backgroundPosition: "-200% 0",
           },
-          '100%': {
-            backgroundPosition: '200% 0',
+          "100%": {
+            backgroundPosition: "200% 0",
           },
         },
       },

@@ -80,7 +80,7 @@ export default function Campsite({ state, formAction }) {
         campsite,
       };
     });
-    setSelectedCampsite(campsite);
+    setSelectedCampsite(campsite, availableSpots);
   };
 
   const updateGreenCamping = (e) => {

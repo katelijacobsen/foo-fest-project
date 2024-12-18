@@ -3,10 +3,10 @@ import LineupListReadMore from "@/components/festivalsystem/LineupListReadMore";
 // import ProgramForCurrentDay from "@/components/festivalsystem/ProgramForCurrentDay";
 import Camping from "@/components/festivalsystem/Camping";
 import Volunteer from "@/components/festivalsystem/VolunteerSection";
-import MotionWhileInView from "@/components/festivalsystem/MotionWhileInView";
 import Footer from "@/components/global/Footer";
 import TicketsSection from "@/components/festivalsystem/TicketsSection";
 import dynamic from "next/dynamic";
+import TestSection from "@/components/festivalsystem/TestSection";
 // import ThirdHero from "@/components/festivalsystem/ThirdHero";
 
 //lazyloading af herosection
@@ -15,24 +15,24 @@ const ProgramForCurrentDay = dynamic(() => import("@/components/festivalsystem/P
 
 export default async function Home() {
   const fetchBands = async () => {
-    let response = await fetch("https://spring-awesome-stream.glitch.me/bands");
-    // let response = await fetch("http://localhost:8080/bands");
+    // let response = await fetch("https://spring-awesome-stream.glitch.me/bands");
+    let response = await fetch("http://localhost:8080/bands");
     let data = await response.json();
     return data;
   };
 
   // fetch datasæt med endpoint /schedule
   const fetchSchedule = async () => {
-    // let response = await fetch("http://localhost:8080/schedule");
-    let response = await fetch("https://spring-awesome-stream.glitch.me/schedule");
+    let response = await fetch("http://localhost:8080/schedule");
+    // let response = await fetch("https://spring-awesome-stream.glitch.me/schedule");
     let data = await response.json();
     return data;
   };
 
   // fetch datasæt med endpoint /events
   const fetchEvents = async () => {
-    // let response = await fetch("http://localhost:8080/events");
-    let response = await fetch("https://spring-awesome-stream.glitch.me/events");
+    let response = await fetch("http://localhost:8080/events");
+    // let response = await fetch("https://spring-awesome-stream.glitch.me/events");
     let data = await response.json();
     return data;
   };
@@ -41,6 +41,7 @@ export default async function Home() {
   const schedule = await fetchSchedule();
   const events = await fetchEvents();
 
+  //Fået hjælp af tutorer til at merge datasæt
   const scenes = ["Midgard", "Vanaheim", "Jotunheim"];
   const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
@@ -67,7 +68,7 @@ export default async function Home() {
       <TicketsSection />
       <LineupListReadMore initialLineup={bands} />
       <ProgramForCurrentDay mergedArray={mergedData} days={days} />
-      <MotionWhileInView />
+      <TestSection />
       <Camping text="Campingdelen bliver meget mere end bare en praktisk løsning – det bliver en del af den samlede oplevelse. Her kan du bygge din egen lejr, inspireret af vikingernes livsstil. Måske pynte dit telt med vimpler, skjolde eller runer? Fællesbålene bliver samlingspunktet for historier og fællessang, hvor du kan møde andre festivalgæster og dele legender om fortidens helte." />
       <Volunteer />
       <Footer />

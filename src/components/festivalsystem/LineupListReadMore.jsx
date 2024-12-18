@@ -11,7 +11,7 @@ const LineupListReadMore = ({ initialLineup, artists }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.5 }} animate={{ y: -40 }}>
+    <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.3 }} animate={{ y: -40 }}>
       <section className="h-[80vh] md:h-screen place-content-center max-w-screen-xl mx-auto p-4 grid">
         <div className="pb-6">
           <Headline src={LineupRune} width={45} height={45} size="text-5xl md:text-6xl" text="LINEUP" />

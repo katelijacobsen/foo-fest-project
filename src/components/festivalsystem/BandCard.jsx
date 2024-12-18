@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 function BandCard({ name, genre, start, end, slug, day, logo, scene, width, logoCredits }) {
-  // const imageUrl = logo && (logo.startsWith("https://") || logo.startsWith("http://")) ? logo : `http://localhost:8080/logos/${logo}`;
-  const imageUrl = logo && (logo.startsWith("https://") || logo.startsWith("http://")) ? logo : `https://spring-awesome-stream.glitch.me/logos/${logo}`;
+  const imageUrl = logo && (logo.startsWith("https://") || logo.startsWith("http://")) ? logo : `http://localhost:8080/logos/${logo}`;
+  // const imageUrl = logo && (logo.startsWith("https://") || logo.startsWith("http://")) ? logo : `https://spring-awesome-stream.glitch.me/logos/${logo}`;
 
   return (
     <Link href={`/program/${slug}`} key={slug} className={`hover:scale-[1.02] transition-all duration-500 cursor-pointer ${width}`}>

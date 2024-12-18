@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 const Volunteer = () => {
   return (
-    <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.5 }} animate={{ y: -40 }}>
+    <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.3 }} animate={{ y: -40 }}>
       <section className="py-6 px-4 grid h-[70vh] place-content-center">
         <div className="max-w-screen-md mx-auto">
           <div className="grid place-content-center">

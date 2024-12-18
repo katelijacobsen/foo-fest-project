@@ -35,13 +35,13 @@ const ThirdHero = ({ text }) => {
         <div className="flex justify-center items-center">
           {/* https://ui.indie-starter.dev/docs/text-animation */}
           {splittedText.map((current, index) => (
-            <motion.div key={index} ref={ref} variants={pullupVariant} initial="initial" animate={isInView ? "animate" : ""} custom={index} className={`${ceasarDressing.className} text-8xl md:text-[12rem]`}>
+            <motion.div key={index} ref={ref} variants={pullupVariant} initial="initial" animate={isInView ? "animate" : ""} custom={index} className={`${ceasarDressing.className} text-[18vw]`}>
               {current === " " ? <span></span> : current}
             </motion.div>
           ))}
         </div>
         <div className="py-4">
-          <h2 className="text-xl md:text-2xl text-center">Camp som en ægte viking – og skrål til musikken som en kriger.</h2>
+          <h2 className="text-[5vw] md:text-[2.5vw] text-center">Camp som en ægte viking – og skrål til musikken som en kriger.</h2>
         </div>
         <div className="grid place-content-center mt-16">
           <FaArrowDown className="text-customOrange w-12 h-12 animate-bounce" />

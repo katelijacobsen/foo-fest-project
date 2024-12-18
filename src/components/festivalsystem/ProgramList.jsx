@@ -34,6 +34,7 @@ function ProgramList({ mergedArray, days }) {
     setSelectedDay(day);
   };
 
+  //Fået hjælp af tutorer til at sortere bands efter tid
   // Funktionen starter med at filtrerer ud fra scene og dag
   // Sorterer herefter "bands" ud fra sammenlignign af starttidspunkterne
   const sortedByTime = (scene) => {
@@ -105,32 +106,3 @@ function ProgramList({ mergedArray, days }) {
 }
 
 export default ProgramList;
-
-{
-  /* <div className="grid grid-cols-[auto_.5fr_1fr]">
-<div className="sticky top-0 self-start">
-  <Headline src={MusicRune} text="MIDGARD" />
-</div>
-<div className="flex gap-4 overflow-x-scroll  mb-20 snap-mandatory snap-x">
-  {sortedByTime("Midgard").map((band) => (
-    <BandCard slug={band.slug} logo={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} />
-  ))}
-</div>
-</div>
-<div>
-<Headline src={MusicRune} text="VANAHAIM" />
-<div className="flex gap-4 overflow-x-scroll mb-20 snap-mandatory snap-x">
-  {sortedByTime("Vanaheim").map((band) => (
-    <BandCard slug={band.slug} logo={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} />
-  ))}
-</div>
-</div>
-<div>
-<Headline src={MusicRune} text="JOTUNHEIM" />
-<div className="flex gap-4 overflow-x-scroll mb-20 snap-mandatory snap-x">
-  {sortedByTime("Jotunheim").map((band) => (
-    <BandCard slug={band.slug} logo={band.logo} key={band.name} name={band.name} genre={band.genre} start={band.eventInfo.start} end={band.eventInfo.end} day={band.day} logoCredits={band.logoCredits} />
-  ))}
-</div>
-</div> */
-}

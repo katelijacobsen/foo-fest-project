@@ -1,6 +1,14 @@
 import { useState } from "react";
 import { motion } from "framer-motion"; // Import motion from Framer Motion
 import Card from "./Card";
+import { Caesar_Dressing } from "next/font/google";
+
+const ceasarDressing = Caesar_Dressing({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
 
 export default function ChooseTicket({ cart, formAction }) {
   const [count2, setCount2] = useState(0);
@@ -18,8 +26,8 @@ export default function ChooseTicket({ cart, formAction }) {
     transition={{ duration: 0.3 }}
     className="relative z-10 bg-customBlack_5 border border-customBlack_2 rounded-lg m-4 grid grid-rows-[auto_auto_1fr] grid-cols-1 sm:grid-cols-2 gap-4 sm:w-full "
   >
-    <h2 className=" m-8 col-span-1 sm:col-span-2 text-left text-lg sm:text-xl md:text-2xl ">
-      Vælg venligst en type billet
+    <h2 className={`${ceasarDressing.className} m-8 col-span-1 sm:col-span-2 text-left text-xl sm:text-3xl md:text-3xl `}>
+      VÆLG VENLIGST EN TYPE BILLET
     </h2>
     <motion.div
       className="flex flex-col items-center"

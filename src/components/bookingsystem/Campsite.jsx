@@ -3,9 +3,9 @@ import { useState, useEffect, useContext } from "react";
 import CounterInput from "./CounterInput";
 import { CartContext } from "@/app/tickets/page";
 import { motion } from "framer-motion";
-import { Caesar_Dressing } from "next/font/google";
 import { FaLeaf } from "react-icons/fa6";
 import { IoIosAlert } from "react-icons/io";
+import { Caesar_Dressing } from "next/font/google";
 
 const ceasarDressing = Caesar_Dressing({
   subsets: ["latin"],

@@ -22,10 +22,10 @@ const Accordionitem = ({ DesktoptextSize, MobileTextSize, isOpen, setIsOpen, que
       </button>
       {isOpen == item && (
         <div className="pt-1">
-          <p className="text-base md:text-lg text-customWhite_3"> {textOne}</p>
-          <p className="text-base md:text-lg text-customWhite_3"> {textTwo}</p>
-          <p className="text-base md:text-lg text-customWhite_3"> {textThree}</p>
-          <p className="text-base md:text-lg text-customWhite_3"> {textFour}</p>
+          <p className="text-base md:text-lg text-customWhite"> {textOne}</p>
+          <p className="text-base md:text-lg text-customWhite"> {textTwo}</p>
+          <p className="text-base md:text-lg text-customWhite"> {textThree}</p>
+          <p className="text-base md:text-lg text-customWhite"> {textFour}</p>
         </div>
       )}
     </li>

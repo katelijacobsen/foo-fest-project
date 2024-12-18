@@ -91,7 +91,7 @@ const Header = () => {
                 </Link>
               </li>
               <button>
-                <Link href="/tickets" className={` ${ceasarDressing.className} text-4xl${isActivePage("/tickets") ? "bg-gradient-to-r from-customPink via-customRed to-customOrange text-transparent bg-clip-text" : "text-white"}`}>
+                <Link href="/tickets" className={` ${ceasarDressing.className} text-4xl ${isActivePage("/tickets") ? "bg-gradient-to-r from-customPink via-customRed to-customOrange text-transparent bg-clip-text" : "text-white"}`}>
                   Køb billetter
                 </Link>
               </button>

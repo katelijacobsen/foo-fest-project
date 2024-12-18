@@ -93,11 +93,14 @@ export default function Campsite({ state, formAction }) {
     });
   };
 
-  const handleNext = (formData) => {
+  const handleNext = (formData, availableSpots) => {
     if (!selectedCampsite) {
       setHandleError("Vælg venligst et campingområde, før du fortsætter.");
       return;
     }
+
+    console.log("do it know! pls", availableSpots);
+    console.log("do it know! pls plsss", availableSpots - numPeople);
     formData.set("campsite", selectedCampsite);
     formAction(formData);
   };
